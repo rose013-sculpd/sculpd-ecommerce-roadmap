@@ -135,6 +135,8 @@ background:transparent;text-align:right;width:76px;padding-top:11px}
 .wk td.ops{background:color-mix(in srgb,var(--s4) 15%,var(--surf));border-color:color-mix(in srgb,var(--s4) 32%,transparent)}
 .wk td.comm{background:color-mix(in srgb,var(--s5) 14%,var(--surf));border-color:color-mix(in srgb,var(--s5) 30%,transparent)}
 .wk td.buf{background:transparent;border-style:dashed}
+.wk td.off{background:transparent;border-color:transparent;color:var(--mut)}
+.wk td.off b{font-weight:520;color:var(--mut)}
 
 .tl{position:relative;margin-top:24px}
 .tl-r{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--grid);align-items:flex-start}
@@ -187,19 +189,21 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
 <div id="tip"></div>
 
 <header><div class="wrap">
-  <div class="kick">Sculpd · Ecommerce Manager · Rose Molina · 4 August 2026</div>
+  <div class="kick">Sculpd · Ecommerce Manager · Rose Molina · 4 August 2026 · revision 2</div>
   <h1>The Ecommerce Operating System</h1>
   <p class="sub">The job spec describes <b>a department</b>. You are one person, in Manila, supporting
   five storefronts for stakeholders in London and Los Angeles, with <b>101 days until code freeze</b>.
-  This is not a tidier board. It is an operating system: an intake that stops work arriving invisibly,
-  a priority ladder that survives contact with a Slack message, a capacity model in hours rather than
-  hope, and an honest list of the things one person cannot do — named out loud so they can be resourced
+  This is not a tidier board. It is an operating system: a week built around the 6.5 uninterruptible hours
+  a 6am start actually gives you, a priority ladder that survives contact with a Slack message, a capacity
+  model in hours rather than hope, a written evaluation of the five-store architecture underneath all of
+  it, and an honest list of the things one person cannot do — named out loud so they can be resourced
   rather than quietly dropped.</p>
   <div class="stats">
     <div class="st"><div class="st-v">1.8×</div><div class="st-l">FTE the spec describes</div>
       <div class="st-w">Rising to ~2.4× in Q4. The gap is real and this document prices it.</div></div>
     <div class="st"><div class="st-v">16h</div><div class="st-l">planned build per week</div>
-      <div class="st-w">The other 24h is reactive work, releases, trading ops and steering. All of it real.</div></div>
+      <div class="st-w">Out of a 32.5h protected morning block. The other 24h is reactive work, releases,
+      trading ops and steering — all real, none of it currently on the board.</div></div>
     <div class="st"><div class="st-v">101</div><div class="st-l">days to hard freeze</div>
       <div class="st-w">13 Nov. Black Friday is 27 Nov. Everything in this plan bends around those two dates.</div></div>
     <div class="st"><div class="st-v">11h/wk</div><div class="st-l">recoverable through AI</div>
@@ -211,9 +215,9 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
   <a href="#summary"><i>01</i>Summary</a><a href="#remit"><i>02</i>Remit</a><a href="#capacity"><i>03</i>Reality check</a>
   <a href="#priority"><i>04</i>Priority</a><a href="#categories"><i>05</i>Categories</a><a href="#notion"><i>06</i>Notion OS</a>
   <a href="#pipeline"><i>07</i>Pipeline</a><a href="#week"><i>08</i>The week</a><a href="#allocation"><i>09</i>Allocation</a>
-  <a href="#sprints"><i>10</i>Sprints</a><a href="#roadmap"><i>11</i>Roadmap</a><a href="#coverage"><i>12</i>Job spec</a>
-  <a href="#risks"><i>13</i>Risks</a><a href="#ai"><i>14</i>AI leverage</a><a href="#plan"><i>15</i>30·60·90</a>
-  <a href="#final"><i>16</i>Do first</a>
+  <a href="#sprints"><i>10</i>Sprints</a><a href="#roadmap"><i>11</i>Roadmap</a><a href="#architecture"><i>12</i>Architecture</a>
+  <a href="#coverage"><i>13</i>Job spec</a><a href="#risks"><i>14</i>Risks</a><a href="#ai"><i>15</i>AI leverage</a>
+  <a href="#plan"><i>16</i>30·60·90</a><a href="#final"><i>17</i>Do first</a>
 </div></nav>
 
 <div class="wrap">
@@ -291,10 +295,11 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
 
   <h3 style="margin:36px 0 4px">The four bottlenecks</h3>
   <div class="grid2" style="margin-top:16px">
-    <div class="vw"><div class="vw-c">BOTTLENECK 01</div><h4>There is no front door</h4>
-      <p>Requests arrive in Slack from Guy, Giles, Matt and Alix, across two timezones, and become work
-      without ever becoming a ticket. Work that enters through a side door cannot be prioritised, estimated
-      or declined — it can only be absorbed.</p></div>
+    <div class="vw"><div class="vw-c">BOTTLENECK 01</div><h4>The front door works. The sorting office does not.</h4>
+      <p>Every Slack request already becomes a Notion ticket — that discipline is in place and it is the
+      hard part. The gap is what happens next: tickets arrive without a priority, an estimate or a date, so
+      the board fills with equally-weighted work and sequencing collapses back into whoever asked most
+      recently. <b>You have capture. You do not yet have triage.</b></p></div>
     <div class="vw"><div class="vw-c">BOTTLENECK 02</div><h4>Everything is Medium</h4>
       <p>Nine of the visible cards are Medium. "Medium" is not a priority, it is the absence of one. When
       every card is equally important, sequencing collapses back into whoever asked most recently — which
@@ -402,7 +407,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
   <h3 style="margin:36px 0 4px">Every responsibility, mapped</h3>
   <p class="lede" style="margin:8px 0 4px">Filter by mode to see how the week should be shaped.</p>
   <div class="btns" style="margin-top:16px">
-    <button class="btn on" data-mode="all">All 37</button>
+    <button class="btn on" data-mode="all">All 38</button>
     <button class="btn" data-mode="Build">Build</button>
     <button class="btn" data-mode="Optimise">Optimise</button>
     <button class="btn" data-mode="Operate">Operate</button>
@@ -464,9 +469,9 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
     <div class="st"><div class="st-v">89%</div><div class="st-l">planned utilisation, H2</div>
       <div class="st-w">217h of scoped work against 244h of capacity. Above 80%, queueing theory says lead
       times grow non-linearly — one bad week cascades into three.</div></div>
-    <div class="st"><div class="st-v">11</div><div class="st-l">spec items never ticketed</div>
+    <div class="st"><div class="st-v">10</div><div class="st-l">spec items never ticketed</div>
       <div class="st-w">Gift builder, upsells, cross-sells, collection optimisation, navigation, search &amp;
-      filters, localisation, checkout, subscriptions, personalisation, app stack.</div></div>
+      filters, checkout, subscriptions, personalisation, app stack.</div></div>
     <div class="st"><div class="st-v">×5</div><div class="st-l">storefront multiplier</div>
       <div class="st-w">Applied to every build, every QA pass, every campaign and every fix until the shared
       theme exists.</div></div>
@@ -521,21 +526,23 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
 
   <h3 style="margin:38px 0 14px">Four things I would tell the client outright</h3>
   <div class="grid2">
-    <div class="card tight" style="border-left:3px solid var(--crit)">
-      <h4 style="color:var(--crit)">International localisation cannot happen in H2</h4>
-      <p style="font-size:13px;color:var(--ink2);margin:8px 0 0">It is a named pillar of the job spec —
-      translation workflows, localisation, regional merchandising — and it is the one pillar with no H2
-      coverage at all. Doing it properly means a translation tool, a content workflow and per-region
-      merchandising rules: 16h+ before it produces anything. <b>Say this out loud in August</b> rather than
-      letting it look covered. A gap you have named is a resourcing conversation. A gap you have hidden is
-      a performance conversation.</p></div>
-    <div class="card tight" style="border-left:3px solid var(--crit)">
-      <h4 style="color:var(--crit)">Accessibility is a compliance question, not a backlog item</h4>
-      <p style="font-size:13px;color:var(--ink2);margin:8px 0 0">The European Accessibility Act applies to
-      ecommerce services in the EU, and the UK has its own equalities obligations. That makes accessibility
-      on the EU and UK storefronts a question for whoever owns legal risk at Sculpd, not something that
-      waits its turn behind a multibuy block. <b>Recommended action:</b> raise it as a decision at the next
-      fortnightly, scope an audit, and either get it resourced or get a written acceptance of the risk.</p></div>
+    <div class="card tight" style="border-left:3px solid var(--s1)">
+      <h4 style="color:var(--s1)">Localisation is not your international problem — architecture is</h4>
+      <p style="font-size:13px;color:var(--ink2);margin:8px 0 0">Translation is already handled: the
+      translation app covers CA and EU in roughly thirty minutes per release, and no other region needs it.
+      That pillar is solved and cheap. The real international question is that Sculpd runs <b>five separate
+      Shopify stores rather than one store with markets</b> — which is the source of the ×5 multiplier,
+      the theme drift, the manual hreflang and the custom geo-redirect script you had to build.
+      <b>That deserves a written evaluation, not a translation workstream.</b> §12 is that evaluation.</p></div>
+    <div class="card tight" style="border-left:3px solid var(--warn)">
+      <h4 style="color:var(--warn)">Accessibility exists on two stores and nobody has asked about the other three</h4>
+      <p style="font-size:13px;color:var(--ink2);margin:8px 0 0">US was implemented by a third-party
+      accessibility provider; AU inherited it when the store was cloned. UK, EU and CA have nothing, and no
+      client request has been made. Two cheap actions, neither of which is a project: <b>verify that the AU
+      inheritance still functions</b> after this year's theme changes — cloned implementations rot quietly —
+      and <b>put the EU store in front of whoever owns legal risk once</b>, then record the answer. If the
+      answer is "not now", that is a perfectly good answer, and having it in writing is worth the ten
+      minutes it costs to ask.</p></div>
     <div class="card tight" style="border-left:3px solid var(--warn)">
       <h4 style="color:var(--warn)">Subscriptions and personalisation are new business models</h4>
       <p style="font-size:13px;color:var(--ink2);margin:8px 0 0">They sit in the spec next to "product page
@@ -667,11 +674,13 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       is how untested code reaches a Black Friday storefront.</td></tr>
   </tbody></table>
 
-  <div class="note"><b>What to reply in Slack, every time.</b> "Added to the board as
-  <span class="mono">[ticket link]</span> — I'll come back with a priority and a date by
-  <span class="mono">[next triage]</span>." Thirty seconds, no commitment, no negotiation, and the request
-  is now visible. This single sentence is the highest-return process change in this entire document,
-  because it converts invisible work into countable work at the moment it arrives.</div>
+  <div class="note"><b>You already ticket everything — so add the second half of the sentence.</b>
+  Creating the ticket is the hard discipline and you have it. What is missing is the expectation that
+  travels with it: <span class="mono">"Ticketed as [link] — priority and target date back to you by
+  [next triage]."</span> Without that clause the requester has no idea whether they are first or twelfth,
+  so they chase, and the chase becomes the interruption. <b>The ticket makes the work visible to you;
+  the date makes the queue visible to them.</b> That is what stops priority being renegotiated one
+  message at a time.</div>
 </section>
 
 
@@ -766,8 +775,23 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
     <tr><td><b>Requester / Owner</b></td><td class="mono">Person</td><td class="why">Two separate fields.
       Owner is nearly always you; Requester is who to go back to. Conflating them is why "who wanted this?"
       costs ten minutes.</td></tr>
+    <tr><td><b>Work Type</b> <span class="tag new">added</span></td><td class="mono">Select</td><td class="why">
+      <b>One-off</b> · <b>Ongoing initiative</b> · <b>Recurring</b> · <b>Reversible campaign change</b>.
+      The property that fixes the three cases your current board cannot express. AI Search Optimisation is an
+      <i>ongoing initiative</i> and is supposed to stay open. The Summer Sale price block is a <i>reversible
+      campaign change</i> with a revert still owed. Neither is a stalled ticket, and the board should stop
+      implying they are.</td></tr>
+    <tr><td><b>Revisit On</b> <span class="tag new">added</span></td><td class="mono">Date</td><td class="why">
+      The date a paused ticket comes back to you. Paired with the On Hold status, this is what turns
+      "revert the sale pricing once the campaign ends" into something the system remembers rather than
+      something you do. Mandatory on every <i>Reversible campaign change</i>.</td></tr>
+    <tr><td><b>Parent item / Sub-items</b> <span class="tag new">added</span></td><td class="mono">Self-relation</td>
+      <td class="why">Notion's native sub-item relation on Delivery. Two levels only —
+      <b>Programme → parent ticket → sub-tickets</b>. Multibuy becomes a parent with a US A/B test child and
+      four per-region rollout children, so the parent can sit On Hold while a child is In Progress. Three
+      levels is a filing system; four is a maze.</td></tr>
     <tr><td><b>Blocked Reason</b></td><td class="mono">Select</td><td class="why">Waiting on client · design ·
-      third party · data · decision. A reason, not a status — see §07.</td></tr>
+      third party · data · decision. A reason, not a status — and distinct from On Hold, see §07.</td></tr>
     <tr><td><b>Release</b></td><td class="mono">Relation</td><td class="why">Links to the Releases database.
       This is what replaces your release-tracking Google Sheet and ends the double entry.</td></tr>
     <tr><td><b>Decision Log</b></td><td class="mono">Text</td><td class="why">The conclusion, written into the
@@ -798,11 +822,28 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
   </div>
 </section>
 <section id="notion"><div class="sh"><div class="lbl">06 · Notion operating system</div>
-  <h2>Six databases, one teamspace, three permissions to ask for</h2></div>
-  <p class="lede">You said you have limited control of a shared workspace but could ask for more. Do not ask
-  for the workspace — <b>ask for one teamspace you own</b>. That is a small, specific, easy-to-grant request,
-  and it is all this design needs. Everything below lives inside it, and the rest of the company sees only
-  three read-only views.</p>
+  <h2>Build it inside Design &amp; Web — most of it already exists</h2></div>
+  <p class="lede">My first instinct was to ask for a new teamspace. Looking at the actual workspace, that
+  would be wrong. <b>Design &amp; Web is already the right home</b>: it is Open with five members, so your
+  stakeholders can already see it, and it already contains working versions of five of the databases this
+  design calls for. A separate teamspace would orphan the Changelog and the Design Brief Board, or force you
+  to duplicate them. <b>Only three databases here are genuinely new.</b></p>
+
+  <div class="note good" style="margin-top:0"><b>What already exists, and what it becomes.</b>
+  <span class="mono">Website Build Tasks</span> → <b>Delivery</b> (keep the database, replace the schema) ·
+  <span class="mono">Website Roadmap</span> → <b>Programmes</b> (8–12 rows, no tickets) ·
+  <span class="mono">Website Changelog</span> → <b>Releases</b> (extend it, and retire the Google Sheet) ·
+  <span class="mono">Web Development Documentation</span> → <b>Learnings &amp; Decisions</b> (one row per
+  decision) · <span class="mono">Digital Design Brief Board</span> → already your design queue, just relate
+  it to Delivery · <span class="mono">Web Landing Page Database</span> and
+  <span class="mono">Tracker – External Platforms</span> → keep as-is, relate them in.
+  <b>New: Inbox, Sprints, Metrics.</b></div>
+
+  <div class="note" style="margin-top:16px"><b>One tidy-up while you are in there.</b> The sidebar shows two
+  homepages (<span class="mono">Design &amp; Web Homepage</span> and <span class="mono">Web Development
+  Homepage</span>) and the Website Roadmap and Planning Board appearing at two levels. That is the same drift
+  problem as the five themes, in a different medium. <b>One hub page, everything under it</b> — as part of
+  the build, not as a separate project.</div>
 
   <div class="note good" style="margin-top:0"><b>And stay on Notion.</b> You had the option to move to Linear
   or similar. Linear is a better pure engineering tracker, but two thirds of this role is not engineering —
@@ -823,7 +864,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       goal is that capturing something costs under ten seconds, because anything slower and you will not do
       it when you are mid-build.</p>
       <p style="font-size:12.5px;color:var(--mut);margin:0"><b style="color:var(--ink2)">Emptied:</b> once a
-      day at the 15:30 triage block. Empty by end of day, every day. This is the only queue in the system
+      day at the 14:00 triage block. Empty by end of day, every day. This is the only queue in the system
       with a zero target.</p>
     </div>
     <div class="card tight" style="border-left:3px solid var(--s1)">
@@ -878,13 +919,13 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
   written against. If you only add one thing beyond the six, add this.</p>
 
   <h3 style="margin:38px 0 4px">The views that do the work</h3>
-  <p class="lede" style="margin:8px 0 18px">Nine views. Anything beyond this and you start browsing instead of
+  <p class="lede" style="margin:8px 0 18px">Ten views. Anything beyond this and you start browsing instead of
   working.</p>
   <div class="grid2">
     <div class="vw"><div class="vw-c">DELIVERY · the only one open during the day</div><h4>Today</h4>
       <p><span class="mono">Status = In Progress</span> OR <span class="mono">Priority ≤ P1 AND not Done</span>.
       Sorted by priority. Three to five rows. If this view has ten rows, that is the alarm.</p></div>
-    <div class="vw"><div class="vw-c">INBOX · worked once daily at 15:30</div><h4>Triage</h4>
+    <div class="vw"><div class="vw-c">INBOX · worked once daily at 14:00</div><h4>Triage</h4>
       <p>Everything uncategorised, oldest first, with an age column. Target: zero rows by end of day.</p></div>
     <div class="vw"><div class="vw-c">DELIVERY · board grouped by status</div><h4>This Sprint</h4>
       <p>Filtered to the current sprint relation, with a committed-hours sum in the group header so
@@ -901,6 +942,11 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
     <div class="vw"><div class="vw-c">DELIVERY · Monday and Thursday</div><h4>Waiting</h4>
       <p><span class="mono">Blocked = true</span> with a Blocked Reason and days-blocked. Blocked work is the
       cheapest work to unblock and the easiest to forget. Two chases a week clears most of it.</p></div>
+    <div class="vw" style="border-color:var(--warn)"><div class="vw-c">DELIVERY · checked every Monday</div>
+      <h4>Coming back to you</h4>
+      <p><span class="mono">Status = On Hold AND Revisit On ≤ today + 14 days</span>. The view that stops
+      a paused ticket becoming a forgotten one. The sale-pricing revert appears here two weeks before it is
+      needed instead of being remembered on the day.</p></div>
     <div class="vw"><div class="vw-c">DELIVERY · monthly, 20 minutes</div><h4>Aging backlog</h4>
       <p><span class="mono">Priority ≥ P3 AND created &gt; 60 days ago</span>. Promote with a date or kill with
       a reason. Nothing leaves this review unchanged.</p></div>
@@ -948,6 +994,10 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
             <td class="why">→ require Result field, prompt Learnings row</td></tr>
           <tr><td class="why"><b style="color:var(--ink)">Target date within 14 days &amp; P2</b></td>
             <td class="why">→ flag <span class="mono">time-locked</span>, notify</td></tr>
+          <tr><td class="why"><b style="color:var(--ink)">Status → On Hold</b></td>
+            <td class="why">→ require <b>Revisit On</b>, clear from This Sprint</td></tr>
+          <tr><td class="why"><b style="color:var(--ink)">Revisit On = today</b></td>
+            <td class="why">→ Status back to Triaged, notify, re-score</td></tr>
           <tr><td class="why"><b style="color:var(--ink)">Every Monday 08:00</b></td>
             <td class="why">→ create the sprint planning page from template</td></tr>
           <tr><td class="why"><b style="color:var(--ink)">Every Friday 14:00</b></td>
@@ -964,7 +1014,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
         <b>1. Slack →</b> the Notion Slack integration, "Add to Inbox" on any message. Captures the thread link
         and the requester automatically. This is the one that matters most, because Slack is where the leakage is.<br>
         <b>2. Mobile →</b> Notion widget on your home screen pointed at Inbox. For the 9pm thought.<br>
-        <b>3. Desktop →</b> global shortcut to a new Inbox row. Title only is fine — you triage at 15:30.</p>
+        <b>3. Desktop →</b> global shortcut to a new Inbox row. Title only is fine — you triage at 14:00.</p>
         <p style="font-size:12.5px;color:var(--mut);margin:0">The rule that makes capture work: <b>Inbox rows are
         allowed to be scruffy.</b> The moment capture requires a category and an estimate, you will stop capturing
         and the system starts lying to you.</p>
@@ -972,32 +1022,33 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
     </div>
   </div>
 
-  <h3 style="margin:38px 0 12px">The three permissions to ask for</h3>
-  <div class="grid3">
-    <div class="vw" style="border-color:var(--s1)"><div class="vw-c">ASK 01</div><h4>Owner of one teamspace</h4>
-      <p>A single teamspace called <b>Ecommerce OS</b>, with you as owner. Not the workspace. This is the whole
-      ask, and it is a five-minute change for whoever administers Notion.</p></div>
-    <div class="vw" style="border-color:var(--s1)"><div class="vw-c">ASK 02</div><h4>Database + automation rights inside it</h4>
-      <p>Create databases, relations, formulas and automations within that teamspace only. Usually implied by
-      ownership, but worth confirming — some plans gate automations.</p></div>
-    <div class="vw" style="border-color:var(--s1)"><div class="vw-c">ASK 03</div><h4>Read-only views for stakeholders</h4>
-      <p>Guy, Giles, Matt and Alix get three linked views — <b>Peak Critical</b>, <b>This Sprint</b>,
-      <b>Job Spec Coverage</b> — surfaced in their existing spaces. They see status; they cannot restructure it.
-      This is also what stops the fortnightly turning into a status round-robin.</p></div>
+  <h3 style="margin:38px 0 12px">The two things to ask for</h3>
+  <div class="grid2">
+    <div class="vw" style="border-color:var(--s1)"><div class="vw-c">ASK 01</div>
+      <h4>Database and automation rights inside Design &amp; Web</h4>
+      <p>Not the workspace, not a new teamspace — just confirmation that you can create databases, relations,
+      formulas and automations within the teamspace you already work in. Small, specific, easy to grant, and
+      worth confirming explicitly because some plans gate automations separately from editing.</p></div>
+    <div class="vw" style="border-color:var(--s1)"><div class="vw-c">ASK 02</div>
+      <h4>Three linked views surfaced to stakeholders</h4>
+      <p>Guy, Giles, Matt and Alix get <b>Peak Critical</b>, <b>This Sprint</b> and <b>Job Spec Coverage</b>
+      as linked views in their own spaces. They see status; they cannot restructure it. This is also what
+      stops the fortnightly turning into a status round-robin.</p></div>
   </div>
   <div class="note" style="margin-top:18px"><b>How to frame the ask.</b> Not "I need more Notion access" —
-  "I want to give you a live view of what's shipping before peak, and to do that I need a teamspace I can
-  structure. It takes me two days to set up and it removes the need for status updates." <b>Same request,
-  framed as something they receive rather than something you take.</b></div>
+  "I want to give you a live view of what's shipping before peak, and to do that I need to restructure a few
+  databases in Design &amp; Web. Two days to set up, and it removes the need for status updates."
+  <b>Same request, framed as something they receive rather than something you take.</b></div>
 </section>
 
 
 <section id="pipeline"><div class="sh"><div class="lbl">07 · Delivery pipeline</div>
-  <h2>Eight stages, because every stage is a decision you have to service</h2></div>
-  <p class="lede">Your proposed pipeline has ten stages. I would run eight — and the two I have removed
-  were removed for a specific reason: <b>"Blocked" and "Waiting for Client" are not states of the work,
-  they are states of the queue.</b> Mixing those into the status field fragments the board and hides where
-  things actually are. They become a checkbox and a reason instead.</p>
+  <h2>Nine stages, three ways to pause, two levels of nesting</h2></div>
+  <p class="lede">Your proposed pipeline has ten stages; the main line here runs nine. But the more
+  important correction is yours, not mine: <b>the board has no way to say "deliberately paused"</b>, so
+  AI Search Optimisation looks stalled, Multibuy looks abandoned while it is actually mid-test, and the
+  Summer Sale price block sits in Assigned as a private reminder that only you can decode. Those are three
+  different states and none of them is "in progress". Below, each gets a home.</p>
 
   <div class="flow" style="margin-top:24px">
     <div class="fs"><div class="fs-n">01</div><h4>Inbox</h4>
@@ -1029,10 +1080,71 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       <h4>Closed</h4>
       <p>Result recorded, learning logged, release linked. Exists because a card closed without a result is
       a card you will re-litigate.</p></div>
-    <div class="fs off"><div class="fs-n">OFF-PIPELINE</div><h4>Blocked ☑ · Parked</h4>
-      <p><b>Blocked</b> is a checkbox plus a reason on top of the real status — so you can still see that a
-      thing is <i>in review</i> and blocked on design. <b>Parked</b> is a deliberate, reasoned deferral with a
-      revisit quarter.</p></div>
+    <div class="fs" style="border-color:var(--warn)"><div class="fs-n" style="color:var(--warn)">ANY STAGE</div>
+      <h4>On Hold / Awaiting Validation</h4>
+      <p>A real status, not a footnote. Work that is <b>deliberately paused pending an event or a result</b>,
+      carrying a <b>Revisit On</b> date. Exits automatically into your view on that date.</p></div>
+  </div>
+
+  <h3 style="margin:34px 0 4px">Three ways work pauses — and why they must be three different things</h3>
+  <p class="lede" style="margin:8px 0 18px">This is the correction that matters most. Collapsing these into
+  one state is why your board currently misrepresents three of its most important tickets.</p>
+  <div class="grid3">
+    <div class="vw" style="border-color:var(--warn)"><div class="vw-c">STATUS · you chose this</div>
+      <h4>On Hold / Awaiting Validation</h4>
+      <p style="margin-top:6px">You have deliberately stopped, pending something that has not happened yet:
+      a test reaching significance, a campaign ending, a decision arriving from data. <b>Nobody is blocking
+      you and nothing is wrong.</b> Requires a <b>Revisit On</b> date — a hold with no return date is just
+      an abandonment with better manners.</p>
+      <p style="margin-top:8px;font-size:12px;color:var(--mut)"><b style="color:var(--ink2)">Your cases:</b>
+      Multibuy (awaiting the US A/B result before regional rollout) · Summer Sale price block (awaiting
+      campaign end, then revert the pricing)</p></div>
+    <div class="vw" style="border-color:var(--crit)"><div class="vw-c">CHECKBOX + REASON · someone else</div>
+      <h4>Blocked</h4>
+      <p style="margin-top:6px">Someone or something outside you must act before you can continue: app
+      permissions, a test fulfilment location, a client decision, a design asset. It sits <i>on top of</i>
+      the real status, so you can still see that a thing is <i>In Progress</i> and blocked on design.</p>
+      <p style="margin-top:8px;font-size:12px;color:var(--mut)"><b style="color:var(--ink2)">Your cases:</b>
+      Multibuy discount app (dev dashboard permissions) · Bundles US test (dedicated test fulfilment
+      location)</p></div>
+    <div class="vw" style="border-color:var(--mut)"><div class="vw-c">STATUS · not this year</div>
+      <h4>Parked</h4>
+      <p style="margin-top:6px">A reasoned deferral to a named future quarter, with the reasoning written
+      down. Not a hold and not a block — a decision. Parked items leave the active board entirely and
+      resurface only at the quarterly review.</p>
+      <p style="margin-top:8px;font-size:12px;color:var(--mut)"><b style="color:var(--ink2)">Your cases:</b>
+      Checkout optimisation · navigation &amp; IA · collection optimisation · subscriptions ·
+      personalisation · automated multi-region deployment</p></div>
+  </div>
+
+  <div class="grid2" style="margin-top:18px">
+    <div class="card tight" style="border-left:3px solid var(--s6)">
+      <h4>And a fourth thing that is not a pause at all: ongoing initiatives</h4>
+      <p style="font-size:13px;color:var(--ink2);margin:9px 0 8px">AI Search Optimisation is not a ticket
+      that has failed to close. It is an <b>ongoing initiative</b> that will keep producing work as new
+      opportunities appear — and the board should say so rather than making it look overdue. That is what
+      the <b>Work Type</b> property is for.</p>
+      <p style="font-size:13px;color:var(--ink2);margin:0">Structurally: it becomes a <b>Programme</b> row
+      with a rolling quarterly goal, and each wave of work becomes a closable child ticket underneath it —
+      <span class="mono">AI Search — AU pilot</span>, <span class="mono">AI Search — US rollout</span>,
+      <span class="mono">AI Search — schema v2</span>. The programme never closes; the children always do.
+      <b>That combination is what lets a long-running initiative stay honest.</b></p>
+    </div>
+    <div class="card tight" style="border-left:3px solid var(--s1)">
+      <h4>Parent and sub-items — two levels, no more</h4>
+      <p style="font-size:13px;color:var(--ink2);margin:9px 0 8px">Notion's native sub-item relation on the
+      Delivery database. The rule that keeps it usable: <b>Programme → parent ticket → sub-tickets</b>, and
+      you stop there.</p>
+      <p style="font-size:12.5px;color:var(--mut);margin:0 0 8px"><b style="color:var(--ink2)">Multibuy,
+      restructured:</b><br>
+      <span class="mono">▸ [US] PDP — Multibuy A/B test</span> · In Progress<br>
+      <span class="mono">▪ [All] PDP — Multibuy rollout</span> · <b style="color:var(--warn)">On Hold</b> ·
+      Revisit 22 Sep<br>
+      <span class="mono">&nbsp;&nbsp;└ [UK] · [EU] · [CA] · [AU] rollout</span> · Ready</p>
+      <p style="font-size:12.5px;color:var(--ink2);margin:0">Now the board tells the truth: one thing is
+      being worked, one is deliberately waiting on evidence, four are queued behind it. Today all of that
+      is a single card marked Medium.</p>
+    </div>
   </div>
 
   <div class="note"><b>Why the Monitoring stage earns its place.</b> Look at your release log: the DOM bloat
@@ -1045,7 +1157,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
   <div class="grid2" style="margin-top:20px">
     <div class="vw"><h4>Who moves a card, and when</h4>
       <p style="margin-top:6px">Only you. This is not a team pipeline and pretending otherwise adds ceremony
-      with no benefit. What matters instead is <b>when</b>: Inbox→Triaged at 15:30 daily; Triaged→Ready during
+      with no benefit. What matters instead is <b>when</b>: Inbox→Triaged at 14:00 daily; Triaged→Ready during
       sprint planning; In Review→Staged when the release is cut; Live→Monitoring automatically; Monitoring→Closed
       at the Friday close-out. Four fixed moments, not a continuous obligation.</p></div>
     <div class="vw"><h4>The rule that keeps it honest</h4>
@@ -1057,21 +1169,31 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
 
 
 <section id="week"><div class="sh"><div class="lbl">08 · The weekly operating system</div>
-  <h2>Built around the fact that your morning belongs to nobody else</h2></div>
-  <p class="lede">You are in Manila. Guy, Giles and Matt are in London; there are LA stakeholders too.
-  That is usually described as a problem. It is actually <b>the single biggest structural advantage you
-  have</b>, and the current week does not exploit it: from 08:00 to 15:00 Manila time, London is asleep and
-  Los Angeles is deep in the night before. <b>Nobody can interrupt you for seven hours a day.</b> Most
-  developers would pay for that. The week below is designed around protecting it.</p>
+  <h2>A 6am start is a strategic asset, not just an early alarm</h2></div>
+  <p class="lede">Starting at 06:00 Manila puts your entire focused block in a window where <b>London is
+  asleep and Los Angeles is winding down</b>. That is worth naming precisely, because it changes what the
+  week should look like: 06:00–12:30 Manila is 23:00–05:30 London and 15:00–21:30 the previous day in LA.
+  You get <b>6.5 hours a day that literally cannot be interrupted by your primary stakeholders</b> — and
+  your 14:00 handover lands in London inboxes at 07:00, which means they read your update before they read
+  anything else. The week below is built around protecting the block and the buffer hour you asked for.</p>
 
   <div class="grid3" style="margin-bottom:8px">
-    <div class="st"><div class="st-v">7h</div><div class="st-l">daily uninterruptible window</div>
-      <div class="st-w">08:00–15:00 Manila. London is 01:00–08:00. LA is 17:00–00:00 the previous day.</div></div>
-    <div class="st"><div class="st-v">16:00</div><div class="st-l">the overlap hour</div>
-      <div class="st-w">09:00 London. The one hour where synchronous things should happen — and the only one.</div></div>
-    <div class="st"><div class="st-v">1</div><div class="st-l">daily async handover</div>
-      <div class="st-w">Four lines at 15:30, before London wakes. Replaces presence with predictability.</div></div>
+    <div class="st"><div class="st-v">6.5h</div><div class="st-l">protected morning block</div>
+      <div class="st-w">06:00–12:30 Manila. London 23:00–05:30. Nobody in the UK can reach you inside it.</div></div>
+    <div class="st"><div class="st-v">1h</div><div class="st-l">daily buffer, ring-fenced</div>
+      <div class="st-w">13:00–14:00. Ad hoc requests, urgent updates, short meetings. Yours to spend, and it
+      is spent every day.</div></div>
+    <div class="st"><div class="st-v">07:00</div><div class="st-l">when London reads your handover</div>
+      <div class="st-w">Posted 14:00 Manila. First thing in their inbox, every morning, without you being
+      awake for it.</div></div>
   </div>
+
+  <div class="note good" style="margin-top:20px"><b>Two consequences of the early start worth designing
+  around.</b> First, <b>06:00–09:00 Manila is LA's afternoon</b> (15:00–18:00 the previous day) — that is
+  your only live window with any LA stakeholder, so if one ever needs real-time discussion, it goes there
+  and nowhere else. Second, <b>a Wednesday-morning release lands during the UK and EU overnight</b>
+  (Manila 09:00 = London 02:00). That is close to an ideal deploy window for a five-store European-weighted
+  estate, and it happens for free because of when you start.</div>
 
   <div class="btns" style="margin-top:22px">
     <button class="btn on" data-wk="normal">Normal week · Aug–Sep</button>
@@ -1086,63 +1208,76 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       <span><i class="dt" style="background:color-mix(in srgb,var(--s3) 45%,transparent)"></i>Optimise — CRO, SEO, analytics</span>
       <span><i class="dt" style="background:color-mix(in srgb,var(--s4) 50%,transparent)"></i>Operate — QA, release, trading</span>
       <span><i class="dt" style="background:color-mix(in srgb,var(--s5) 45%,transparent)"></i>Comms &amp; steering</span>
-      <span><i class="dt" style="border:1px dashed var(--base);background:transparent"></i>Buffer — unallocated by design</span>
+      <span><i class="dt" style="border:1px dashed var(--base);background:transparent"></i>Buffer hour — ring-fenced daily</span>
     </div>
+    <p style="font-size:12.5px;color:var(--mut);margin:12px 0 0">Eight hours a day, 06:00–14:30, with a
+    thirty-minute break at 12:30. Monday runs to 17:00 for the London hour and starts an hour later to
+    compensate. <b style="color:var(--ink2)">Total: 40 hours.</b></p>
   </div>
 
   <h3 style="margin:34px 0 4px">Why this shape, and not the one you proposed</h3>
   <table class="tbl">
     <thead><tr><th style="width:28%">Your version</th><th style="width:28%">This version</th><th>Reasoning</th></tr></thead><tbody>
     <tr><td class="why">Tuesday = Development</td><td class="why">Tuesday + Wednesday morning = Development</td>
-      <td class="why">One day of build is 6 usable hours, and a meaningful feature does not fit. Build needs
-      <b>two and a half consecutive days</b> or it becomes a series of restarts. This is the change that most
-      affects your actual output.</td></tr>
+      <td class="why">One morning of build is 6.5 usable hours, and a meaningful feature does not fit. Build
+      needs <b>two and a half consecutive mornings</b> or it becomes a series of restarts. This is the change
+      that most affects your actual output.</td></tr>
     <tr><td class="why">Wednesday = SEO &amp; CRO<br>Thursday = Analytics &amp; Performance</td>
       <td class="why">Thursday = all four, batched</td>
       <td class="why">SEO, CRO, analytics and performance use the same tools, the same dashboards and the same
       mode of thinking. Splitting them across two days buys two context switches and no benefit. Batching them
       buys back most of a morning.</td></tr>
-    <tr><td class="why">Friday = QA, docs, planning</td><td class="why">Friday = QA, close-out, report, research,
-      <b>and empty space</b></td>
-      <td class="why">Friday afternoon is deliberately unallocated. A week with no slack has no way to absorb the
-      day that reactive work eats — and you told me that day happens. Planned slack is the difference between a
-      bad Tuesday and a bad sprint.</td></tr>
+    <tr><td class="why">Friday = QA, docs, planning</td><td class="why">Friday = QA, close-out, report,
+      research — with the buffer hour intact</td>
+      <td class="why">Friday's buffer hour is the one most likely to survive unspent, which makes it the week's
+      natural shock absorber. If Tuesday's got eaten by an urgent fix, Friday's is where the time is recovered
+      — but only if you never pre-plan into it.</td></tr>
     <tr><td class="why">Monday = planning + client requests + sprint planning</td>
-      <td class="why">Monday = 2h steering, then build</td>
-      <td class="why">Three hours of planning on a Monday is a quarter of your steering budget for the week spent
-      on one day. Ninety minutes of sprint planning fortnightly, thirty minutes of weekly steering, and the rest of
-      Monday is yours.</td></tr>
-    <tr><td class="why">No release discipline</td><td class="why"><b>Wednesday is release day</b></td>
-      <td class="why">Two clear days to catch fallout before the weekend. Never Friday (nobody is watching), never
-      Monday (you are triaging). Your release log currently shows deploys landing on every day of the week,
-      including a Friday gift-note change that had to be reverted.</td></tr>
+      <td class="why">Monday = 1h steering, then build, plus the weekly London hour</td>
+      <td class="why">Three hours of planning on a Monday is a quarter of your steering budget spent on one day.
+      One hour of weekly steering, 90 minutes of sprint planning fortnightly, and the rest of the morning is
+      yours.</td></tr>
+    <tr><td class="why">No release discipline</td><td class="why"><b>Wednesday morning is release day</b></td>
+      <td class="why">Manila 09:00 is 02:00 in London and 03:00 across the EU — you are deploying into the
+      quietest traffic window your two biggest markets have, then watching it for the rest of the day. Never
+      Friday, never Monday. Your release log currently shows deploys on every day of the week, including a
+      Friday gift-note change that had to be reverted eleven days later.</td></tr>
   </tbody></table>
 
-  <h3 style="margin:38px 0 12px">The six rules that make the week hold</h3>
+  <h3 style="margin:38px 0 12px">The seven rules that make the week hold</h3>
   <div class="grid2">
-    <div class="vw" style="border-color:var(--crit)"><h4>1 · Only a P0 breaks a deep work block</h4>
-      <p style="margin-top:6px">Write this down and tell the client, so it is a policy rather than you being
-      unresponsive. Everything else waits for 15:30 — which, from London's point of view, is still before
-      lunch on the same day. <b>You lose almost nothing in responsiveness and gain the entire morning.</b></p></div>
-    <div class="vw" style="border-color:var(--s5)"><h4>2 · The 15:30 handover, four lines, every day</h4>
-      <p style="margin-top:6px"><span class="mono">Shipped · Doing tomorrow · Blocked on · Need a decision by</span>.
-      Posted to Slack before London opens. This is what substitutes for being present, and it is why nobody needs
-      to chase you. Ten minutes a day buys back the interruptions.</p></div>
-    <div class="vw" style="border-color:var(--s1)"><h4>3 · Tuesday is a no-meeting day</h4>
-      <p style="margin-top:6px">One day a fortnight has the fortnightly meeting. The rest of Tuesday, and all of
-      Tuesday on off-weeks, holds nothing scheduled. Protect it the way you would protect a launch date.</p></div>
-    <div class="vw" style="border-color:var(--s3)"><h4>4 · Research is one timeboxed hour</h4>
-      <p style="margin-top:6px">Friday 15:00–16:00. Emerging search trends, Shopify releases, competitor moves,
-      the agentic commerce question. Output is one row in Learnings. Timeboxed because open-ended research is
-      either zero hours or five, never one.</p></div>
-    <div class="vw" style="border-color:var(--s4)"><h4>5 · The reactive lane is a place, not an interruption</h4>
-      <p style="margin-top:6px">90 minutes a day, after the deep block. Bugs and small requests queue into it. If
-      the lane overflows three days running, that is not a bad week — that is a signal, and it goes in the sprint
-      retro and then to Guy with numbers.</p></div>
-    <div class="vw" style="border-color:var(--mut)"><h4>6 · Never plan into the buffer</h4>
-      <p style="margin-top:6px">Friday afternoon and the last 2h of the sprint are structurally empty. If the week
-      went well they become debt, research or getting ahead. If it went badly they absorb the damage. The moment
-      you plan work into them, you no longer have a plan — you have a hope.</p></div>
+    <div class="vw" style="border-color:var(--crit)"><h4>1 &middot; Only a P0 breaks the morning block</h4>
+      <p style="margin-top:6px">Write it down and tell the client, so it is a policy rather than you being
+      unresponsive. Everything else waits for the 13:00 buffer hour &mdash; which is still <b>before London has
+      finished breakfast</b>. You lose essentially nothing in responsiveness and gain the entire morning.</p></div>
+    <div class="vw" style="border-color:var(--s4)"><h4>2 &middot; The buffer hour is spent, not saved</h4>
+      <p style="margin-top:6px">13:00&ndash;14:00, every day, for ad hoc requests, urgent updates and short
+      meetings. Treat it as already committed: if nothing lands, it goes to technical debt or chasing a blocked
+      item &mdash; never to planned sprint work. <b>The moment you plan sprint work into it, it stops being a
+      buffer and the model reverts to guesswork.</b></p></div>
+    <div class="vw" style="border-color:var(--s5)"><h4>3 &middot; The 14:00 handover, four lines, every day</h4>
+      <p style="margin-top:6px"><span class="mono">Shipped &middot; Doing tomorrow &middot; Blocked on &middot;
+      Need a decision by</span>. Lands at 07:00 London &mdash; the first thing they read. This is what
+      substitutes for presence in a timezone where presence is not available, and it is why nobody needs to
+      chase you.</p></div>
+    <div class="vw" style="border-color:var(--s1)"><h4>4 &middot; One late finish a week, Monday</h4>
+      <p style="margin-top:6px">16:00&ndash;17:00 Manila is 09:00&ndash;10:00 London &mdash; the single live hour
+      with the UK, and it is enough. The fortnightly meeting goes here, and so does anything that genuinely needs
+      discussion rather than a message. <b>Start Monday at 07:00 to keep the day at eight hours.</b> Do not let
+      this creep to daily: a 6am start and a 5pm finish is not a schedule, it is attrition.</p></div>
+    <div class="vw" style="border-color:var(--s3)"><h4>5 &middot; Research is one timeboxed hour</h4>
+      <p style="margin-top:6px">Friday, inside the second block. Emerging search trends, Shopify releases,
+      competitor moves, the agentic commerce question. Output is one row in Learnings. Timeboxed because
+      open-ended research is either zero hours or five, never one.</p></div>
+    <div class="vw" style="border-color:var(--s6)"><h4>6 &middot; Tuesday holds nothing scheduled</h4>
+      <p style="margin-top:6px">No meetings, no late finish, no releases. One completely clean build day a week,
+      protected the way you would protect a launch date. At 6.5 hours a morning, Tuesday on its own is a sixth of
+      your annual build capacity.</p></div>
+    <div class="vw" style="border-color:var(--mut)"><h4>7 &middot; Log what the buffer absorbed</h4>
+      <p style="margin-top:6px">One line a day in the Sprint row: what took the buffer hour, and did it overflow?
+      Thirty seconds, and it produces the only dataset that can settle the resourcing question. <b>Three
+      consecutive weeks of overflow is the escalation trigger</b> &mdash; and by then you have evidence rather
+      than an impression.</p></div>
   </div>
 </section>
 <section id="allocation"><div class="sh"><div class="lbl">09 · Capacity planning</div>
@@ -1169,38 +1304,44 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
 
   <h3 style="margin:34px 0 4px">The reasoning behind the numbers</h3>
   <div class="grid2" style="margin-top:18px">
-    <div class="vw"><h4>Why reactive gets 20%, not 10%</h4>
-      <p style="margin-top:6px">You described days where urgent development, bug fixes or general site requests
-      consume the whole eight hours. If that happens even <b>once a fortnight</b>, the average is already 8h a
-      week — and it is almost certainly higher than that, because small interruptions do not register as "a day
-      lost" but cost the same. Budgeting 8h is not pessimism; it is the only way the other 32 hours become
-      believable. <b>Track it in the Sprint database and correct the number after six sprints with real data.</b></p></div>
-    <div class="vw"><h4>Why planned build is only 16h</h4>
-      <p style="margin-top:6px">40 minus 8 reactive, 5 release and QA across five stores, 4 trading operations,
-      5 steering and 2 buffer. This is the number that surprises people, and it is the most important line in the
-      document: <b>the organisation believes it is buying 40 hours of roadmap delivery a week and it is buying
-      16</b>. Everything else is real work that has to happen and currently has no name.</p></div>
+    <div class="vw"><h4>Why the buffer hour is 5h and the reactive bleed is 3h</h4>
+      <p style="margin-top:6px">You asked for at least an hour a day for ad hoc work &mdash; that is the 5h.
+      But an hour a day does not cover the days you described where urgent development or a bug takes the
+      whole eight. Those days still happen, and pretending the buffer catches them is how the model starts
+      lying. <b>So reactive is modelled twice: 5h protected, plus 3h a week of honest bleed into the morning
+      block.</b> Eight hours total, same as before, but now five of them are scheduled and only three are a
+      surprise.</p></div>
+    <div class="vw"><h4>Why planned build is 16h out of a 32.5h morning</h4>
+      <p style="margin-top:6px">The morning block is 6.5h &times; 5 = 32.5h. Half of it goes to things that
+      are not roadmap features: Wednesday&rsquo;s release window, Thursday&rsquo;s optimise batch,
+      Friday&rsquo;s QA and reporting, Monday&rsquo;s steering hour, and the 3h of reactive bleed.
+      <b>What is left is 16h of roadmap build</b>, concentrated in Tuesday, Wednesday morning and the back
+      of Monday. This is the number the organisation thinks is forty.</p></div>
     <div class="vw"><h4>Why 5h for release and QA</h4>
-      <p style="margin-top:6px">Your release log shows two to four deploys per store per month, with the same
-      change replicated across five storefronts on different days. Each cycle is a pre-flight check, a deploy,
-      a post-deploy verification and a metric read. <b>Once the shared theme lands this falls to about 2h</b> —
-      which is 3 hours a week returned to build, or roughly 150 hours a year. That is the business case for
-      the theme in one sentence.</p></div>
+      <p style="margin-top:6px">Your release log shows two to four deploys per store per month, the same
+      change replicated across five storefronts on different days. Each cycle is a pre-flight check, a
+      deploy, a post-deploy verification and a metric read. <b>Once the shared theme lands this falls to
+      about 2h</b> &mdash; three hours a week returned to build, roughly 150 hours a year. That is the
+      business case for the theme in one sentence, and the reason automated multi-region deployment
+      (&sect;12) is the right long-term objective.</p></div>
     <div class="vw"><h4>Why commit to 80%, not 89%</h4>
-      <p style="margin-top:6px">The current H2 plan runs at 89% utilisation. Above roughly 80%, waiting time grows
-      faster than the work does — one disrupted week does not cost one week, it costs three, because everything
-      behind it queues. <b>Commit 26h of the 32h available in a two-week sprint.</b> You will finish more work
-      committing to less, which is counter-intuitive and consistently true.</p></div>
-    <div class="vw" style="border-color:var(--crit)"><h4>The escalation trigger — set it now</h4>
-      <p style="margin-top:6px"><b>If reactive work exceeds 8h/week for three consecutive weeks, that goes to Guy
-      as a number, not a feeling.</b> "Reactive work has run at 13h a week for three weeks; that is 5h a week out
-      of roadmap delivery, which is why the multibuy date has moved." Pre-agreeing the trigger means raising it is
-      a process step, not a complaint — and the Sprint database produces the evidence automatically.</p></div>
-    <div class="vw" style="border-color:var(--warn)"><h4>The one place this model breaks</h4>
-      <p style="margin-top:6px">The campaign week has only <b>1 hour of buffer and 4 hours of planned build</b>.
-      That is a real risk and it is deliberate — October cannot be made bigger. The mitigation is not to squeeze
-      it further but to <b>finish the AOV mechanics before October</b>, which is exactly why multibuy sits in
-      Sprint 3 and the gift builder in Sprint 5 rather than later.</p></div>
+      <p style="margin-top:6px">The current H2 plan runs at 89% utilisation. Above roughly 80%, waiting time
+      grows faster than the work does &mdash; one disrupted week does not cost one week, it costs three,
+      because everything behind it queues. <b>Commit 26h of the 32h available in a two-week sprint.</b> You
+      will finish more work committing to less, which is counter-intuitive and consistently true.</p></div>
+    <div class="vw" style="border-color:var(--crit)"><h4>The escalation trigger &mdash; set it now</h4>
+      <p style="margin-top:6px">Log one line a day: what took the buffer hour, and did it overflow?
+      <b>Three consecutive weeks where reactive work exceeds 8h goes to Guy as a number, not a feeling.</b>
+      &ldquo;Reactive has run at 13h a week for three weeks; that is 5h a week out of roadmap delivery, which
+      is why the multibuy date moved.&rdquo; Pre-agreeing the trigger makes raising it a process step rather
+      than a complaint &mdash; and the Sprint database produces the evidence without extra effort.</p></div>
+    <div class="vw" style="border-color:var(--warn)"><h4>Where this model is thinnest</h4>
+      <p style="margin-top:6px">The campaign week runs on <b>4 hours of planned build and 1 hour of
+      contingency</b>. That is real and it is deliberate &mdash; October cannot be made bigger. The
+      mitigation is not to squeeze it further but to <b>finish the AOV mechanics before October</b>, which
+      is why multibuy sits in Sprint 3 and the gift builder in Sprint 5 rather than later. The second
+      thinnest point is the 6am start itself: it only works if the day genuinely ends at 14:30. One late
+      finish a week is a schedule; three is a slow resignation.</p></div>
   </div>
 </section>
 
@@ -1358,7 +1499,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
     <tr><td><span class="tn">Make Success Metric mandatory</span></td><td class="num">15 min</td>
       <td class="why">One property setting. Changes what gets built, because a ticket that cannot name its
       metric usually should not be built.</td></tr>
-    <tr><td><span class="tn">The 15:30 triage block + daily handover</span></td><td class="num">0h</td>
+    <tr><td><span class="tn">The 14:00 triage block + daily handover</span></td><td class="num">0h</td>
       <td class="why">Recovers the morning. Costs ten minutes a day and removes most interruptions.</td></tr>
     <tr><td><span class="tn">Alt-text generation across stores</span></td><td class="num">3h</td>
       <td class="why">Already identified in your plan. Saves ~1.5h/week and improves accessibility and SEO at
@@ -1373,23 +1514,212 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
   a curated gifting collection, no builder) and move the full builder to January. Deciding that in advance costs
   nothing. Deciding it on 12 October costs a weekend.</div>
 </section>
-<section id="coverage"><div class="sh"><div class="lbl">12 · Job specification mapping</div>
+<section id="architecture"><div class="sh"><div class="lbl">12 · Store architecture</div>
+  <h2>Five separate stores, or one store with markets?</h2></div>
+  <p class="lede">This is the decision sitting underneath every other problem in this document. The ×5
+  multiplier, the theme drift, the manual hreflang, the custom geo-redirect script, the blocked automated
+  deployment project &mdash; none of those are execution failures. <b>They are the running cost of an
+  architectural choice that has never been written down and re-examined.</b> This section does that.
+  It does not ask you to change anything in 2026.</p>
+
+  <div class="note hard" style="margin-top:0"><b>The headline, before the detail.</b> Stay on five stores
+  through 2026 and into H1 2027 &mdash; migrating before or during peak is not a close call, it is a
+  non-starter. <b>But start the convergence work now</b>, because documenting the deliberate regional
+  differences, standardising structure and building the shared master theme are <i>the same prerequisite
+  work</i> for automated multi-region deployment and for a Markets migration. You do not have to choose the
+  destination to start walking in the right direction. <b>Write the formal evaluation in December</b>, when
+  the freeze gives you the hours, and put a decision gate at Q2 2027.</div>
+
+  <h3 style="margin:34px 0 4px">What the current architecture costs, in your own data</h3>
+  <p class="lede" style="margin:8px 0 4px">Not hypotheticals &mdash; each of these is visible in your
+  release log, your site plan or your backlog.</p>
+  <table class="tbl">
+    <thead><tr><th style="width:30%">Cost</th><th>Evidence from Sculpd</th><th class="num" style="width:130px">Annual drag</th></tr></thead><tbody>
+    <tr><td><span class="tn">Every change made five times</span></td>
+      <td class="why">The DOM bloat fix, GeoRedirect v2 and the homepage collection price fix each appear
+      five times in the release log, deployed on different dates across different theme names.</td>
+      <td class="num"><b>~150h</b><span class="was">3h/wk of release overhead above a shared-theme baseline</span></td></tr>
+    <tr><td><span class="tn">Theme names have already diverged</span></td>
+      <td class="why">Summer Sale 2026, Spring 2026, Autumn 2026 and Winter Sale 2026 are running
+      concurrently on different stores. That is not a naming problem &mdash; it is five codebases that no
+      longer share a lineage.</td>
+      <td class="num"><b>Compounding</b><span class="was">Migration cost grows every quarter</span></td></tr>
+    <tr><td><span class="tn">Geo-redirect built by hand, twice</span></td>
+      <td class="why">Geotargetly replaced with a custom <span class="mono">geo-redirect.liquid</span>,
+      then a v2 after new requirements. On Shopify Plus, Markets does country detection and
+      market pre-selection natively.</td>
+      <td class="num"><b>Ongoing</b><span class="was">Custom code you own and must maintain</span></td></tr>
+    <tr><td><span class="tn">hreflang cannot be automated</span></td>
+      <td class="why">Shopify generates hreflang automatically for markets and keeps it in sync with
+      canonical URLs &mdash; but its documentation explicitly names linking alternate versions of a page
+      <i>across separate stores on different domains</i> as a case it cannot coordinate for you.
+      Yours is manual, and manual hreflang rots silently.</td>
+      <td class="num"><b>SEO risk</b><span class="was">Already flagged in your site plan</span></td></tr>
+    <tr><td><span class="tn">App subscriptions billed per store</span></td>
+      <td class="why">Every app in the stack is paid five times. The Sprint 6 app audit should record the
+      per-store monthly cost &mdash; in most five-store estates this single number ends up being the one
+      that decides the architecture question.</td>
+      <td class="num"><b>Quantify in S6</b><span class="was">Feeds the December evaluation</span></td></tr>
+    <tr><td><span class="tn">Five QA surfaces, five blast radii</span></td>
+      <td class="why">The Sprint 7 peak QA pass is twelve hours because it is five passes. Every new
+      mechanic &mdash; bundles, multibuy, gifting &mdash; has to be verified five times.</td>
+      <td class="num"><b>~60h</b><span class="was">QA and peak hardening across the year</span></td></tr>
+    <tr><td><span class="tn">Automated deployment is blocked</span></td>
+      <td class="why">Your own long-term objective, correctly not started, because the storefronts differ
+      structurally. The blocker is architectural, not technical.</td>
+      <td class="num"><b>Opportunity</b><span class="was">The prize is most of the 150h above</span></td></tr>
+  </tbody></table>
+
+  <h3 style="margin:38px 0 4px">Side by side</h3>
+  <table class="tbl">
+    <thead><tr><th style="width:150px">Dimension</th><th style="width:37%">Five separate stores <span class="tag new">today</span></th>
+    <th>One store, Shopify Markets</th></tr></thead><tbody>
+    <tr><td><b>Development effort</b></td>
+      <td class="why">Every feature built once, deployed five times. Divergence means "deployed" does not
+      guarantee "identical".</td>
+      <td class="why"><b>Build once, live everywhere.</b> The single largest change, and the one that would
+      reshape your capacity model.</td></tr>
+    <tr><td><b>Maintenance</b></td>
+      <td class="why">Five themes, five app stacks, five sets of settings drifting apart in slow motion.</td>
+      <td class="why">One theme, one app stack. Market-specific content handled through theme adaptation
+      rather than forked code.</td></tr>
+    <tr><td><b>Localisation</b></td>
+      <td class="why">Translation app on CA and EU, ~30 min per release. <b>Already cheap &mdash; this is not
+      the argument for migrating.</b></td>
+      <td class="why">Native translation and market-level content adaptation. Marginally cheaper; not a
+      deciding factor either way.</td></tr>
+    <tr><td><b>Deployment</b></td>
+      <td class="why">Manual, sequential, per store. Automation blocked on structural differences.</td>
+      <td class="why">One deploy. The automated multi-region deployment objective becomes unnecessary rather
+      than unblocked.</td></tr>
+    <tr><td><b>Analytics</b></td>
+      <td class="why">Five GA4 properties, five Shopify reports. No native global view; every roll-up is
+      manual.</td>
+      <td class="why">One property with market dimensions. Global and per-market in the same report &mdash;
+      directly relevant to the reporting pillar of your job spec.</td></tr>
+    <tr><td><b>SEO</b></td>
+      <td class="why">Five domains, manual hreflang, duplicate-content exposure, authority split five ways.
+      Regional ccTLDs do carry local trust signals.</td>
+      <td class="why">Automatic hreflang synced to canonicals; consolidated authority. <b>But the migration
+      itself is the single biggest SEO risk in this entire comparison.</b></td></tr>
+    <tr><td><b>Merchandising flexibility</b></td>
+      <td class="why">Total. Different navigation, different structure, different everything &mdash; which is
+      how the US/AU accessibility navigation came to differ from the rest.</td>
+      <td class="why">High but bounded. Market catalogs restrict products per market cleanly; deep structural
+      differences between markets are harder to express.</td></tr>
+    <tr><td><b>Licensed ranges</b></td>
+      <td class="why">Territory restrictions on licensed product (Harry Potter, SpongeBob) map naturally onto
+      separate stores. <b>A genuine strength of the current setup.</b></td>
+      <td class="why">Market catalogs handle this &mdash; a product excluded from a market&rsquo;s catalog
+      behaves as if archived in that context. Capable, but needs careful configuration and testing.</td></tr>
+    <tr><td><b>Inventory &amp; fulfilment</b></td>
+      <td class="why">Independent per store. Regional 3PL relationships (Stord in the US) are cleanly
+      isolated.</td>
+      <td class="why">One inventory pool split by location. Workable, but re-mapping regional 3PLs is one of
+      the harder parts of a migration.</td></tr>
+    <tr><td><b>Payments &amp; legal entities</b></td>
+      <td class="why">Separate gateways, payouts and tax configuration per region. <b>If Sculpd has separate
+      legal entities per market, this alone may settle the question.</b></td>
+      <td class="why">Requires Shopify Payments support in the home country and each market. A hard
+      constraint, not a preference &mdash; check it first, before any other analysis.</td></tr>
+    <tr><td><b>Risk concentration</b></td>
+      <td class="why">A bad deploy or an outage affects one store. For a solo operator this is real
+      insurance, and it should not be dismissed.</td>
+      <td class="why">One store is one blast radius. Mitigated by better QA and staged rollout, but the
+      exposure genuinely increases.</td></tr>
+    <tr><td><b>Long-term scalability</b></td>
+      <td class="why">Each new region is a whole new store. Cost scales linearly with markets, forever.</td>
+      <td class="why">Up to 50 markets on one store. A sixth region costs configuration, not a build.</td></tr>
+  </tbody></table>
+
+  <h3 style="margin:38px 0 12px">The recommendation, and the reasoning</h3>
+  <div class="grid2">
+    <div class="card tight" style="border-left:3px solid var(--good)">
+      <h4 style="color:var(--good)">Stay on five stores &mdash; through 2026 and H1 2027</h4>
+      <p style="font-size:13px;color:var(--ink2);margin:9px 0 8px">Three reasons, in order of weight:</p>
+      <p style="font-size:13px;color:var(--ink2);margin:0 0 6px"><b>1. Timing is disqualifying.</b> A
+      migration touching five domains, checkout, payments and fulfilment cannot happen in the run-up to peak,
+      and Q1 is needed for the debt and deferred backlog. The earliest honest window is H2 2027.</p>
+      <p style="font-size:13px;color:var(--ink2);margin:0 0 6px"><b>2. You do not yet know the blockers.</b>
+      Legal entities, payment gateways and 3PL structure may make it impossible regardless of preference.
+      Those are questions to answer before analysis, not after.</p>
+      <p style="font-size:13px;color:var(--ink2);margin:0"><b>3. The preparatory work is identical
+      either way.</b> Document the deliberate differences, standardise structure, build the shared theme.
+      That sequence pays for itself on the current architecture <i>and</i> is the prerequisite for a
+      migration. <b>You are never wasting the effort.</b></p>
+    </div>
+    <div class="card tight" style="border-left:3px solid var(--s1)">
+      <h4 style="color:var(--s1)">But write the evaluation in December, not "someday"</h4>
+      <p style="font-size:13px;color:var(--ink2);margin:9px 0 8px">Six hours in the freeze window, when the
+      facts are gathered and there is nothing to build. What it needs to contain:</p>
+      <p style="font-size:12.5px;color:var(--ink2);margin:0 0 5px">&bull; <b>The hard constraints first</b>
+      &mdash; legal entities, payment gateways, 3PL contracts, licensing territories. Any one of these can
+      end the conversation, so ask them before doing the analysis.</p>
+      <p style="font-size:12.5px;color:var(--ink2);margin:0 0 5px">&bull; <b>The app stack cost</b> from the
+      Sprint 6 audit, multiplied by five, annualised.</p>
+      <p style="font-size:12.5px;color:var(--ink2);margin:0 0 5px">&bull; <b>Measured release overhead</b>
+      from the Releases database &mdash; by December you will have four months of real data instead of an
+      estimate.</p>
+      <p style="font-size:12.5px;color:var(--ink2);margin:0 0 5px">&bull; <b>The SEO migration risk</b>,
+      sized honestly. Consolidating five domains is a months-long redirect exercise with real revenue
+      volatility.</p>
+      <p style="font-size:12.5px;color:var(--ink2);margin:0">&bull; <b>A recommendation with a decision
+      gate</b>, not an open question. Take it to the client in January.</p>
+    </div>
+  </div>
+
+  <h3 style="margin:36px 0 4px">What would change the answer</h3>
+  <p class="lede" style="margin:8px 0 4px">Set these now so the Q2 2027 gate is a check against agreed
+  criteria rather than a fresh argument.</p>
+  <table class="tbl">
+    <thead><tr><th style="width:50%">Tips towards migrating to Markets</th><th>Settles it in favour of staying</th></tr></thead><tbody>
+    <tr><td class="why">App subscriptions across five stores exceed a threshold the client considers
+      material once annualised.</td>
+      <td class="why"><b>Separate legal entities or bank accounts per region.</b> Check this first &mdash; it
+      is the most common hard stop and it is a five-minute question.</td></tr>
+    <tr><td class="why">Release overhead is still above 3h/week twelve months after the shared theme ships
+      &mdash; i.e. the theme fixed less than expected.</td>
+      <td class="why">Regional 3PL contracts that cannot be modelled as locations on a single store.</td></tr>
+    <tr><td class="why">Standardising storefront structure turns out to be most of the work of a migration
+      anyway &mdash; at which point you have paid the cost without getting the benefit.</td>
+      <td class="why">Licensing territory restrictions that market catalogs cannot express cleanly enough for
+      the licensor&rsquo;s comfort.</td></tr>
+    <tr><td class="why">A sixth region is proposed. Adding a store is a build; adding a market is
+      configuration.</td>
+      <td class="why">Structural differences between regions turn out to be commercially necessary rather
+      than historical accident.</td></tr>
+    <tr><td class="why">Shopify contract renewal changes the economics of running five storefronts.</td>
+      <td class="why">Headcount arrives. Much of the ×5 pain is a one-person problem, and two people change
+      the calculus considerably.</td></tr>
+  </tbody></table>
+
+  <div class="note good" style="margin-top:24px"><b>If the evaluation says "maybe", do not migrate
+  everything.</b> Consolidate <b>CA into the US store as a second market</b> first. It is the lowest-risk
+  possible test: likely your smallest storefront, same language, closest catalogue, same continent, same
+  fulfilment geography. It proves or kills the whole thesis &mdash; SEO redirect handling, app behaviour
+  under multi-market pricing, inventory mapping, reporting &mdash; for a fraction of the cost and with a
+  blast radius you can survive. <b>A two-market pilot answers in one quarter what analysis cannot answer at
+  all.</b></div>
+</section>
+
+
+<section id="coverage"><div class="sh"><div class="lbl">13 · Job specification mapping</div>
   <h2>Every line of the spec, and where it now lives</h2></div>
-  <p class="lede">Nine pillars, thirty-seven distinct responsibilities. Each one maps to a category, a database,
+  <p class="lede">Nine pillars, thirty-eight distinct responsibilities. Each one maps to a category, a database,
   a view and a cadence — or it is <b>explicitly marked as not covered</b>, which is the more valuable half of
   this table. A responsibility with no home is not covered; it is just unmentioned.</p>
 
   <div class="grid3" style="margin:22px 0 8px">
     <div class="st"><div class="st-v" style="color:var(--good)">17</div><div class="st-l">covered in H2</div>
       <div class="st-w">Scheduled into a named sprint with a target date and a success metric.</div></div>
-    <div class="st"><div class="st-v" style="color:var(--warn)">11</div><div class="st-l">standing functions</div>
+    <div class="st"><div class="st-v" style="color:var(--warn)">12</div><div class="st-l">standing functions</div>
       <div class="st-w">Continuous, handled by cadence and quota rather than by ticket.</div></div>
     <div class="st"><div class="st-v" style="color:var(--crit)">9</div><div class="st-l">deferred and flagged</div>
       <div class="st-w">Named to the client, with a reason and a revisit date. Not hidden.</div></div>
   </div>
 
   <div class="btns" style="margin-top:18px">
-    <button class="btn on" data-cov="all">All 37</button>
+    <button class="btn on" data-cov="all">All 38</button>
     <button class="btn" data-cov="H2">Covered in H2</button>
     <button class="btn" data-cov="Standing">Standing function</button>
     <button class="btn" data-cov="Deferred">Deferred · flag to client</button>
@@ -1408,8 +1738,8 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
 </section>
 
 
-<section id="risks"><div class="sh"><div class="lbl">13 · Risks and bottlenecks</div>
-  <h2>Twelve ways this goes wrong, and what to do about each</h2></div>
+<section id="risks"><div class="sh"><div class="lbl">14 · Risks and bottlenecks</div>
+  <h2>Thirteen ways this goes wrong, and what to do about each</h2></div>
   <p class="lede">Ordered by expected cost. Every one has a mitigation with a date, because a risk register
   without owners and dates is a list of worries.</p>
 
@@ -1450,6 +1780,15 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       section is built shared-first, and the migration of existing templates is scoped in December and executed
       in Q1. Also document the deliberate differences (US/AU navigation, UK/EU/AU spelling) so they are
       configuration, not accident.</div></div>
+
+    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>4b · The architecture question keeps getting more expensive to answer</h4></div>
+      <p>Every quarter the five storefronts drift further apart, the migration path to any consolidated
+      architecture gets more expensive, and the automated deployment objective stays blocked. This is not
+      urgent in any single week, which is precisely why it has never been evaluated.</p>
+      <div class="rk-m"><b>Mitigate</b> Book the six-hour evaluation into the December freeze window (§12)
+      and set the decision gate at Q2 2027. Meanwhile, make <b>shared-theme-first</b> the default build rule
+      from this week, so that new work stops adding to the divergence even while the old divergence
+      remains.</div></div>
 
     <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>5 · Peak concentration risk</h4></div>
       <p>Four campaigns, five stores, one person, six weeks. Bundles, multibuy, gifting and upsells will all be
@@ -1506,17 +1845,21 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       sprints you will have a correction factor; apply it to the remaining plan in late September, while there
       is still time to act on it. <b>Re-forecast once, at the end of Sprint 3.</b></div></div>
 
-    <div class="rk"><div class="rk-h"><span class="tag new">Watch</span><h4>12 · Compliance exposure on accessibility</h4></div>
-      <p>Accessibility appears in your responsibility list but nowhere in the roadmap, and the EU storefront
-      brings the European Accessibility Act into scope. This is not a backlog question.</p>
-      <div class="rk-m"><b>Mitigate</b> Raise it as an explicit decision at the next fortnightly, with two
-      options: scope an audit and resource remediation, or record a written acceptance of the risk by whoever
-      owns it. <b>Your job here is to surface it, not to carry it.</b></div></div>
+    <div class="rk"><div class="rk-h"><span class="tag new">Watch</span><h4>12 · Accessibility coverage is partial and inherited</h4></div>
+      <p>Accessibility was implemented on the US store by a third-party provider and reached AU only because
+      AU was cloned from US. UK, EU and CA have nothing. No client request has been made to extend it, so
+      this is not an overdue task — but two things are worth doing anyway, and both are cheap.</p>
+      <div class="rk-m"><b>Mitigate</b> First, <b>verify the AU inheritance still functions</b>. A cloned
+      third-party implementation is not maintained by anyone, and it degrades quietly as the theme changes
+      around it — add it to the quarterly check, not the backlog. Second, <b>put the EU storefront in front
+      of whoever owns legal risk once</b>, get an answer, and record it. If the answer is &ldquo;not a
+      priority&rdquo;, that is a perfectly good answer and having it in writing costs you ten minutes.
+      <b>Surface it; do not carry it.</b></div></div>
   </div>
 </section>
 
 
-<section id="ai"><div class="sh"><div class="lbl">14 · AI and automation</div>
+<section id="ai"><div class="sh"><div class="lbl">15 · AI and automation</div>
   <h2>Twelve automations, ranked by hours returned per hour invested</h2></div>
   <p class="lede">You already use Claude heavily, and your site audit and speed work prove the approach works.
   The question is no longer whether to automate but <b>in what order</b>, because build time competes directly
@@ -1620,7 +1963,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
   job-spec pillars that remain uncovered." <b>Automation is what makes the resourcing case credible rather than
   making it unnecessary.</b></div>
 </section>
-<section id="plan"><div class="sh"><div class="lbl">15 · Implementation</div>
+<section id="plan"><div class="sh"><div class="lbl">16 · Implementation</div>
   <h2>30 · 60 · 90 — stop the bleeding, then build the structure, then prove it</h2></div>
   <p class="lede">Sequenced so that each phase is <b>survivable on its own</b>. If the whole thing stalls after
   thirty days, you are still meaningfully better off — that is the test of a good implementation plan for
@@ -1648,7 +1991,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
 </section>
 
 
-<section id="final"><div class="sh"><div class="lbl">16 · Final recommendations</div>
+<section id="final"><div class="sh"><div class="lbl">17 · Final recommendations</div>
   <h2>Ranked by return, and the five to do this week</h2></div>
   <p class="lede">Sorted by return on effort. <b>Click a column to re-sort.</b> The pattern worth noticing:
   the highest-return items in this entire document are almost all governance changes costing under a day, and
@@ -1658,11 +2001,12 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
     <h3 style="margin-bottom:14px">Do these five this week — total cost, one day</h3>
     <table class="tbl" style="margin-top:0"><tbody>
       <tr><td class="mono" style="width:34px;font-weight:700;color:var(--s1)">1</td>
-        <td style="width:32%"><span class="tn">Adopt the Slack reply template</span>
-        <span class="was">"Added to the board as [x] — priority and date by [y]"</span></td>
+        <td style="width:32%"><span class="tn">Add a date to every acknowledgement</span>
+        <span class="was">You already ticket everything — now say when</span></td>
         <td class="num" style="width:70px">10 min</td>
-        <td class="why">Nothing else in this document works if work keeps entering through the side door.
-        Start today, before the board is rebuilt.</td></tr>
+        <td class="why">You have the hard half already. <span class="mono">"Ticketed as [x] — priority and
+        target date back to you by [y]."</span> The ticket makes the work visible to you; the date makes the
+        queue visible to them, which is what stops the chasing.</td></tr>
       <tr><td class="mono" style="font-weight:700;color:var(--s1)">2</td>
         <td><span class="tn">Cut work-in-progress from six to two</span>
         <span class="was">Close, park or finish four cards</span></td>
@@ -1676,11 +2020,12 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
         <td class="why">The one-off cost of moving to the new structure. Do it once, properly, in Week 0,
         while there is still a Week 0 to do it in.</td></tr>
       <tr><td class="mono" style="font-weight:700;color:var(--s1)">4</td>
-        <td><span class="tn">Ask for the Ecommerce OS teamspace</span>
-        <span class="was">Framed as giving them visibility</span></td>
-        <td class="num">15 min</td>
-        <td class="why">It has a lead time you do not control. Ask on day one so the answer arrives before
-        you need it.</td></tr>
+        <td><span class="tn">Add On Hold, Work Type and Revisit On</span>
+        <span class="was">One status, two properties</span></td>
+        <td class="num">30 min</td>
+        <td class="why">Until these exist, AI Search looks stalled, Multibuy looks abandoned and the sale
+        price revert lives only in your head. Half an hour that stops the board misrepresenting three of
+        its most important tickets.</td></tr>
       <tr><td class="mono" style="font-weight:700;color:var(--s1)">5</td>
         <td><span class="tn">Book the analytics baseline into Sprint 1 and defend it</span>
         <span class="was">8h, nothing overtakes it</span></td>
@@ -1690,7 +2035,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
     </tbody></table>
   </div>
 
-  <h3 style="margin:34px 0 4px">All twenty recommendations</h3>
+  <h3 style="margin:34px 0 4px">All twenty-four recommendations</h3>
   <table class="tbl" id="rec-t">
     <thead><tr>
       <th data-sort="0" style="cursor:pointer;width:28%">Recommendation ↕</th>
@@ -1753,20 +2098,21 @@ var R=[
 {n:"On-page, metadata &amp; internal linking",m:"Optimise",c:"SEO &amp; AI Search",p:"SEO &amp; AI Search",cad:"Thursday batch",lev:"Claude-assisted",home:"Delivery",cov:"H2",covd:"E10 · Sprint 5",cls:["high","batch"],how:"Ship before Q4 traffic arrives so the season actually benefits from it. After November it is a 2027 investment."},
 {n:"Structured data &amp; schema",m:"Optimise",c:"SEO &amp; AI Search",p:"SEO &amp; AI Search",cad:"Per rollout",lev:"Automate",home:"Delivery",cov:"H2",covd:"E9 + E10 · Sprints 4–5",cls:["high","automate"],how:"The AU pilot produced the pattern. Productise it into a generator and validator, then the four remaining stores are hours rather than days."},
 {n:"AI search optimisation",m:"Optimise",c:"SEO &amp; AI Search",p:"SEO &amp; AI Search",cad:"Per store",lev:"Playbook exists",home:"Delivery",cov:"H2",covd:"E9 · Sprint 4 · phase 1 scoped",cls:["high"],how:"Scope it to a finishable phase 1 with a defined output. Right now it is a parent card with children in another column and eleven comments of context."},
-{n:"Emerging search trend monitoring",m:"Steer",c:"Research &amp; Docs",p:"SEO &amp; AI Search",cad:"Friday, 1h",lev:"Timeboxed",home:"Learnings DB",cov:"Standing",covd:"Fri 14:30–15:30, one row out",cls:["low","recur"],how:"Open-ended research is either zero hours or five. Give it exactly one, with a written output, and it survives bad weeks."},
+{n:"Emerging search trend monitoring",m:"Steer",c:"Research &amp; Docs",p:"SEO &amp; AI Search",cad:"Friday, 1h",lev:"Timeboxed",home:"Learnings DB",cov:"Standing",covd:"Friday second block, one row out",cls:["low","recur"],how:"Open-ended research is either zero hours or five. Give it exactly one, with a written output, and it survives bad weeks."},
 {n:"Site speed &amp; Core Web Vitals",m:"Optimise",c:"Performance",p:"Website Optimisation",cad:"Thu + per release",lev:"Claude audit",home:"Programmes · Site Speed",cov:"H2",covd:"E6a / E6b · Sprints 2 and 4",cls:["critical","batch","automate"],how:"One programme, one measurement, reporting into SEO, CRO and Ops. Not three separate backlogs of the same fixes."},
 {n:"Mobile experience",m:"Optimise",c:"Performance",p:"Website Optimisation",cad:"Indirect",lev:"—",home:"Delivery · peak QA",cov:"Deferred",covd:"Partly covered by speed + peak QA pass",cls:["high","quarterly"],how:"Full audit waits for Q1. The peak QA pass covers the critical mobile paths in the meantime, which is the part that trades."},
-{n:"Accessibility",m:"Optimise",c:"Performance",p:"Website Optimisation",cad:"Quarterly + tag",lev:"Raise as compliance",home:"Delivery · accessibility tag",cov:"Deferred",covd:"NOT COVERED · raise as a decision, Aug",cls:["critical","quarterly"],how:"The EU storefront brings the European Accessibility Act into scope. Surface it as a decision for whoever owns legal risk — your job is to raise it, not to carry it silently."},
+{n:"Accessibility",m:"Optimise",c:"Performance",p:"Website Optimisation",cad:"Quarterly check",lev:"Third party (US)",home:"Delivery · accessibility tag",cov:"Deferred",covd:"US + AU live · UK, EU, CA not covered",cls:["high","quarterly"],how:"Implemented on US by a third-party provider and inherited by AU through the store clone. UK, EU and CA have nothing, and no client request has been made. Two actions: verify the AU inheritance still functions after theme changes, and put the EU store in front of whoever owns legal risk once — then record the answer either way."},
 {n:"Analytics — GA4, GTM, GMC, pixels",m:"Optimise",c:"Analytics",p:"Reporting",cad:"Thursday batch",lev:"Self",home:"Delivery + Metrics DB",cov:"H2",covd:"N1 · Sprint 1 · baseline + QA",cls:["critical"],how:"The single highest-leverage item in the plan. Every success metric in the spec is a number, and none of them currently has a trustworthy before."},
 {n:"Tracking audits &amp; measurement QA",m:"Optimise",c:"Analytics",p:"Reporting",cad:"Per release",lev:"Automate",home:"Definition of Done",cov:"Standing",covd:"DoD step 3, every release",cls:["recur","automate"],how:"Make it a Definition-of-Done line rather than a separate quarterly project. A broken event is worse than no event."},
-{n:"Bug fixing",m:"Operate",c:"Bugs &amp; QA",p:"Website Operations",cad:"Daily lane",lev:"Claude triage",home:"Delivery · Today",cov:"Standing",covd:"Reactive lane · 8h/wk",cls:["critical","sink","recur"],how:"Give it a lane, not an interruption: 90 minutes a day after the deep block. Only a P0 gets to break the morning."},
+{n:"Bug fixing",m:"Operate",c:"Bugs &amp; QA",p:"Website Operations",cad:"Daily lane",lev:"Claude triage",home:"Delivery · Today",cov:"Standing",covd:"Buffer hour + 3h bleed · 8h/wk",cls:["critical","sink","recur"],how:"Give it a lane, not an interruption: the ring-fenced 13:00–14:00 buffer hour, every day. Only a P0 gets to break the morning block."},
 {n:"QA testing",m:"Operate",c:"Bugs &amp; QA",p:"Website Operations",cad:"Per release",lev:"Automate",home:"Delivery + templates",cov:"Standing",covd:"One checklist, three triggers",cls:["critical","automate","batch"],how:"Automate the regression sweep before Sprint 7. It converts the peak QA pass from a weekend into a script, which is the biggest single peak-risk reduction available."},
 {n:"Release management across 5 stores",m:"Operate",c:"Ops &amp; Maintenance",p:"Website Operations",cad:"Wednesdays",lev:"Drift checker",home:"Releases DB",cov:"Standing",covd:"Wednesday release window",cls:["sink","recur","automate"],how:"5h/week today, around 2h once the shared theme lands. Wednesday only — two clear days to catch fallout before the weekend."},
 {n:"Merchandising &amp; seasonal trading",m:"Operate",c:"Trading",p:"Merchandising &amp; Site Mgmt",cad:"Weekly",lev:"Self + design",home:"Delivery · Trading",cov:"H2",covd:"N7 · Sprint 6 · BFCM + Christmas",cls:["critical","high","recur"],how:"Merge with campaign support into one Trading workstream on a calendar. Same skills, same assets, same design dependency."},
 {n:"Campaign &amp; promotion builds",m:"Operate",c:"Trading",p:"Campaign Support",cad:"Per campaign",lev:"Reusable sections",home:"Delivery · Trading",cov:"H2",covd:"N7 + the Q4 campaign calendar",cls:["critical","sink"],how:"Reusable campaign sections in the shared theme turn roughly 24h per campaign into 8h. Five campaigns in Q4 makes this the largest saving available."},
 {n:"Product launch support",m:"Operate",c:"Trading",p:"Campaign Support",cad:"Per launch",lev:"Checklist template",home:"Delivery · Trading",cov:"H2",covd:"Campaign Build template",cls:["high","recur","batch"],how:"One launch checklist that ships the same page to each relevant storefront from one source. Currently rebuilt per launch."},
 {n:"Shopify app stack management",m:"Operate",c:"Ops &amp; Maintenance",p:"Website Operations",cad:"Monthly",lev:"Self",home:"Delivery + monthly block",cov:"H2",covd:"N8 · Sprint 6 · audit before peak",cls:["high","recur"],how:"Every app removed is speed recovered, monthly cost saved and one fewer thing that can break on Black Friday. Do it before peak, not after."},
-{n:"International localisation &amp; translation",m:"Operate",c:"Trading",p:"International Sites",cad:"Deferred",lev:"—",home:"Programmes · parked",cov:"Deferred",covd:"NOT COVERED · flag to client in Aug",cls:["delegate","quarterly","sink"],how:"The one job-spec pillar with no H2 coverage at all. Name it explicitly rather than let it look handled — a named gap is a resourcing conversation."},
+{n:"International localisation &amp; translation",m:"Operate",c:"Trading",p:"International Sites",cad:"Per release",lev:"Translation app",home:"Delivery · DoD step",cov:"Standing",covd:"~30 min per release · CA and EU only",cls:["recur","automate","batch"],how:"Already solved and cheaper than it looks. The translation app handles CA and EU in roughly half an hour; no other region is localised. Make it a Definition-of-Done step on any content release rather than a workstream. The real international question is architecture, not translation — see §12."},
+{n:"Automated multi-region deployment",m:"Build",c:"Ops &amp; Maintenance",p:"Website Operations",cad:"Future strategic",lev:"Blocked on standardisation",home:"Programmes · strategic",cov:"Deferred",covd:"Not started · prerequisite chain unmet",cls:["high","quarterly","automate"],how:"The right long-term objective and correctly not started. It is blocked on structural differences between the five storefronts, so the sequence is: document the deliberate differences → standardise structure → shared master theme → automated deploy. Each step pays for itself, and the same work is the prerequisite for a Markets migration if that is ever chosen."},
 {n:"Roadmap ownership &amp; prioritisation",m:"Steer",c:"Programme",p:"Roadmap Ownership",cad:"Fortnightly",lev:"Notion roll-up",home:"Programmes · roll-up",cov:"Standing",covd:"Sprint planning + quarterly review",cls:["critical","recur"],how:"Cheap in hours, catastrophic when skipped. The roll-up view means you never hand-build a roadmap slide again."},
 {n:"Reporting pack",m:"Steer",c:"Analytics",p:"Reporting",cad:"Weekly + monthly",lev:"Automate",home:"Metrics DB + template",cov:"H2",covd:"N2 · Sprint 2",cls:["critical","automate","recur"],how:"A named deliverable in the spec across ten surfaces. Built once as a template with an automated pull it is 90 minutes; assembled by hand it is half a day."},
 {n:"Documentation &amp; SOPs",m:"Steer",c:"Research &amp; Docs",p:"Website Operations",cad:"Per release",lev:"Auto-draft",home:"Learnings DB",cov:"Standing",covd:"DoD step 7, auto-drafted",cls:["low","automate","recur"],how:"The first thing dropped under pressure. The fix is to make the first draft free — generate it from the release diff and edit."},
@@ -1835,23 +2181,23 @@ drawT();
 /* ============ WEEKLY GRID ============ */
 var WK={
 normal:[
- ["08:00–12:00",["deep","Steer 1h, then build","Weekly steering, then deep build"],["deep","Deep build","Heaviest build block of the week"],["deep","Deep build","Finish and stage for release"],["opt","Optimise batch","CRO · SEO · schema · speed · analytics"],["ops","QA &amp; close-out","Verify the week&rsquo;s releases across stores"]],
- ["13:00–14:30",["deep","Build","Continue"],["deep","Build","Continue"],["ops","Release window","Deploy across stores, in order"],["opt","Analysis &amp; briefs","Test results, design briefs from the tag"],["comm","Weekly report","Metrics, shipped, blocked, decisions needed"]],
- ["14:30–15:30",["ops","Reactive lane","Bugs and small requests, queued"],["ops","Reactive lane","Bugs and small requests, queued"],["ops","Post-deploy checks","LCP/INP read, log the release"],["ops","Reactive lane","Bugs and small requests, queued"],["opt","Research · 1h","Timeboxed. One row in Learnings"]],
- ["15:30–16:00",["comm","Triage + handover","Empty the Inbox, post four lines"],["comm","Triage + handover","Empty the Inbox, post four lines"],["comm","Triage + handover","Empty the Inbox, post four lines"],["comm","Triage + handover","Empty the Inbox, post four lines"],["comm","Triage + handover","Empty the Inbox, post four lines"]],
- ["16:00–17:00",["comm","Overlap · unblock","London 09:00. Decisions and blockers"],["comm","Overlap · no meetings","Protected. Async only"],["comm","Overlap · release comms","Confirm what went live and where"],["comm","Overlap · design","Hand over briefs with lead time"],["buf","Buffer","Unallocated by design"]]],
+ ["06:00\u201309:00",["deep","Steer 1h, then build","Week plan and re-score, then straight into build"],["deep","Deep build","The clean day \u2014 nothing scheduled, ever"],["deep","Build \u2014 finish &amp; stage","Complete whatever ships today"],["opt","Optimise batch","CRO \u00b7 SEO \u00b7 schema \u00b7 speed \u00b7 analytics"],["ops","QA &amp; close-out","Verify the week&rsquo;s releases across all stores"]],
+ ["09:00\u201312:30",["deep","Deep build","London asleep. Nobody can reach you"],["deep","Deep build","Heaviest build block of the week"],["ops","Release window","02:00 London. Deploy store by store"],["opt","Optimise + design briefs","Analysis, then brief the design team"],["comm","Report + research","Weekly report, then one timeboxed research hour"]],
+ ["13:00\u201314:00",["buf","Buffer hour","Ad hoc, urgent updates, short meetings"],["buf","Buffer hour","Ad hoc, urgent updates"],["buf","Buffer + post-deploy checks","LCP/INP read, log the release"],["buf","Buffer hour","Ad hoc, urgent updates"],["buf","Buffer hour","The week&rsquo;s shock absorber"]],
+ ["14:00\u201314:30",["comm","Triage + handover","Inbox to zero, four lines to Slack"],["comm","Triage + handover","Lands 07:00 London"],["comm","Triage + handover","Confirm what went live and where"],["comm","Triage + handover","Inbox to zero"],["comm","Triage + week close","Close cards, record results"]],
+ ["16:00\u201317:00",["comm","London hour","09:00 London. Fortnightly meeting slots here"],["off","\u2014","Day ends 14:30"],["off","\u2014","Day ends 14:30"],["off","\u2014","Day ends 14:30"],["off","\u2014","Day ends 14:30"]]],
 peak:[
- ["08:00–12:00",["ops","Campaign build","BFCM / Christmas assets and pages"],["ops","Campaign build","Across all five storefronts"],["ops","Campaign build","Build and stage, do not publish"],["ops","Campaign + merch","Collections, nav, banners, countdowns"],["ops","QA across 5 stores","Every store, every device, every mechanic"]],
- ["13:00–14:30",["comm","Steering + calendar","Trading calendar, cut-offs, sequencing"],["deep","Planned build","The last 4h/wk of roadmap work"],["ops","Scheduled release","Publish scheduled, never live-edited"],["opt","Speed only","No new optimisation work in October"],["comm","Close-out + report","Peak readiness status to the client"]],
- ["14:30–15:30",["ops","Reactive lane","Rising through October"],["ops","Reactive lane","Rising through October"],["ops","Post-deploy checks","Verify on every store"],["ops","Reactive lane","Rising through October"],["ops","Reactive lane","Rising through October"]],
- ["15:30–16:00",["comm","Triage + handover","Inbox to zero"],["comm","Triage + handover","Inbox to zero"],["comm","Triage + handover","Inbox to zero"],["comm","Triage + handover","Inbox to zero"],["comm","Triage + handover","Inbox to zero"]],
- ["16:00–17:00",["comm","Overlap · trading","Campaign decisions with London"],["comm","Overlap · trading","Campaign decisions with London"],["comm","Overlap · trading","Confirm go-lives"],["comm","Overlap · design","Final asset handover"],["buf","Buffer · 1h only","The thinnest week of the year"]]],
+ ["06:00\u201309:00",["ops","Trading calendar + build","Sequencing, cut-offs, then campaign build"],["ops","Campaign build","BFCM and Christmas across five stores"],["ops","Campaign build \u2014 stage","Build and stage. Do not publish"],["ops","Campaign + merch","Collections, nav, banners, countdowns"],["ops","QA across 5 stores","Every store, every device, every mechanic"]],
+ ["09:00\u201312:30",["ops","Campaign build","The dominant work of October"],["deep","Planned build","The last 4h a week of roadmap work"],["ops","Scheduled release","Scheduled to publish, never live-edited"],["opt","Speed only","No new optimisation work in October"],["comm","Peak readiness report","Status to the client before their Friday"]],
+ ["13:00\u201314:00",["buf","Buffer hour","Rising demand through October"],["buf","Buffer hour","Rising demand through October"],["buf","Buffer + post-deploy checks","Verify on every store"],["buf","Buffer hour","Rising demand through October"],["buf","Buffer hour","Increasingly fully spent"]],
+ ["14:00\u201314:30",["comm","Triage + handover","Inbox to zero"],["comm","Triage + handover","Inbox to zero"],["comm","Triage + handover","Confirm go-lives"],["comm","Triage + handover","Final asset handover to design"],["comm","Triage + week close","Peak readiness checklist updated"]],
+ ["16:00\u201317:00",["comm","London hour","Campaign decisions with the UK"],["off","\u2014","Day ends 14:30"],["off","\u2014","Day ends 14:30"],["off","\u2014","Day ends 14:30"],["off","\u2014","Day ends 14:30"]]],
 freeze:[
- ["08:00–12:00",["ops","Monitoring &amp; trading watch","CVR, errors, speed, order flow"],["comm","Documentation &amp; learnings","The quarter&rsquo;s decisions, written down"],["ops","Campaign go-live support","Pre-approved controlled releases only"],["comm","Q1 planning","Business cases, deferred backlog, resourcing"],["ops","Monitoring + report","Peak trading report to the client"]],
- ["13:00–14:30",["buf","Incident standby","Deliberately unallocated"],["comm","Q1 planning","Shared theme migration scoping"],["ops","Post-go-live checks","Every store verified"],["comm","Documentation","Runbooks and the bus-factor pack"],["comm","Close-out","Week summary, next week&rsquo;s watch list"]],
- ["14:30–15:30",["ops","P0 only","Nothing else ships"],["ops","P0 only","Nothing else ships"],["ops","P0 only","Nothing else ships"],["ops","P0 only","Nothing else ships"],["ops","P0 only","Nothing else ships"]],
- ["15:30–16:00",["comm","Triage + handover","Everything logged, nothing actioned"],["comm","Triage + handover","Everything logged, nothing actioned"],["comm","Triage + handover","Everything logged, nothing actioned"],["comm","Triage + handover","Everything logged, nothing actioned"],["comm","Triage + handover","Everything logged, nothing actioned"]],
- ["16:00–17:00",["comm","Overlap · trading","Daily peak check-in with London"],["comm","Overlap · trading","Daily peak check-in with London"],["comm","Overlap · trading","Daily peak check-in with London"],["comm","Overlap · trading","Daily peak check-in with London"],["buf","Buffer","Contingency, 6h/wk reserved"]]]};
+ ["06:00\u201309:00",["ops","Monitoring &amp; trading watch","CVR, errors, speed, order flow \u00b7 all five stores"],["ops","Monitoring","Largely automated by now. Someone still looks"],["ops","Campaign go-live support","Pre-tested, pre-approved releases only"],["ops","Monitoring","Christmas cut-offs and shipping messaging"],["ops","Monitoring + report","Peak trading report to the client"]],
+ ["09:00\u201312:30",["comm","Documentation &amp; learnings","The quarter&rsquo;s decisions, written while fresh"],["comm","Q1 planning","Shared theme migration scoping"],["ops","Post-go-live verification","Every store verified"],["comm","Q1 planning &amp; business cases","Subscriptions, personalisation, architecture"],["comm","Close-out + watch list","Week summary, next week&rsquo;s watch list"]],
+ ["13:00\u201314:00",["buf","Buffer \u00b7 P0 only","Nothing else ships"],["buf","Buffer \u00b7 P0 only","Nothing else ships"],["buf","Buffer \u00b7 P0 only","Nothing else ships"],["buf","Buffer \u00b7 P0 only","Nothing else ships"],["buf","Buffer \u00b7 P0 only","Nothing else ships"]],
+ ["14:00\u201314:30",["comm","Triage + handover","Everything logged, nothing actioned"],["comm","Triage + handover","Everything logged, nothing actioned"],["comm","Triage + handover","Everything logged, nothing actioned"],["comm","Triage + handover","Everything logged, nothing actioned"],["comm","Triage + week close","Held items queued for January"]],
+ ["16:00\u201317:00",["comm","London hour","Daily peak check-in becomes weekly again"],["off","\u2014","Day ends 14:30"],["off","\u2014","Day ends 14:30"],["off","\u2014","Day ends 14:30"],["off","\u2014","Day ends 14:30"]]]};
 function drawWk(k){document.getElementById("wk-b").innerHTML=WK[k].map(function(row){
  return "<tr><td class='t'>"+row[0]+"</td>"+row.slice(1).map(function(c){
  return "<td class='"+c[0]+"'><b>"+c[1]+"</b><small>"+c[2]+"</small></td>"}).join("")+"</tr>"}).join("")}
@@ -1859,33 +2205,36 @@ drawWk("normal");
 
 /* ============ CAPACITY MODES ============ */
 var CAP={
-normal:{t:"Normal week · August to September",d:"The default shape. Sixteen hours of planned roadmap build is the honest number, and everything else on this bar is real work that currently has no name on the board.",
- i:[["Planned roadmap build",16,"var(--s1)","Features, mechanics, the work the job spec judges you on. Protected by WIP limits and by the reactive lane absorbing everything else."],
-    ["Reactive lane — bugs &amp; urgent requests",8,"var(--s2)","You described days where this consumes all eight hours. If that happens once a fortnight the average is already 8h. Budget it or every plan is fiction."],
-    ["Release, QA &amp; cross-store deploy",5,"var(--s4)","Two to four deploys per store per month, replicated five times, each with a pre-flight check and a post-deploy verification. Falls to ~2h once the shared theme lands."],
-    ["Trading &amp; merchandising ops",4,"var(--s3)","Homepage, collections, banners, landing pages, keeping the site reflecting current campaigns. Continuous, low-drama, and invisible until it stops."],
-    ["Steering — triage, planning, reporting, comms",5,"var(--s6)","Daily triage and handover, fortnightly planning, the weekly report, the fortnightly meeting. Cheap in hours, catastrophic when skipped."],
-    ["Buffer",2,"cont","Structurally empty. If the week went well it becomes debt or research; if it went badly it absorbs the damage. Never plan into it."]]},
-peak:{t:"Campaign week · October to early November",d:"Trading takes over and roadmap build nearly disappears. This is the honest cost of Q4, and it is why the AOV mechanics have to be finished before October rather than during it.",
- i:[["Trading &amp; campaign build",16,"var(--s3)","Halloween, BFCM, Christmas, Boxing Day. Five campaigns across five stores. Reusable sections in the shared theme are what make this survivable."],
-    ["Release &amp; QA across 5 stores",8,"var(--s4)","Doubles, because every campaign is a release and every release is five stores. Scheduled publishing, never live editing."],
-    ["Reactive lane",8,"var(--s2)","Does not shrink in Q4 — if anything it grows, because more is live and more is being looked at."],
+normal:{t:"Normal week &middot; August to September &middot; 06:00\u201314:30",d:"Eight hours a day: a 6.5-hour protected morning block, a ring-fenced buffer hour, and thirty minutes of triage and handover. Sixteen hours of planned roadmap build is what survives \u2014 and everything else on this bar is real work that currently has no name on the board.",
+ i:[["Planned roadmap build",16,"var(--s1)","Carved out of the morning block across Monday, Tuesday and Wednesday. The number the organisation believes is 40, and the one to publish."],
+    ["Buffer hour \u2014 ring-fenced",5,"var(--s4)","One hour every day, 13:00\u201314:00, for ad hoc requests, urgent updates and short meetings. Treat it as already committed. This is the change that makes the rest of the model hold."],
+    ["Reactive bleed into the morning",3,"var(--s2)","The honest average for days when an urgent fix outgrows the buffer hour. You described days that consume all eight; if that happens once a fortnight, three hours a week is the number. Track it and correct it after six sprints."],
+    ["Release, QA &amp; cross-store deploy",5,"var(--s3)","Two to four deploys per store per month, replicated five times, each with a pre-flight check and a post-deploy read. Falls to roughly 2h once the shared theme lands."],
+    ["Trading &amp; merchandising ops",4,"var(--s5)","Homepage, collections, banners, landing pages, plus the ~30 minutes of CA and EU translation per content release. Continuous, low-drama, invisible until it stops."],
+    ["Steering \u2014 triage, handover, planning, reporting",5,"var(--s6)","2.5h of that is the daily 14:00 triage and handover. The rest is fortnightly planning, the weekly report and the Monday London hour."],
+    ["Contingency",2,"cont","Structurally empty and separate from the buffer hour. The buffer absorbs the day; this absorbs the week."]]},
+peak:{t:"Campaign week &middot; October to early November",d:"Trading takes over and roadmap build nearly disappears. This is the honest cost of Q4, and it is why the AOV mechanics have to be finished before October rather than during it. Note that the buffer hour survives \u2014 it is the last thing to cut, not the first.",
+ i:[["Trading &amp; campaign build",16,"var(--s5)","Halloween, BFCM, Christmas, Boxing Day. Five campaigns across five stores. Reusable sections in the shared theme are what make this survivable."],
+    ["Release &amp; QA across 5 stores",8,"var(--s3)","Doubles, because every campaign is a release and every release is five stores. Scheduled publishing, never live editing."],
+    ["Buffer hour \u2014 ring-fenced",5,"var(--s4)","Held at five hours deliberately. October is when ad hoc requests peak, and removing the buffer would push all of them into the morning block."],
+    ["Reactive bleed into the morning",3,"var(--s2)","Does not shrink in Q4 \u2014 if anything it grows, because more is live and more is being looked at."],
     ["Planned roadmap build",4,"var(--s1)","Down from 16h to 4h. This is the number to show anyone who asks why a feature request cannot land in October."],
     ["Steering",3,"var(--s6)","Compressed but not removed. The daily handover matters more in October, not less."],
-    ["Buffer",1,"cont","One hour. This is the genuine weak point of the plan and the reason the earlier sprints must not slip."]]},
-freeze:{t:"Freeze &amp; peak trading · 13 November to 31 December",d:"The job changes shape entirely. Nothing new ships; the work is watching, supporting pre-approved campaign go-lives, and writing down everything the year taught you while it is still fresh.",
- i:[["Monitoring &amp; incident standby",10,"var(--s4)","Daily checks on CVR, error rates, speed and order flow across five stores. Largely automated by then, but someone still has to look."],
-    ["Campaign go-live support",10,"var(--s3)","BFCM, Christmas cut-offs, Boxing Day. Pre-tested, pre-approved, scheduled releases only."],
-    ["Reactive — P0 only",6,"var(--s2)","The ladder collapses to two states deliberately. P0 and pre-approved campaign fixes; everything else is logged and held until January."],
-    ["Documentation, learnings &amp; Q1 planning",8,"var(--s6)","The best eight hours of the year for this. The decisions are fresh, the pressure to build is off, and January arrives with a plan already written."],
-    ["Reserved contingency",6,"cont","Deliberately unallocated, and considerably larger than usual. During peak, spare capacity is the product."]]},
-recover:{t:"Recovery &amp; debt · January",d:"The window that makes next year cheaper. Post-Christmas, pre-Valentine&rsquo;s, with the freeze still on for new features — this is the only time in the calendar where debt work will not be outranked.",
- i:[["Technical debt &amp; theme consolidation",12,"var(--s6)","The shared theme migration, drift cleanup, superseded scripts, the Geotargetly tail. Booked now because it will never win a priority argument later."],
-    ["Deferred backlog &amp; Q1 builds",10,"var(--s1)","Checkout, collections, navigation, mobile audit — the nine things named as not-happening in H2, now with room."],
-    ["Planning, business cases &amp; the resourcing conversation",8,"var(--s5)","Subscriptions and personalisation business cases, the 2027 roadmap, and the conversation with Guy backed by six sprints of real data."],
+    ["Contingency",1,"cont","One hour. The genuine weak point of the plan, and the reason the earlier sprints must not slip."]]},
+freeze:{t:"Freeze &amp; peak trading &middot; 13 November to 31 December",d:"The job changes shape entirely. Nothing new ships; the work is watching, supporting pre-approved campaign go-lives, and writing down everything the year taught you while it is still fresh.",
+ i:[["Monitoring &amp; incident standby",10,"var(--s3)","Daily checks on CVR, error rates, speed and order flow across five stores. Largely automated by then, but someone still has to look."],
+    ["Campaign go-live support",10,"var(--s5)","BFCM, Christmas cut-offs, Boxing Day. Pre-tested, pre-approved, scheduled releases only."],
+    ["Documentation, learnings &amp; Q1 planning",8,"var(--s6)","The best eight hours of the year for this. Decisions are fresh, the pressure to build is off, and January arrives with a plan already written."],
+    ["Buffer hour \u2014 P0 only",5,"var(--s4)","The ladder collapses to two states deliberately. P0 and pre-approved campaign fixes; everything else is logged and held until January."],
+    ["Reserved contingency",5,"cont","Deliberately unallocated and larger than usual. During peak, spare capacity is the product."],
+    ["Steering",2,"var(--s2)","Handover continues daily. Planning drops to almost nothing because there is nothing to re-plan."]]},
+recover:{t:"Recovery &amp; debt &middot; January",d:"The window that makes next year cheaper. Post-Christmas, pre-Valentine&rsquo;s, with the freeze still on for new features \u2014 the only time in the calendar where debt work will not be outranked by something with a date on it.",
+ i:[["Technical debt &amp; theme consolidation",12,"var(--s6)","Shared theme migration, drift cleanup, superseded scripts, the Geotargetly tail, and documenting the deliberate regional differences that block automated deployment."],
+    ["Deferred backlog &amp; Q1 builds",10,"var(--s1)","Checkout, collections, navigation, mobile audit \u2014 the items named as not-happening in H2, now with room."],
+    ["Planning, business cases &amp; the resourcing conversation",8,"var(--s2)","Subscriptions and personalisation cases, the store architecture evaluation, the 2027 roadmap, and the conversation with Guy backed by six sprints of real data."],
+    ["Buffer hour \u2014 ring-fenced",5,"var(--s4)","Unchanged. The buffer is a permanent feature of the week, not a seasonal one."],
     ["Valentine&rsquo;s campaign prep",4,"var(--s3)","Late January into February. First test of the reusable campaign sections outside peak pressure."],
-    ["Reactive lane",4,"var(--s2)","Genuinely lighter in January, which is why the debt allocation can be this large."],
-    ["Buffer",2,"cont","Restored to normal."]]}};
+    ["Contingency",1,"cont","Small, because January is the one month where the contingency is genuinely less likely to be needed."]]}};
 function drawCap(k){var c=CAP[k];document.getElementById("cap-t").innerHTML=c.t;
  document.getElementById("cap-d").innerHTML=c.d;
  document.getElementById("cap-bar").innerHTML=c.i.map(function(x){
@@ -1913,9 +2262,12 @@ var RM=[
 {d:"27–30 Nov",t:"Black Friday → Cyber Monday",c:"var(--crit)",f:1,k:["peak","risk"],x:"The single highest-risk window of the year. Everything new — bundles, multibuy, upsells, gifting — is trading at volume for the first time. Monitoring is automated; you are watching, not building."},
 {d:"1–24 Dec",t:"Christmas peak &amp; shipping cut-offs",c:"var(--crit)",f:1,k:["peak","risk"],x:"Per-store, per-region last-order dates and shipping cut-offs, all scheduled in advance. The second-highest-risk window, and the one most often under-prepared because BFCM absorbs the attention."},
 {d:"26 Dec–4 Jan",t:"Boxing Day &amp; New Year",c:"var(--s2)",k:["peak"],x:"Campaign go-lives continue under controlled release. Take the first week of December as leave — book it now, while it is still easy to book."},
+{d:"Dec · in the freeze",t:"Documentation window &amp; architecture evaluation",c:"var(--s6)",k:[],x:"Eight hours a week with nothing to build and every decision still fresh. Three outputs: the year&rsquo;s learnings and runbooks written down, the deliberate regional differences between the five storefronts documented (the blocker on automated deployment), and the six-hour store architecture evaluation from §12 — five stores versus Shopify Markets — ready to put in front of the client in January."},
 {d:"1–2 Jan",t:"Thaw",c:"var(--s3)",k:[],x:"Freeze lifts. First deploy of the year is deliberately small and deliberately boring, to prove the pipeline still works before anything important rides on it."},
-{d:"5–16 Jan",t:"Recovery &amp; debt sprint",c:"var(--s3)",b:1,k:[],x:"The most valuable two weeks of the year and the ones most often given away. Shared theme migration scoped and started, drift cleaned, automations reviewed, deferred backlog re-scored. Six sprints of velocity and reactive-hours data turned into the 2027 resourcing conversation."},
-{d:"19 Jan–Feb",t:"Valentine&rsquo;s + Q1 builds",c:"var(--s1)",k:[],x:"Valentine&rsquo;s campaign — the first real test of reusable sections outside peak pressure. Then the deferred nine: checkout, collections, navigation, mobile audit, localisation, subscriptions and personalisation business cases."}];
+{d:"5–16 Jan",t:"Recovery &amp; debt sprint",c:"var(--s3)",b:1,k:[],x:"The most valuable two weeks of the year and the ones most often given away. Shared theme migration scoped and started, drift cleaned, automations reviewed, deferred backlog re-scored. The architecture evaluation goes to the client. Six sprints of velocity and reactive-hours data turned into the 2027 resourcing conversation."},
+{d:"19 Jan–Feb",t:"Valentine&rsquo;s + Q1 builds",c:"var(--s1)",k:[],x:"Valentine&rsquo;s campaign — the first real test of reusable sections outside peak pressure. Then the deferred backlog: checkout, collections, navigation, mobile audit, and the subscriptions and personalisation business cases."},
+{d:"Q1–Q2 2027",t:"Storefront standardisation → shared theme → automated deployment",c:"var(--s6)",k:[],x:"The prerequisite chain for your long-term deployment objective, in the only order that works. Standardise what can be standardised, keep and document what genuinely must differ (US and AU accessibility navigation, UK/EU/AU spelling), complete the shared master theme, then automate the rollout on top of it. Each step returns time on the current architecture, and the whole chain is also the prerequisite for a Markets migration if that is ever chosen."},
+{d:"Q2 2027",t:"Architecture decision gate",c:"var(--crit)",b:1,k:[],x:"Five stores or Shopify Markets, decided against the criteria agreed in §12 rather than re-argued from scratch. If the answer is &lsquo;maybe&rsquo;, the next step is a CA-into-US two-market pilot, not a full migration. If the answer is &lsquo;stay&rsquo;, that is a good outcome too — it is now a deliberate choice with reasoning behind it rather than an inherited default."}];
 function drawRm(f){document.getElementById("rm-tl").innerHTML=RM.filter(function(r){
  return f==="all"||(r.k||[]).indexOf(f)>-1}).map(function(r){
  var cl="tl-r"+(r.f?" freeze":"")+(r.b?" buffer":"");
@@ -1929,17 +2281,19 @@ drawRm("all");
 var PH={
 p1:{t:"Days 1–30 · Stop the bleeding and instrument",h:"4 August – 2 September",
  g:"The goal of the first month is not to build the whole system. It is to make sure that from here on, nothing arrives invisibly and nothing ships unmeasured. Everything in this phase is either a governance change costing under a day, or the baseline that makes the rest of the half provable.",
- a:[["Adopt the Slack reply template",".2h","Nothing else works if work keeps entering through the side door. Start before the board is rebuilt — today, with the next message that arrives."],
+ a:[["Add a target date to every acknowledgement",".2h","You already ticket every Slack request — that is the hard discipline and it is in place. What is missing is the clause that tells the requester when they will hear back, which is what stops the chasing."],
+    ["Add On Hold, Work Type, Revisit On and sub-items",".5h","One status and three properties. Restructure Multibuy into a parent with a US A/B child, convert AI Search into an ongoing Programme with closable children, and give the Summer Sale price block a Revisit On date so the revert stops living in your head."],
     ["Cut WIP from six to two","2h","A decision, not a project. Close Claude Documentation as timeboxed, convert the two programme containers to Programme records, park the rest. Throughput improves in the same week."],
-    ["Ask for the Ecommerce OS teamspace",".25h","It has a lead time you do not control, so it goes on day one. Frame it as giving stakeholders visibility, not as taking access."],
+    ["Confirm database rights inside Design &amp; Web",".25h","Not a new teamspace — five of the databases already live there. Small ask, but it has a lead time you do not control, so it goes on day one."],
     ["Rebuild the board with priority, effort and success metric","5h","The one-off cost of moving to the new structure. The import CSV already exists. Do it once, properly, while there is still a Week 0."],
     ["Publish the priority ladder and SLAs","3h","Put it in the Notion header and the Slack channel topic. The rule that matters: requesters supply impact and deadline, you assign priority."],
     ["Fix GSC reporting","6h","You are currently flying blind on organic search going into Q4. This is a P0 risk item that was sitting at Medium."],
     ["Analytics baseline &amp; measurement QA","8h","The highest-leverage item in the plan. CVR, AOV and RPV signed off per store, dated before the work starts. It gets harder to justify every week and impossible once the building begins."],
     ["Publish the Q4 freeze calendar","4h","In August, not November. This document does more to protect Q4 than any code you will write."],
-    ["Start the 15:30 triage block and daily handover","0h","Recovers the morning. Ten minutes a day, and London still hears from you before their lunch."],
-    ["Build the drift checker and triage assistant","10h","The two cheapest automations with the fastest payback. Built now, they compound across every remaining sprint."]],
- s:"Every piece of work is on the board with a priority, an owner and a date. A signed-off baseline exists for all five stores. WIP is 2. The freeze calendar has been circulated and nobody has objected. The Inbox hits zero every day."},
+    ["Start the 14:00 triage block and daily handover","0h","Recovers the morning. Ten minutes a day, and it lands in London inboxes at 07:00 — before they have read anything else."],
+    ["Build the drift checker and triage assistant","10h","The two cheapest automations with the fastest payback. Built now, they compound across every remaining sprint."],
+    ["Move to the 06:00–14:30 shape with a ring-fenced buffer hour","0h","A decision, not a task. The 6.5-hour morning block only exists if the buffer hour actually absorbs the ad hoc work and the day genuinely ends at 14:30."]],
+ s:"Every piece of work is on the board with a priority, an owner and a date. A signed-off baseline exists for all five stores. WIP is 2. On Hold items carry a Revisit On date. The freeze calendar has been circulated and nobody has objected."},
 p2:{t:"Days 31–60 · Build the structure and the leverage",h:"3 September – 2 October",
  g:"With the bleeding stopped, this month builds the parts of the system that pay back over years rather than weeks: the databases that hold knowledge, the sprint rhythm that improves itself, and the automations that buy back a working day.",
  a:[["Stand up Programmes and Learnings databases","4h","Fixes the container-card problem permanently. Also retrospectively extract the conclusions from the three heaviest comment threads — you will use the bundles findings three more times this year."],
@@ -1967,6 +2321,8 @@ p4:{t:"Day 91+ · The December window, and the conversation",h:"13 November – 
  g:"The part of the year most people waste. Trading runs itself if the previous ninety days were done properly, which leaves the two most valuable things you can do with a quarter&rsquo;s worth of evidence: write it down, and use it.",
  a:[["Monitor, support go-lives, ship nothing new","—","The freeze holds. Ten hours a week of monitoring, ten of campaign support, six of P0 capacity, and six deliberately unallocated."],
     ["Write the year down while it is fresh","8h/wk","Learnings, decisions, runbooks, the bus-factor pack completed. December is the only month where the pressure to build is off and the memory is still accurate."],
+    ["Write the store architecture evaluation","6h","Five stores versus Shopify Markets (§12), with the hard constraints checked first, the app stack cost from the Sprint 6 audit, and four months of measured release overhead from the Releases database. Recommendation and decision gate, not an open question."],
+    ["Document the deliberate regional differences","4h","US and AU accessibility navigation, UK/EU/AU spelling, structural variations. This is the specific blocker on automated multi-region deployment, and it is documentation rather than development — which makes December exactly the right time for it."],
     ["Take the first week of December off","—","Book it now, while it is easy. After peak, before the debt sprint. This is a mitigation, not a perk."],
     ["Run the January debt sprint","2 wks","Shared theme migration scoped and started, drift cleaned, automations reviewed. The only two weeks in the calendar where debt work will not be outranked."],
     ["Have the resourcing conversation","2h","Six sprints of velocity data, a real reactive rate, eleven hours a week of automation delivered, and four job-spec pillars still uncovered. Not an opinion — a dataset."]],
@@ -1980,10 +2336,12 @@ drawPh("p1");
 
 /* ============ RECOMMENDATIONS ============ */
 var REC=[
-["Adopt the Slack reply template and one Inbox",5,0.5,"This week","Converts invisible work into countable work at the moment it arrives. Every other recommendation depends on this one holding."],
-["Ask for the Ecommerce OS teamspace",4,0.25,"This week","Unblocks the entire Notion redesign. Has a lead time you do not control, so it goes first."],
+["Add a target date to every acknowledgement",4,0.2,"This week","You already ticket every request. Adding when they will hear back converts a visible ticket into a visible queue, and stops priority being renegotiated one message at a time."],
+["Add On Hold, Work Type, Revisit On and sub-items",5,0.5,"This week","One status and three properties. Fixes the three tickets the board currently misrepresents — AI Search as ongoing, Multibuy as awaiting a test result, the sale price block as a scheduled revert."],
+["Move to the 06:00–14:30 shape with a ring-fenced buffer hour",5,0.5,"This week","Turns the 6am start from an early alarm into 6.5 protected hours a day, and gives ad hoc work a named home instead of the morning block."],
+["Confirm database rights inside Design &amp; Web",4,0.25,"This week","Not a new teamspace — five of the databases already exist there. Small ask, and it has a lead time you do not control."],
 ["Cut work-in-progress from six to two",5,2,"This week","Throughput for a solo operator is governed almost entirely by WIP. This is the single change with the fastest visible effect on output."],
-["Daily 15:30 triage block and async handover",4,0.5,"This week","Recovers a seven-hour uninterrupted morning while making you more predictable to London, not less."],
+["Daily 14:00 triage block and async handover",4,0.5,"This week","Protects the 6.5-hour morning block while making you more predictable to London, not less — the handover lands at 07:00 their time."],
 ["Make shared-theme-first the default build rule",5,0.5,"This week","Stops the divergence getting worse from today, even though the migration itself cannot land before peak."],
 ["Publish the priority ladder with SLAs",5,3,"Week 0","Ends the nine-Mediums problem and makes priority a written policy rather than a negotiation with whoever asked last."],
 ["Rebuild the board: priority, effort, success metric",5,5,"Week 0","The one-off cost of the new structure. Also the moment eleven never-ticketed job-spec responsibilities become visible."],
@@ -1999,7 +2357,9 @@ var REC=[
 ["Weekly reporting pack automation",4,8,"Sprint 2","A named deliverable across ten surfaces. Makes reporting happen every week instead of most weeks."],
 ["Bus-factor pack and a contractor on file",4,4,"Sprint 2","An hour of preparation now against a lost day on Black Friday. The cheapest insurance in the plan."],
 ["Automated QA regression sweep",5,12,"Sprint 3–4","The largest single reduction in peak risk. Converts the Sprint 7 QA pass from a weekend into a script."],
-["Anomaly monitoring and alerting",3,6,"Sprint 6","During freeze it is the thing watching five storefronts so that you are not the monitoring system."]];
+["Anomaly monitoring and alerting",3,6,"Sprint 6","During freeze it is the thing watching five storefronts so that you are not the monitoring system."],
+["Book the store architecture evaluation",4,6,"December","Five stores versus Shopify Markets, written when the freeze gives you the hours and four months of measured release data exist. Turns an inherited default into a deliberate choice with a decision gate."],
+["Document the deliberate regional differences",4,4,"December","The specific blocker on automated multi-region deployment. Documentation, not development — which is why December is exactly the right window."]];
 function drawRec(rows){document.querySelector("#rec-t tbody").innerHTML=rows.map(function(r){
  var roi=(r[1]/r[2]).toFixed(1);
  return "<tr><td><span class='tn'>"+r[0]+"</span></td>"+
