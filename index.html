@@ -239,7 +239,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       <p style="font-size:13.5px;color:var(--ink2);margin-bottom:0">The evidence that this is now costing you:
       <b>six items in progress</b> against a capacity of one; a card <b>25 days overdue</b> and another
       <b>7 days overdue</b>; two container cards carrying <b>11 and 14 comments</b> of buried decisions;
-      and <b>eleven job-spec responsibilities that have never been ticketed at all</b>.</p>
+      and <b>ten job-spec responsibilities that have never been ticketed at all</b>.</p>
     </div>
     <div class="card">
       <h3 style="margin-bottom:10px">The five-times multiplier</h3>
@@ -254,38 +254,76 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
     </div>
   </div>
 
-  <h3 style="margin:34px 0 4px">The five operational risks, ranked</h3>
+  <h3 style="margin:34px 0 4px">What is already working — and should not be redesigned</h3>
+  <p class="lede" style="margin:8px 0 16px">Worth stating plainly before the diagnosis, because several of
+  these are the things most solo operators never get right, and rebuilding them would be a step backwards.</p>
+  <div class="grid3">
+    <div class="vw" style="border-color:var(--good)"><div class="vw-c">KEEP</div><h4>Every request becomes a ticket</h4>
+      <p>The hardest discipline in the whole system, already habitual. Nothing below asks you to change how
+      work is captured — only what happens in the ten minutes after.</p></div>
+    <div class="vw" style="border-color:var(--good)"><div class="vw-c">KEEP</div><h4>Complex features are documented</h4>
+      <p>Multibuy is documented well enough that a marketer can change it through the UI without touching
+      code. That is a genuinely high standard, it is why the continuity risk is narrower than it looks, and
+      it is the model for every future build.</p></div>
+    <div class="vw" style="border-color:var(--good)"><div class="vw-c">KEEP</div><h4>Credentials are shared</h4>
+      <p>Other stakeholders hold access. The single-point-of-failure problem is therefore about the deploy
+      path and the code, not about knowledge or lockout — much smaller, and much more fixable.</p></div>
+    <div class="vw" style="border-color:var(--good)"><div class="vw-c">KEEP</div><h4>The release log is disciplined</h4>
+      <p>Theme name, date, ticket link and post-deploy LCP/INP per store. It just lives in Sheets instead of
+      next to the tickets it references. Move it, do not rebuild it.</p></div>
+    <div class="vw" style="border-color:var(--good)"><div class="vw-c">KEEP</div><h4>The AI audit is already running</h4>
+      <p>Producing real findings across five stores. The remaining work is trust, not build — validate the
+      output on two stores so you can act on it at scale without re-checking every time.</p></div>
+    <div class="vw" style="border-color:var(--good)"><div class="vw-c">KEEP</div><h4>The fortnightly solves, it does not report</h4>
+      <p>Status lives in the sheet and is read beforehand; the hour is for what is stuck. That is the right
+      design, and the read-only views will make it work better rather than replace it.</p></div>
+  </div>
+
+  <h3 style="margin:36px 0 4px">The six operational risks, ranked</h3>
   <p class="lede" style="margin:8px 0 12px">Ranked by what they would cost if they landed, not by how likely
   they feel today.</p>
   <table class="tbl">
     <thead><tr><th style="width:30px"></th><th>Risk</th><th style="width:38%">Why it is the top of the list</th>
     <th style="width:120px">Exposure</th></tr></thead><tbody>
     <tr><td class="mono" style="color:var(--crit);font-weight:700">1</td>
-      <td><span class="tn">Single point of failure</span><span class="was">No cover, no runbook, no second admin</span></td>
-      <td class="why">One person holds every credential, every deploy process and every undocumented decision.
-      A week of illness in November is not an inconvenience, it is a trading incident. There is currently
-      no written path for anyone else to ship a hotfix.</td>
-      <td><span class="tag pk">Business-level</span></td></tr>
-    <tr><td class="mono" style="color:var(--crit);font-weight:700">2</td>
-      <td><span class="tn">You cannot prove anything</span><span class="was">GSC broken · no signed-off baselines</span></td>
-      <td class="why">Every success metric in the job spec is a number: CVR, AOV, RPV. None of them has an
-      agreed pre-work baseline, and a deployment has broken Search Console reporting. You are going into the
-      biggest quarter of the year unable to demonstrate the value of your own work — which is also how the
-      2027 headcount conversation gets lost.</td>
+      <td><span class="tn">You cannot prove anything yet</span><span class="was">GSC unreliable · no signed-off baselines</span></td>
+      <td class="why">Every success metric in the job spec is a number: CVR, AOV, RPV. None has an agreed
+      pre-work baseline, and a deployment has broken Search Console reporting. You are going into the biggest
+      quarter of the year unable to demonstrate the value of your own work — which is also how the 2027
+      resourcing conversation gets lost. <b>In progress: the 16-month GSC exports being gathered per region
+      will close the search half of this.</b></td>
       <td><span class="tag pk">Career + commercial</span></td></tr>
+    <tr><td class="mono" style="color:var(--warn);font-weight:700">2</td>
+      <td><span class="tn">Deploy and rollback have no second pair of hands</span>
+      <span class="was">Much narrower than it first looked</span></td>
+      <td class="why">Credentials are shared and complex features are documented well enough for a
+      non-developer to operate them, so this is <b>not</b> a knowledge or lockout risk. What remains is
+      specific: <b>nobody else can ship a theme change or execute a rollback across five stores.</b> On
+      27 November that is the only part that matters, and closing it is a two-hour runbook plus a contractor
+      name on file — not a documentation project.</td>
+      <td><span class="tag warn">Peak-window</span></td></tr>
     <tr><td class="mono" style="color:var(--crit);font-weight:700">3</td>
+      <td><span class="tn">GA4 has recorded zero revenue for a year</span>
+      <span class="was">Confirmed 4 Aug · all five stores, every channel</span></td>
+      <td class="why">Purchase counts are captured; <b>value, currency and the items array are not</b>.
+      AOV and revenue per visitor — two of the three commercial success metrics in the job spec — cannot be
+      calculated at all. This is not just a reporting gap: it <b>blocks multibuy, upsells, the gift builder,
+      bundles and the entire CRO programme</b>, because every one of them is measured in AOV. Roughly 60
+      scheduled hours cannot be proven until it is fixed. Diagnosis is about 30 minutes.</td>
+      <td><span class="tag pk">Blocks the plan</span></td></tr>
+    <tr><td class="mono" style="color:var(--crit);font-weight:700">4</td>
       <td><span class="tn">Peak is unplanned</span><span class="was">No freeze date, no rollback, no QA pass</span></td>
       <td class="why">BFCM and Christmas are the majority of the year's revenue for a gifting brand.
       The current board has no peak readiness card, no code freeze calendar, no load test and no rollback
       plan for any feature shipped since May.</td>
       <td><span class="tag pk">Revenue</span></td></tr>
-    <tr><td class="mono" style="color:var(--warn);font-weight:700">4</td>
+    <tr><td class="mono" style="color:var(--warn);font-weight:700">5</td>
       <td><span class="tn">Reactive work is invisible</span><span class="was">Not on the board, so not in the plan</span></td>
       <td class="why">Urgent bugs and ad-hoc site requests can consume a full day. None of that appears
       anywhere in the system, so every plan is built on 40 hours you do not have, and every miss looks like
       a personal failure rather than a capacity fact.</td>
       <td><span class="tag warn">Chronic</span></td></tr>
-    <tr><td class="mono" style="color:var(--warn);font-weight:700">5</td>
+    <tr><td class="mono" style="color:var(--warn);font-weight:700">6</td>
       <td><span class="tn">Strategic work has no home</span><span class="was">CRO programme · reporting · localisation</span></td>
       <td class="why">The job spec asks for an <i>ongoing</i> A/B programme, <i>regular</i> reporting and
       translation workflows for international stores. None of these are tickets, because none of them are
@@ -910,7 +948,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       decision, one paragraph, tagged and searchable.</p>
       <p style="font-size:12.5px;color:var(--mut);margin:0"><b style="color:var(--ink2)">Doubles as:</b> the
       Documentation deliverable in the job spec, the A/B learnings log the spec explicitly asks for, and your
-      bus-factor insurance. Three obligations, one database.</p>
+      continuity insurance. Three obligations, one database.</p>
     </div>
   </div>
   <p style="font-size:13px;color:var(--mut);margin-top:14px"><b style="color:var(--ink2)">Optional seventh —
@@ -1553,7 +1591,8 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       <td class="why">Shopify generates hreflang automatically for markets and keeps it in sync with
       canonical URLs &mdash; but its documentation explicitly names linking alternate versions of a page
       <i>across separate stores on different domains</i> as a case it cannot coordinate for you.
-      Yours is manual, and manual hreflang rots silently.</td>
+      Yours is manual, and manual hreflang rots silently. <b>Measured 4 Aug: the EU store has 484 pages where
+      Google overrode the declared canonical. Every other storefront has between 5 and 11.</b></td>
       <td class="num"><b>SEO risk</b><span class="was">Already flagged in your site plan</span></td></tr>
     <tr><td><span class="tn">App subscriptions billed per store</span></td>
       <td class="why">Every app in the stack is paid five times. The Sprint 6 app audit should record the
@@ -1739,39 +1778,86 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
 
 
 <section id="risks"><div class="sh"><div class="lbl">14 · Risks and bottlenecks</div>
-  <h2>Thirteen ways this goes wrong, and what to do about each</h2></div>
+  <h2>Sixteen ways this goes wrong, and what to do about each</h2></div>
   <p class="lede">Ordered by expected cost. Every one has a mitigation with a date, because a risk register
   without owners and dates is a list of worries.</p>
 
   <div class="card" style="padding:6px 24px;margin-top:22px">
-    <div class="rk"><div class="rk-h"><span class="tag pk">Critical</span><h4>1 · You are the single point of failure</h4></div>
-      <p>Every credential, every deploy process, every undocumented decision and every Claude workflow sits with
-      one person. There is no second Shopify admin who could ship a hotfix, and no written path for anyone to
-      try. On 27 November this stops being an abstraction.</p>
-      <div class="rk-m"><b>Mitigate</b> Write a <b>bus-factor pack</b> by end of Sprint 2: access and credential
-      list, deploy runbook, rollback steps per store, the five things most likely to break and how to fix them,
-      and the AI workflows with how to run them. Two pages. Then identify one external Shopify developer,
-      contract terms agreed, before 1 November — <b>even if you never call them</b>. The cost of having a name
-      and a rate on file is an hour; the cost of finding one on Black Friday is the day.</div></div>
-
-    <div class="rk"><div class="rk-h"><span class="tag pk">Critical</span><h4>2 · You cannot prove your own value</h4></div>
-      <p>GSC reporting is broken after the AI optimisation deployment. There are no signed-off CVR, AOV or RPV
-      baselines per store. Every success metric in the job spec is a number, and right now none of them has a
-      credible "before". This is both a commercial risk and a personal one.</p>
+    <div class="rk"><div class="rk-h"><span class="tag pk">Critical</span><h4>1 · You cannot prove your own value yet</h4></div>
+      <p>GSC reporting is unreliable after the AI optimisation deployment. There are no signed-off CVR, AOV or
+      RPV baselines per store. Every success metric in the job spec is a number, and right now none of them has
+      a credible "before". This is both a commercial risk and a personal one.</p>
       <div class="rk-m"><b>Mitigate</b> Analytics Baseline &amp; Measurement QA is <b>Sprint 1, 8 hours, and
-      nothing overtakes it</b>. Fix GSC in Week 0. Then the weekly Metrics snapshot keeps the baseline alive at
-      ten minutes a week. This is the highest-leverage single item in the entire plan.</div></div>
+      nothing overtakes it</b>. Fix GSC in Week 0. The 16-month Search Console exports now being gathered per
+      region close the search half of this, and let the AU AI-search pilot finally be measured rather than
+      assumed. The commercial half — CVR, AOV and RPV per store — still needs GA4 and Shopify exports alongside
+      them. The weekly Metrics snapshot then keeps the whole baseline alive at ten minutes a week.</div></div>
 
-    <div class="rk"><div class="rk-h"><span class="tag pk">Critical</span><h4>3 · Burnout, and it is structurally priced in</h4></div>
-      <p>89% planned utilisation, no cover, a peak quarter, and a timezone that makes the overlap hour land at
-      the end of your day. The failure mode is not dramatic — it is a slow drop in QA rigour through October,
-      and then something breaking in November.</p>
-      <div class="rk-m"><b>Mitigate</b> Commit 80%, not 89%. Keep the Friday buffer genuinely empty. Book leave
-      for the first week of December <b>now</b>, while it is easy — after peak, before the debt sprint. And set
-      the escalation trigger: three consecutive weeks above 8h reactive goes to Guy as data. <b>A trigger agreed
-      in advance is not a complaint.</b></div></div>
+    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>2 · Deploy and rollback have no second pair of hands</h4></div>
+      <p>Narrower than the usual solo-operator risk, and deliberately so. <b>Credentials are already shared with
+      other stakeholders, and complex features are documented to a standard where a marketer can operate
+      multibuy through the UI without touching code.</b> That removes the knowledge risk and the lockout risk
+      outright — most one-person functions never get there.</p>
+      <p style="margin-top:8px">What is left is specific and worth naming precisely: <b>nobody else can ship a
+      theme change or execute a rollback across five storefronts.</b> Documentation tells someone what a feature
+      does; it does not let them revert a bad deploy at 22:00 on Black Friday.</p>
+      <div class="rk-m"><b>Mitigate</b> Two hours, not a project. <b>One deploy-and-rollback runbook</b> — theme
+      publish and revert steps per store, which backup theme corresponds to which release, and the five things
+      most likely to break with their fix. It sits alongside the feature documentation you already have. Then
+      <b>get one external Shopify developer&rsquo;s name, rate and terms on file before 1 November</b>, even if
+      you never call them. An hour now against a lost day in peak.</div></div>
 
-    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>4 · Five diverging themes</h4></div>
+    <div class="rk"><div class="rk-h"><span class="tag pk">Critical</span><h4>3 · GA4 has recorded no revenue for at least a year</h4></div>
+      <p>Confirmed on 4 August across all five properties and all twelve months: total revenue £0, item
+      revenue 0, items purchased 0, in every channel. Purchase and transaction <i>counts</i> are recorded
+      correctly, and <span class="mono">view_item</span> and <span class="mono">add_to_cart</span> both work
+      — so the <span class="mono">purchase</span> event is arriving without its value, currency and items
+      payload. Shopify still knows what the business earns; what is missing is <b>attribution</b>.</p>
+      <p style="margin-top:8px">The consequence is larger than a reporting gap. <b>Multibuy, cart and
+      post-purchase upsells, the gift builder, bundles and the CRO programme are all measured in AOV</b> —
+      roughly 60 hours of scheduled H2 work whose results cannot be proven. And two of the three commercial
+      success metrics in the job spec are currently uncomputable.</p>
+      <div class="rk-m"><b>Mitigate</b> This moves ahead of everything except the Summer Sale price block.
+      Diagnose in <b>Week 0</b>: DebugView on a test order, check <span class="mono">value</span>,
+      <span class="mono">currency</span> and <span class="mono">items[]</span>, then Shopify Settings →
+      Customer events for the checkout pixel payload. Fix one store, verify, replicate. Two smaller faults
+      travel with it: <b>key events are misconfigured on CA, EU and US</b> (93–95% session key event rates),
+      and <b>GA4 data retention looks set to 2 months</b> — change that to 14 today, because it is not
+      retroactive.</div></div>
+
+    <div class="rk"><div class="rk-h"><span class="tag new">Medium</span><h4>3b · Organic search is declining — but it is 3% of traffic</h4></div>
+      <p>Clicks over a like-for-like April–July window: US −21%, UK −18%, CA +3%, with impressions down 23%
+      and 42%. Average position <i>improved</i> by four to six places everywhere, so this is fewer queries
+      being served rather than worse rankings. <b>I originally rated this Critical. GA4 corrected that:</b>
+      organic search is between 1.1% and 3.8% of sessions across the five stores, so a fifth of it is a
+      fraction of a percent of traffic.</p>
+      <div class="rk-m"><b>Mitigate</b> Still worth a <b>timeboxed 6h diagnosis in Sprint 2</b> — the data is
+      already gathered, and it may be an early signal of something that matters more later. But do not
+      resource remediation ahead of the conversion work, which acts on 100% of traffic rather than 3%.</div></div>
+
+    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>3c · The largest optimisation surface is not in the plan</h4></div>
+      <p>Paid traffic is <b>75–85% of sessions in every store</b>, arriving at 26–30% engagement rates and
+      about fifteen seconds of average engaged time. The H2 roadmap does not name paid landing pages
+      anywhere. Separately, <b>the UK converts 2.5× better than the US on mobile</b> (4.76% against 1.94%)
+      on nominally the same theme — a gap worth roughly 1,500 orders per two-month period on the US store
+      alone.</p>
+      <div class="rk-m"><b>Mitigate</b> Point the CRO programme at these two things rather than at a generic
+      test backlog. <b>The first hypothesis is already written and the control is already live:</b> find what
+      the UK store does that the US store does not. Add paid landing pages as a named CRO surface. Both act
+      on the majority of traffic, unlike the SEO programme, which acts on 3%.</div></div>
+
+    <div class="rk"><div class="rk-h"><span class="tag pk">Critical</span><h4>4 · Burnout, and it is structurally priced in</h4></div>
+      <p>89% planned utilisation, no cover, a peak quarter, and a 06:00 start whose only real London overlap
+      sits at the far end of the day. The failure mode is not dramatic — it is the late finish quietly going
+      from once a week to three, a slow drop in QA rigour through October, and then something breaking in
+      November.</p>
+      <div class="rk-m"><b>Mitigate</b> Commit 80%, not 89%. Protect the daily buffer hour and let the day
+      genuinely end at 14:30 four days out of five — <b>the 6am start only pays off if the finish holds</b>.
+      Book leave for the first week of December <b>now</b>, while it is easy: after peak, before the debt
+      sprint. And set the escalation trigger: three consecutive weeks above 8h reactive goes to Guy as data.
+      <b>A trigger agreed in advance is not a complaint.</b></div></div>
+
+    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>5 · Five diverging themes</h4></div>
       <p>The release log shows the same fix deployed to each store on different dates, with different theme
       names and different Core Web Vitals outcomes. AU is on a different seasonal theme naming entirely. Every
       week without the shared theme adds drift, and drift makes the shared theme migration more expensive.</p>
@@ -1781,7 +1867,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       in Q1. Also document the deliberate differences (US/AU navigation, UK/EU/AU spelling) so they are
       configuration, not accident.</div></div>
 
-    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>4b · The architecture question keeps getting more expensive to answer</h4></div>
+    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>5b · The architecture question keeps getting more expensive to answer</h4></div>
       <p>Every quarter the five storefronts drift further apart, the migration path to any consolidated
       architecture gets more expensive, and the automated deployment objective stays blocked. This is not
       urgent in any single week, which is precisely why it has never been evaluated.</p>
@@ -1790,7 +1876,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       from this week, so that new work stops adding to the divergence even while the old divergence
       remains.</div></div>
 
-    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>5 · Peak concentration risk</h4></div>
+    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>6 · Peak concentration risk</h4></div>
       <p>Four campaigns, five stores, one person, six weeks. Bundles, multibuy, gifting and upsells will all be
       newly live and largely untested at real volume. Any one of them failing under BFCM load is a direct
       revenue event.</p>
@@ -1798,7 +1884,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       per feature, freeze comms and hotfix runbook. Plus the automated QA regression sweep built in Sprint 4, so
       the peak pass is a script and not a weekend. <b>Nothing new ships after 13 November.</b></div></div>
 
-    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>6 · Hidden work</h4></div>
+    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>7 · Hidden work</h4></div>
       <p>Reactive fixes, five-store release overhead, Slack triage, context switching, and re-reading comment
       threads to recover decisions. None of it appears on the board, so every plan is built on hours that do not
       exist and every miss looks like under-delivery.</p>
@@ -1806,7 +1892,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       reactive-hours field. After six sprints you will have a real number instead of an impression — and a real
       number is the only thing that changes a resourcing decision.</div></div>
 
-    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>7 · Four requesters, two timezones, no front door</h4></div>
+    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>8 · Four requesters, two timezones, no front door</h4></div>
       <p>Giles sends requirements via Slack. Matt asks for copy changes. Guy asks for section behaviour. Alix owns
       a CRO card. Each of them reasonably believes they have asked; none of them can see the queue they have
       joined.</p>
@@ -1814,7 +1900,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       their own request's position without asking. <b>Visibility removes most chasing</b> — people chase because
       they cannot see, not because they are impatient.</div></div>
 
-    <div class="rk"><div class="rk-h"><span class="tag warn">Medium</span><h4>8 · Decisions buried in comment threads</h4></div>
+    <div class="rk"><div class="rk-h"><span class="tag warn">Medium</span><h4>9 · Decisions buried in comment threads</h4></div>
       <p>Fourteen comments on Bundles, eleven on Site Speed, eleven on AI Search. The bundles stress test has
       produced genuinely valuable findings — component discounts do not roll up, Buy X Get Y needs a manual
       add — and they live in a thread and a spreadsheet cell rather than anywhere a decision can be made from.</p>
@@ -1822,7 +1908,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       two hours in Week 0 extracting the conclusions from the three heaviest threads. <b>You will use the bundles
       findings three more times this year.</b></div></div>
 
-    <div class="rk"><div class="rk-h"><span class="tag warn">Medium</span><h4>9 · App stack drag</h4></div>
+    <div class="rk"><div class="rk-h"><span class="tag warn">Medium</span><h4>10 · App stack drag</h4></div>
       <p>PageFly remnants have already been removed once; Geotargetly has been replaced with a custom script;
       the multibuy discount app is blocked on dev permissions. Every app is script weight, a monthly cost, a
       dependency and a thing that can break during peak.</p>
@@ -1830,7 +1916,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       removed is speed recovered, cost saved and one fewer failure mode on Black Friday. Log the outcome as a
       standing monthly review afterwards.</div></div>
 
-    <div class="rk"><div class="rk-h"><span class="tag warn">Medium</span><h4>10 · Blocked work sitting unnoticed</h4></div>
+    <div class="rk"><div class="rk-h"><span class="tag warn">Medium</span><h4>11 · Blocked work sitting unnoticed</h4></div>
       <p>The multibuy discount app is waiting on dev dashboard permissions. Bundles US testing is waiting on a
       test fulfilment location. Blocked items are the cheapest work in the system to unblock and the easiest to
       forget, because nothing prompts you.</p>
@@ -1838,14 +1924,14 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       Anything blocked more than ten days is escalated at the fortnightly by name. <b>Two chases a week clears
       most of it.</b></div></div>
 
-    <div class="rk"><div class="rk-h"><span class="tag new">Medium</span><h4>11 · Planning risk — no velocity data</h4></div>
+    <div class="rk"><div class="rk-h"><span class="tag new">Medium</span><h4>12 · Planning risk — no velocity data</h4></div>
       <p>Every estimate in the current plan is a first estimate with no history behind it. The 217-hour figure
       could be 30% out in either direction and there is currently no way to know.</p>
       <div class="rk-m"><b>Mitigate</b> Record estimated versus actual hours on every closed card. After three
       sprints you will have a correction factor; apply it to the remaining plan in late September, while there
       is still time to act on it. <b>Re-forecast once, at the end of Sprint 3.</b></div></div>
 
-    <div class="rk"><div class="rk-h"><span class="tag new">Watch</span><h4>12 · Accessibility coverage is partial and inherited</h4></div>
+    <div class="rk"><div class="rk-h"><span class="tag new">Watch</span><h4>13 · Accessibility coverage is partial and inherited</h4></div>
       <p>Accessibility was implemented on the US store by a third-party provider and reached AU only because
       AU was cloned from US. UK, EU and CA have nothing. No client request has been made to extend it, so
       this is not an overdue task — but two things are worth doing anyway, and both are cheap.</p>
@@ -1998,7 +2084,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
   the expensive ones are the builds that only pay off once the governance exists.</p>
 
   <div class="card" style="margin-top:20px;padding:20px 24px">
-    <h3 style="margin-bottom:14px">Do these five this week — total cost, one day</h3>
+    <h3 style="margin-bottom:14px">Do these six this week — total cost, one day</h3>
     <table class="tbl" style="margin-top:0"><tbody>
       <tr><td class="mono" style="width:34px;font-weight:700;color:var(--s1)">1</td>
         <td style="width:32%"><span class="tn">Add a date to every acknowledgement</span>
@@ -2027,11 +2113,19 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
         price revert lives only in your head. Half an hour that stops the board misrepresenting three of
         its most important tickets.</td></tr>
       <tr><td class="mono" style="font-weight:700;color:var(--s1)">5</td>
-        <td><span class="tn">Book the analytics baseline into Sprint 1 and defend it</span>
-        <span class="was">8h, nothing overtakes it</span></td>
-        <td class="num">15 min</td>
-        <td class="why">Every claim you make between now and January depends on a number that does not exist
-        yet. It gets harder to justify every week that passes, and impossible once the work has started.</td></tr>
+        <td><span class="tn">Set GA4 data retention to 14 months</span>
+        <span class="was">Five properties · not retroactive</span></td>
+        <td class="num">5 min</td>
+        <td class="why">Explorations currently return two months against a twelve-month request. Every day
+        at the default permanently loses a day of history. This is the most time-sensitive item in the whole
+        document and it is one setting.</td></tr>
+      <tr><td class="mono" style="font-weight:700;color:var(--s1)">6</td>
+        <td><span class="tn">Diagnose the GA4 purchase event</span>
+        <span class="was">DebugView on a test order</span></td>
+        <td class="num">30 min</td>
+        <td class="why">Zero revenue recorded in all five stores for twelve months. Until it is fixed,
+        multibuy, upsells, the gift builder and the CRO programme cannot be measured — about 60 hours of
+        scheduled work with no provable outcome.</td></tr>
     </tbody></table>
   </div>
 
@@ -2252,15 +2346,15 @@ drawCap("normal");
 var RM=[
 {d:"4–7 Aug",t:"Week 0 · Stabilise",c:"var(--crit)",k:[],x:"Fix what is bleeding and rebuild the board. Summer Sale price block live and price-checked in every store, the overdue Stord gift message block closed, GSC reporting restored, and the board rebuilt with priorities, effort and success metrics. 20h."},
 {d:"10–21 Aug",t:"Sprint 1 · Foundations",c:"var(--s1)",k:["peak"],x:"The two most important non-features of the half: the analytics baseline signed off per store, and the Q4 freeze calendar published. Plus the bundles go/no-go written down and closed. Also: the drift checker and triage assistant get built here, while there is still room. 26h."},
-{d:"24 Aug–4 Sep",t:"Sprint 2 · Measure &amp; accelerate",c:"var(--s1)",k:["peak"],x:"Homepage site speed fixed before Q4 merchandising weight lands on the page. The reporting pack built once so it costs 90 minutes a week thereafter. Speed programme converted from an open container into a ranked, estimated fix list. Claude documentation timeboxed and closed. 26h."},
+{d:"24 Aug–4 Sep",t:"Sprint 2 · Measure &amp; accelerate",c:"var(--s1)",k:["peak"],x:"Homepage site speed fixed before Q4 merchandising weight lands on the page. The reporting pack built once so it costs 90 minutes a week thereafter. Speed programme converted from an open container into a ranked, estimated fix list. <b>Plus the organic-decline diagnosis (6h)</b> — 20% of clicks have gone from the two biggest markets and the cause has not been named. Claude documentation timeboxed and closed. 32h."},
 {d:"7–18 Sep",t:"Sprint 3 · AOV mechanics",c:"var(--s3)",k:["peak"],x:"Multibuy live on PDP and measured against the baseline. The CRO engine stood up — tool, template, QA process, learnings log — so every later test costs hours. First re-forecast against actual velocity happens at the end of this sprint. 28h."},
-{d:"21 Sep–2 Oct",t:"Sprint 4 · Compounding + automation",c:"var(--s3)",k:["peak"],x:"Cart and post-purchase upsells live. AI search phase 1 shipped with a defined output. Top speed fixes worked from the ranked list. The automated QA regression sweep built — this is the last sensible moment to build tooling. 32h."},
+{d:"21 Sep–2 Oct",t:"Sprint 4 · Compounding + automation",c:"var(--s3)",k:["peak"],x:"Cart and post-purchase upsells live. AI search phase 1 shipped with a defined output — but decided on cost and strategy, not on the AU pilot, which produced no measurable signal at 745 clicks in 106 days. Top speed fixes worked from the ranked list. The automated QA regression sweep built — the last sensible moment to build tooling. 32h."},
 {d:"5–16 Oct",t:"Sprint 5 · Gifting &amp; SEO",c:"var(--s2)",k:["peak","risk"],x:"The highest-risk sprint in the plan. Gift builder (20h, the largest single build in H2) plus on-page SEO and structured data. If anything upstream has slipped, this is the designated scope-cut: ship gift message, gift wrap and a curated gifting collection, and move the full builder to January. 32h."},
 {d:"19–30 Oct",t:"Sprint 6 · Peak merchandising",c:"var(--s2)",k:["peak","risk"],x:"BFCM and Christmas built, staged and scheduled — not built live in November. Landing pages, gifting hub, collections, navigation, banners, countdowns, promo scheduling. App stack audit strips speed drag and failure modes at the same time. Anomaly monitoring goes live. 30h."},
 {d:"2–13 Nov",t:"Sprint 7 · Hardening",c:"var(--crit)",k:["peak","risk"],x:"No new features. Full peak QA pass across every store, device and payment method. Load and stress test at three times projected peak. A written rollback plan for every feature shipped since August. Freeze comms, alerting and the P1 hotfix path agreed before it is needed. 22h."},
 {d:"13 Nov",t:"HARD FREEZE",c:"var(--crit)",f:1,k:["peak","risk"],x:"No non-campaign deploys to any store. Only P0 fixes and pre-tested, pre-approved campaign releases. Published in August so that this date is a decision everyone already agreed to rather than a negotiation in the last week of October."},
 {d:"27–30 Nov",t:"Black Friday → Cyber Monday",c:"var(--crit)",f:1,k:["peak","risk"],x:"The single highest-risk window of the year. Everything new — bundles, multibuy, upsells, gifting — is trading at volume for the first time. Monitoring is automated; you are watching, not building."},
-{d:"1–24 Dec",t:"Christmas peak &amp; shipping cut-offs",c:"var(--crit)",f:1,k:["peak","risk"],x:"Per-store, per-region last-order dates and shipping cut-offs, all scheduled in advance. The second-highest-risk window, and the one most often under-prepared because BFCM absorbs the attention."},
+{d:"1–24 Dec",t:"Christmas peak &amp; shipping cut-offs",c:"var(--crit)",f:1,k:["peak","risk"],x:"<b>The actual apex.</b> Search Console shows December running at 3.3× a normal trading month across CA, UK and US, against November at 1.3×. Per-store, per-region last-order dates and shipping cut-offs, all scheduled in advance. The gifting hub and Christmas collections outrank the Black Friday landing page for organic traffic — weight the October build accordingly."},
 {d:"26 Dec–4 Jan",t:"Boxing Day &amp; New Year",c:"var(--s2)",k:["peak"],x:"Campaign go-lives continue under controlled release. Take the first week of December as leave — book it now, while it is still easy to book."},
 {d:"Dec · in the freeze",t:"Documentation window &amp; architecture evaluation",c:"var(--s6)",k:[],x:"Eight hours a week with nothing to build and every decision still fresh. Three outputs: the year&rsquo;s learnings and runbooks written down, the deliberate regional differences between the five storefronts documented (the blocker on automated deployment), and the six-hour store architecture evaluation from §12 — five stores versus Shopify Markets — ready to put in front of the client in January."},
 {d:"1–2 Jan",t:"Thaw",c:"var(--s3)",k:[],x:"Freeze lifts. First deploy of the year is deliberately small and deliberately boring, to prove the pipeline still works before anything important rides on it."},
@@ -2302,9 +2396,9 @@ p2:{t:"Days 31–60 · Build the structure and the leverage",h:"3 September – 
     ["Ship multibuy and measure it","16h","The most direct AOV lever in the spec, live and proven against the baseline before peak traffic arrives."],
     ["Stand up the CRO engine","12h","Tool, test template, QA process, learnings log. Build the engine once; every later test then costs hours rather than days."],
     ["Build the automated QA regression sweep","12h","The single largest reduction in peak risk available. Must exist before Sprint 7 or the peak QA pass is a weekend."],
-    ["Write the bus-factor pack","4h","Access list, deploy runbook, rollback steps, the five likeliest failures and their fixes, and how to run the AI workflows. Two pages. Then get a contractor name and rate on file."],
+    ["Write the deploy and rollback runbook","2h","Credentials are shared and features are already documented, so this is the one remaining gap: theme publish and revert steps per store, which backup maps to which release, and the five likeliest failures. Then get a contractor name and rate on file."],
     ["Re-forecast against actual velocity","1h","Three sprints of estimate-versus-actual data. Apply the correction factor to the remaining plan in late September, while there is still time to act on it."]],
- s:"Two sprints completed at 80% or more of commitment. One process change shipped per retro. The weekly report assembles itself. Someone other than you could deploy a hotfix using a written document. You know your real velocity and your real reactive rate."},
+ s:"Two sprints completed at 80% or more of commitment. One process change shipped per retro. The weekly report assembles itself. Someone other than you could publish or revert a theme using a written document. You know your real velocity and your real reactive rate."},
 p3:{t:"Days 61–90 · Harden, ship the season, prove it",h:"3 October – 2 November",
  g:"The system now exists, so this month is about using it under pressure. Trading dominates, planned build drops to four hours a week, and the discipline that matters is refusing scope rather than absorbing it.",
  a:[["Ship the gifting journey","20h","Or the reduced version, if the scope-cut decision was triggered on 1 October. Deciding in advance costs nothing; deciding on 12 October costs a weekend."],
@@ -2320,7 +2414,7 @@ p3:{t:"Days 61–90 · Harden, ship the season, prove it",h:"3 October – 2 Nov
 p4:{t:"Day 91+ · The December window, and the conversation",h:"13 November – 31 January",
  g:"The part of the year most people waste. Trading runs itself if the previous ninety days were done properly, which leaves the two most valuable things you can do with a quarter&rsquo;s worth of evidence: write it down, and use it.",
  a:[["Monitor, support go-lives, ship nothing new","—","The freeze holds. Ten hours a week of monitoring, ten of campaign support, six of P0 capacity, and six deliberately unallocated."],
-    ["Write the year down while it is fresh","8h/wk","Learnings, decisions, runbooks, the bus-factor pack completed. December is the only month where the pressure to build is off and the memory is still accurate."],
+    ["Write the year down while it is fresh","8h/wk","Learnings, decisions and runbooks completed, building on the feature documentation that already exists. December is the only month where the pressure to build is off and the memory is still accurate."],
     ["Write the store architecture evaluation","6h","Five stores versus Shopify Markets (§12), with the hard constraints checked first, the app stack cost from the Sprint 6 audit, and four months of measured release overhead from the Releases database. Recommendation and decision gate, not an open question."],
     ["Document the deliberate regional differences","4h","US and AU accessibility navigation, UK/EU/AU spelling, structural variations. This is the specific blocker on automated multi-region deployment, and it is documentation rather than development — which makes December exactly the right time for it."],
     ["Take the first week of December off","—","Book it now, while it is easy. After peak, before the debt sprint. This is a mitigation, not a perk."],
@@ -2355,7 +2449,7 @@ var REC=[
 ["Ticket triage assistant",3,4,"Sprint 1","Modest hours saved; the real value is removing the friction that currently stops things being ticketed at all."],
 ["Programmes and Learnings databases",4,4,"Sprint 2","Fixes the container-card problem and turns three heavy comment threads into reusable knowledge."],
 ["Weekly reporting pack automation",4,8,"Sprint 2","A named deliverable across ten surfaces. Makes reporting happen every week instead of most weeks."],
-["Bus-factor pack and a contractor on file",4,4,"Sprint 2","An hour of preparation now against a lost day on Black Friday. The cheapest insurance in the plan."],
+["Deploy and rollback runbook + a contractor on file",4,2,"Sprint 2","Narrower than a full bus-factor pack because credentials are shared and features are documented. What is missing is the revert path across five stores — two hours against a lost day in peak."],
 ["Automated QA regression sweep",5,12,"Sprint 3–4","The largest single reduction in peak risk. Converts the Sprint 7 QA pass from a weekend into a script."],
 ["Anomaly monitoring and alerting",3,6,"Sprint 6","During freeze it is the thing watching five storefronts so that you are not the monitoring system."],
 ["Book the store architecture evaluation",4,6,"December","Five stores versus Shopify Markets, written when the freeze gives you the hours and four months of measured release data exist. Turns an inherited default into a deliberate choice with a decision gate."],
