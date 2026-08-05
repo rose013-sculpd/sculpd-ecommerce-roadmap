@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2026 Ecommerce Roadmap · Notion build spec</title>
+<style>
+:root{color-scheme:light;--bg:#f9f9f7;--surf:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--mut:#898781;
+--grid:#e1e0d9;--base:#c3c2b7;--brd:rgba(11,11,11,.10);
+--c1:#2a78d6;--c2:#eb6834;--c3:#1baf7a;--c4:#eda100;--c5:#7a5cd6;--crit:#d03b3b;--warn:#c98500;--good:#0ca30c}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#0d0d0d;--surf:#1a1a19;--ink:#fff;--ink2:#c3c2b7;
+--mut:#898781;--grid:#2c2c2a;--base:#383835;--brd:rgba(255,255,255,.10);
+--c1:#3987e5;--c2:#d95926;--c3:#199e70;--c4:#c98500;--c5:#8a6ee0;--crit:#e05555;--warn:#e0a020;--good:#22b822}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+h1,h2,h3,h4{margin:0;line-height:1.25;letter-spacing:-.015em}
+h1{font-size:30px;font-weight:640}h2{font-size:21px;font-weight:620}h3{font-size:16px;font-weight:620}h4{font-size:14px;font-weight:640}
+p{margin:0 0 10px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+header{background:var(--surf);border-bottom:1px solid var(--brd);padding:38px 0 28px}
+.kick{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:640;margin-bottom:11px}
+.sub{font-size:16px;color:var(--ink2);max-width:76ch;margin-top:13px}.sub b{color:var(--ink)}
+section{padding:44px 0 6px}
+.lbl{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:640;margin-bottom:8px}
+.lede{font-size:15px;color:var(--ink2);max-width:82ch;margin:11px 0 20px}.lede b{color:var(--ink)}
+.card{background:var(--surf);border:1px solid var(--brd);border-radius:11px;padding:20px 22px;margin-bottom:15px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:13px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+.tbl th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);font-weight:640;padding:8px 9px;border-bottom:1px solid var(--base)}
+.tbl th.num{text-align:right}.tbl th.ctr{text-align:center}
+.tbl td{padding:9px;border-bottom:1px solid var(--grid);vertical-align:top}
+.tbl td.num{text-align:right;font-variant-numeric:tabular-nums}.tbl td.ctr{text-align:center}
+.tbl tbody tr:hover{background:var(--bg)}
+.why{color:var(--mut);font-size:12px;line-height:1.5}
+.tn{font-weight:560;display:block}.was{display:block;font-size:11.5px;color:var(--mut);margin-top:3px}
+.tag{display:inline-block;font-size:10.5px;font-weight:640;padding:2px 7px;border-radius:4px;white-space:nowrap}
+.p0{background:var(--crit);color:#fff}.p1{background:var(--c2);color:#fff}.p2{background:var(--c1);color:#fff}
+.p3{background:var(--c3);color:#fff}.p4{background:var(--c4);color:#0b0b0b}.pk{background:var(--crit);color:#fff}
+.nw{border:1px solid var(--good);color:var(--good)}.pkd{border:1px solid var(--base);color:var(--mut)}
+.hold{background:var(--warn);color:#0b0b0b}
+.note{background:var(--surf);border:1px solid var(--brd);border-left:3px solid var(--warn);border-radius:0 10px 10px 0;padding:15px 18px;font-size:13.5px;color:var(--ink2);margin:16px 0}
+.note b{color:var(--ink)}.note.bad{border-left-color:var(--crit)}.note.good{border-left-color:var(--good)}
+ol.steps{padding-left:20px;margin:10px 0}ol.steps li{margin-bottom:9px;font-size:13.5px;color:var(--ink2)}
+ol.steps b{color:var(--ink)}
+.sub-l{margin:6px 0 0 0;padding-left:16px;font-size:12.5px;color:var(--ink2)}
+.sub-l li{margin-bottom:3px}
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--grid);font-size:12.5px;color:var(--mut)}
+@media(max-width:720px){.tbl{font-size:12px}.why{display:none}}
+</style></head><body>
+<header><div class="wrap">
+  <div class="kick">Build spec · for review before anything is created · 4 August 2026</div>
+  <h1>2026 Ecommerce Roadmap — Notion board</h1>
+  <p class="sub">Everything I will create, and nothing I will touch. <b>The Notion connector is currently
+  switched off for this chat</b>, so nothing has been read or written yet. Review this, flip the toggle, and
+  I will build it in one pass.</p>
+</div></header>
+<div class="wrap">
+
+<section><div class="lbl">00 · Before I can start</div>
+  <h2>One toggle</h2>
+  <div class="note bad" style="margin-top:14px"><b>Notion is installed on your org but not enabled in this
+  chat.</b> Open this conversation's connector settings and switch <b>Notion</b> on. I need it for both
+  halves of the job — reading the source board's subtasks, and creating the new one. Without it I cannot
+  see the board at all, so the subtask lists below are marked as "read from source" rather than guessed.</div>
+  <div class="note"><b>One thing to confirm while you are there.</b> You gave two URLs. I am reading the
+  first — <span class="mono">Website Roadmap and Planning Board</span> — as the parent page, and the second
+  (<span class="mono">…819c89d3c53bd5da13de</span>, whose view ID matches every ticket link in your release
+  log) as the <b>Website Build Tasks database</b> I should copy from. If that second URL is something else,
+  tell me before I start.</div>
+</section>
+
+<section><div class="lbl">01 · Safety protocol</div>
+  <h2>What I will not do</h2>
+  <div class="grid2">
+    <div class="card" style="margin:0;border-left:3px solid var(--crit)">
+      <h3 style="margin-bottom:9px">Read-only, everywhere except the new board</h3>
+      <p style="font-size:13px;color:var(--ink2);margin:0 0 7px">I will <b>read</b> the source database to
+      copy titles, subtask hierarchy, status and any existing content. I will <b>not</b> edit, move, archive,
+      re-parent, re-title or re-status a single row on it, and I will not touch any other database in the
+      workspace.</p>
+      <p style="font-size:13px;color:var(--ink2);margin:0">New rows are <b>created fresh</b> in the new
+      database, not moved. The originals stay exactly where they are, which is what makes the old board a
+      real backup rather than a nominal one.</p>
+    </div>
+    <div class="card" style="margin:0;border-left:3px solid var(--good)">
+      <h3 style="margin-bottom:9px">Reversible by design</h3>
+      <p style="font-size:13px;color:var(--ink2);margin:0 0 7px">Everything lands inside one new page. If it
+      is wrong, deleting that page removes the entire experiment and changes nothing else.</p>
+      <p style="font-size:13px;color:var(--ink2);margin:0">I will report a <b>before-and-after row count</b>
+      on the source database so we can both see it was untouched, and give you the new page URL as the last
+      step rather than the first.</p>
+    </div>
+  </div>
+</section>
+
+<section><div class="lbl">02 · Structure</div>
+  <h2>Where it goes, and what gets created</h2>
+  <p class="lede">Inside <b>Website Roadmap and Planning Board</b> (Design &amp; Web), as a sibling to
+  Website Roadmap and Website Build Tasks.</p>
+  <div class="card">
+    <p class="mono" style="line-height:2;color:var(--ink2);margin:0">
+    Design &amp; Web<br>
+    └─ Website Roadmap and Planning Board <span style="color:var(--mut)">← existing, untouched</span><br>
+    &nbsp;&nbsp;&nbsp;├─ Website Roadmap <span style="color:var(--mut)">← existing, untouched</span><br>
+    &nbsp;&nbsp;&nbsp;├─ Website Build Tasks <span style="color:var(--mut)">← existing, READ ONLY</span><br>
+    &nbsp;&nbsp;&nbsp;└─ <b style="color:var(--c1)">2026 Ecommerce Roadmap</b> <span style="color:var(--good)">← new page</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ <b style="color:var(--c1)">Delivery</b> <span style="color:var(--good)">← new database, the board itself</span></p>
+  </div>
+  <div class="note"><b>One database, not six.</b> This task is the Delivery board only. Inbox, Sprints,
+  Programmes, Releases, Learnings and Metrics from the operating-system design come later, once this one has
+  proved itself. Building all seven at once is how a good structure dies before it is used.</div>
+</section>
+
+<section><div class="lbl">03 · Schema</div>
+  <h2>Properties on the Delivery database</h2>
+  <p class="lede">The full schema from §05 of the operating-system doc. Sixteen properties — every one of
+  them drives a view, a filter or a decision.</p>
+  <table class="tbl">
+    <thead><tr><th style="width:19%">Property</th><th style="width:14%">Type</th><th>Options / formula</th></tr></thead><tbody>
+    <tr><td><span class="tn">Task</span></td><td class="mono">Title</td><td class="why"><span class="mono">[Scope] Surface — Change</span>. Prefixes <span class="mono">BUG</span> and <span class="mono">TEST</span> only.</td></tr>
+    <tr><td><span class="tn">Status</span></td><td class="mono">Status</td><td class="why">Inbox · Triaged · Ready · In Progress · In Review · Staged for Release · Live · Monitoring · <b>On Hold / Awaiting Validation</b> · Closed · Parked</td></tr>
+    <tr><td><span class="tn">Priority</span></td><td class="mono">Select</td><td class="why">P0 Revenue Blocking · P1 Customer Impact · P2 Revenue Growth · P3 Optimisation · P4 Maintenance · P5 Tech Debt · P-Freeze</td></tr>
+    <tr><td><span class="tn">Category</span></td><td class="mono">Select</td><td class="why">Build · Trading · CRO · SEO &amp; AI Search · Performance · Analytics · Bugs &amp; QA · Ops &amp; Maintenance · Research &amp; Docs · Programme</td></tr>
+    <tr><td><span class="tn">Store Scope</span></td><td class="mono">Multi-select</td><td class="why">UK · US · EU · CA · AU · Shared Theme</td></tr>
+    <tr><td><span class="tn">Work Type</span></td><td class="mono">Select</td><td class="why">One-off · Ongoing initiative · Recurring · Reversible campaign change</td></tr>
+    <tr><td><span class="tn">Revisit On</span></td><td class="mono">Date</td><td class="why">Required on every On Hold item and every reversible campaign change.</td></tr>
+    <tr><td><span class="tn">Job Spec Pillar</span></td><td class="mono">Select</td><td class="why">The nine pillars. Drives the coverage view you show the client.</td></tr>
+    <tr><td><span class="tn">Impact</span> / <span class="tn">Effort (h)</span> / <span class="tn">Confidence</span></td><td class="mono">Number</td><td class="why">1–5 · hours · percent</td></tr>
+    <tr><td><span class="tn">Score</span></td><td class="mono">Formula</td><td class="why"><span class="mono">round(Impact × Confidence ÷ Effort × 100)</span> — value per hour. Same formula as your rebuilt board.</td></tr>
+    <tr><td><span class="tn">Sprint</span></td><td class="mono">Select</td><td class="why">W0 · S1–S7 · Q1 2027 · Q2 2027</td></tr>
+    <tr><td><span class="tn">Target Live Date</span></td><td class="mono">Date</td><td class="why">Drives the P2→P1 time-lock promotion.</td></tr>
+    <tr><td><span class="tn">Peak Critical</span></td><td class="mono">Checkbox</td><td class="why">Drives the Peak view from September.</td></tr>
+    <tr><td><span class="tn">Success Metric</span> / <span class="tn">Baseline</span> / <span class="tn">Result</span></td><td class="mono">Text</td><td class="why">Metric and baseline required before Ready; Result required before Closed.</td></tr>
+    <tr><td><span class="tn">Source</span> / <span class="tn">Requester</span> / <span class="tn">Owner</span></td><td class="mono">Select / Person</td><td class="why">Slack · Meeting · AI audit · Support · Self · Client</td></tr>
+    <tr><td><span class="tn">Blocked</span> / <span class="tn">Blocked Reason</span></td><td class="mono">Checkbox / Select</td><td class="why">Client · design · third party · data · decision. Sits on top of status.</td></tr>
+    <tr><td><span class="tn">Decision Log</span></td><td class="mono">Text</td><td class="why">The conclusion, written on the card instead of buried in comments.</td></tr>
+    <tr><td><span class="tn">Parent item / Sub-items</span></td><td class="mono">Self-relation</td><td class="why">Two levels only.</td></tr>
+    <tr><td><span class="tn">Tags</span></td><td class="mono">Multi-select</td><td class="why">accessibility · peak-risk · quick-win · needs-design · ai-assisted · compliance · rollback-required</td></tr>
+  </tbody></table>
+  <div class="note"><b>Views cannot be created through the API.</b> I will build the database, the properties,
+  the relations, the formula and all the rows. The <b>ten views</b> — Today, Triage, This Sprint, Peak
+  Critical, By Store, Job Spec Coverage, Waiting, Coming Back To You, Aging Backlog, Programme roll-up — and
+  the database templates and automations have to be clicked. I will hand you a click-through checklist;
+  it is roughly 45 minutes of mechanical work, no decisions in it.</div>
+</section>
+
+<section><div class="lbl">04 · The eleven tasks</div>
+  <h2>Fully scored, ready to work from</h2>
+  <p class="lede">Score is <span class="mono">Impact × Confidence ÷ Effort × 100</span>. Everything below is
+  drawn from the H2 delivery plan and the measurement baseline. <b>Subtask lists marked "read from source"
+  will be copied from the existing board once I can see it</b> — I am not inventing those.</p>
+  <table class="tbl">
+    <thead><tr><th style="width:23%">Task</th><th style="width:74px">Priority</th><th style="width:92px">Category</th>
+    <th class="ctr" style="width:40px">Imp</th><th class="num" style="width:46px">Eff</th><th class="ctr" style="width:44px">Conf</th>
+    <th class="num" style="width:46px">Score</th><th style="width:64px">Sprint</th><th>Notes</th></tr></thead><tbody>
+
+    <tr><td><span class="tn">Summer Sale 2026 Price Block</span><span class="was">All stores</span></td>
+      <td><span class="tag p0">P0</span></td><td class="why">Trading</td>
+      <td class="ctr">5</td><td class="num">6</td><td class="ctr">95%</td><td class="num"><b>79</b></td><td class="why">W0</td>
+      <td class="why">Work Type = <b>Reversible campaign change</b>. Status stays open with
+      <b>Revisit On</b> set to the campaign end date so the price revert surfaces automatically instead of
+      living in your head. Due 7 Aug. <span class="tag pk">Peak</span></td></tr>
+
+    <tr><td><span class="tn">GA4 Setup</span><span class="was">All stores · NEW · parent + 5 sub-tickets</span></td>
+      <td><span class="tag p0">P0</span></td><td class="why">Analytics</td>
+      <td class="ctr">5</td><td class="num">10</td><td class="ctr">90%</td><td class="num"><b>45</b></td><td class="why">W0–S1</td>
+      <td class="why"><b>Blocks ~60h of scheduled AOV work.</b> Sub-tickets:
+      <ol class="sub-l">
+        <li>Purchase event — restore <span class="mono">value</span>, <span class="mono">currency</span>, <span class="mono">items[]</span> <span class="tag p0">P0</span></li>
+        <li>Data retention → 14 months, all 5 properties <span class="tag p1">P1</span> · 5 min, not retroactive</li>
+        <li>Key events — re-mark on CA, EU, US <span class="tag p1">P1</span></li>
+        <li>Standardise exploration templates across properties <span class="tag p2">P2</span></li>
+        <li>Standardise funnel step definitions <span class="tag p3">P3</span></li>
+      </ol></td></tr>
+
+    <tr><td><span class="tn">Stord PDP — Re-enable Gift Message Block</span><span class="was">US · after Summer Sale</span></td>
+      <td><span class="tag p1">P1</span></td><td class="why">Bugs &amp; QA</td>
+      <td class="ctr">3</td><td class="num">3</td><td class="ctr">95%</td><td class="num"><b>95</b></td><td class="why">W0</td>
+      <td class="why">Overdue since 28 Jul. A gifting feature switched off going into a gifting quarter.
+      Highest score on the board — small, certain, valuable.</td></tr>
+
+    <tr><td><span class="tn">GTM Deduplication</span><span class="was">All stores · NEW</span></td>
+      <td><span class="tag p1">P1</span></td><td class="why">Analytics</td>
+      <td class="ctr">4</td><td class="num">4</td><td class="ctr">85%</td><td class="num"><b>85</b></td><td class="why">S1</td>
+      <td class="why">Related to GA4 Setup and should be done alongside it — duplicate events distort exactly
+      the numbers the purchase fix is meant to restore. Linked, not nested.</td></tr>
+
+    <tr><td><span class="tn">Shopify Bundles Stress Test</span><span class="was">US then all stores</span></td>
+      <td><span class="tag p1">P1</span></td><td class="why">Build</td>
+      <td class="ctr">4</td><td class="num">10</td><td class="ctr">85%</td><td class="num"><b>34</b></td><td class="why">S1</td>
+      <td class="why">Testing is largely done — what is missing is the written conclusion. The 14 comments
+      get distilled into <b>Decision Log</b> and the card closes. <span class="tag pk">Peak</span></td></tr>
+
+    <tr><td><span class="tn">Claude Documentation</span><span class="was">All stores · timeboxed</span></td>
+      <td><span class="tag p2">P2</span></td><td class="why">Research &amp; Docs</td>
+      <td class="ctr">2</td><td class="num">5</td><td class="ctr">90%</td><td class="num"><b>36</b></td><td class="why">S2</td>
+      <td class="why">Lowest commercial impact of anything in progress. Timebox to 5h, ship what exists,
+      close it. Do not let it stay open all quarter.</td></tr>
+
+    <tr><td><span class="tn">Site Speed Optimization Opportunities</span><span class="was">All stores · programme + subtasks</span></td>
+      <td><span class="tag p2">P2</span></td><td class="why">Performance</td>
+      <td class="ctr">4</td><td class="num">8</td><td class="ctr">72%</td><td class="num"><b>36</b></td><td class="why">S2 &amp; S4</td>
+      <td class="why">Work Type = <b>Ongoing initiative</b>. Split into <b>triage</b> (S2, produce a ranked,
+      estimated fix list) and <b>top fixes</b> (S4, work the list). Existing subtasks
+      <b>read from source</b>. <span class="tag pk">Peak</span></td></tr>
+
+    <tr><td><span class="tn">PDP — Multibuy Section</span><span class="was">US → all stores · parent + 5 children</span></td>
+      <td><span class="tag p2">P2</span></td><td class="why">Build</td>
+      <td class="ctr">5</td><td class="num">16</td><td class="ctr">85%</td><td class="num"><b>27</b></td><td class="why">S3</td>
+      <td class="why">Restructured so the board tells the truth:
+      <ol class="sub-l">
+        <li><span class="mono">[US] PDP — Multibuy A/B test</span> · In Progress</li>
+        <li><span class="mono">[All] PDP — Multibuy rollout</span> · <span class="tag hold">On Hold</span> awaiting the US result</li>
+        <li>UK · EU · CA · AU rollout children · Ready</li>
+      </ol>
+      Blocked ☑ on the discount app's dev-dashboard permissions. <span class="tag pk">Peak</span></td></tr>
+
+    <tr><td><span class="tn">AI Search Optimization</span><span class="was">AU live · 4 stores pending · ongoing</span></td>
+      <td><span class="tag p2">P2</span></td><td class="why">SEO &amp; AI Search</td>
+      <td class="ctr">4</td><td class="num">12</td><td class="ctr">70%</td><td class="num"><b>23</b></td><td class="why">S4</td>
+      <td class="why">Work Type = <b>Ongoing initiative</b> — it is supposed to stay open, and the board
+      should stop implying it is overdue. Existing subtasks <b>read from source</b> (GSC data issues, HowTo
+      schema, per-store rollouts). <b>Decision Log pre-filled with the baseline finding:</b> the AU pilot
+      produced no measurable signal, so the four-store rollout is a cost-and-strategy call, not an
+      evidence-based one.</td></tr>
+
+    <tr><td><span class="tn">Shopify Spring 2026 Agentic Release</span><span class="was">Assessment only</span></td>
+      <td><span class="tag p2">P2</span></td><td class="why">Research &amp; Docs</td>
+      <td class="ctr">3</td><td class="num">4</td><td class="ctr">50%</td><td class="num"><b>38</b></td><td class="why">S4</td>
+      <td class="why">Scoped to <b>assessment only</b> — 4h to produce a written go/no-go with a sized build
+      estimate. The build itself stays Parked for Q1 2027. An unscoped build before peak is not a trade
+      worth making.</td></tr>
+
+    <tr><td><span class="tn">Implement Claude–Shopify Integration &amp; Workflows</span><span class="was">All stores</span></td>
+      <td><span class="tag pkd">Parked</span></td><td class="why">Ops &amp; Maintenance</td>
+      <td class="ctr">3</td><td class="num">12</td><td class="ctr">60%</td><td class="num"><b>15</b></td><td class="why">Q1 2027</td>
+      <td class="why"><b>Flagging a disagreement, not overriding you.</b> The H2 plan parks this — it is an
+      efficiency play, not a revenue play, and it cannot pay itself back before freeze. I will create it as
+      <b>Parked</b> with Revisit On set to January and the reasoning in the Decision Log. Say the word and I
+      will make it active instead.</td></tr>
+  </tbody></table>
+
+  <div class="note"><b>Two things worth noticing about this list.</b> Your eleven tasks contain <b>two new
+  analytics tickets</b> — GA4 Setup and GTM Deduplication — that were not on the old board and are now,
+  after the baseline work, the two highest-priority items on the new one. And <b>two items the H2 plan
+  parked</b> (the agentic release build, the Claude–Shopify integration) which I have created as Parked
+  with reasoning rather than silently dropping or silently promoting. Both are flagged above.</div>
+</section>
+
+<section><div class="lbl">05 · Sequence</div>
+  <h2>What I do once the connector is on</h2>
+  <ol class="steps">
+    <li><b>Read the source database</b> — full row list, subtask hierarchy, existing statuses. Report the row
+    count so we have a before figure.</li>
+    <li><b>Create the page</b> <span class="mono">2026 Ecommerce Roadmap</span> inside Website Roadmap and
+    Planning Board.</li>
+    <li><b>Create the Delivery database</b> with all sixteen properties, the self-relation and the Score
+    formula.</li>
+    <li><b>Create the eleven parents</b>, fully scored, with Decision Log and Success Metric filled in.</li>
+    <li><b>Create the sub-tickets</b> — the five GA4 children, the six multibuy children, and the AI Search
+    and Site Speed children copied from source.</li>
+    <li><b>Re-count the source database</b> and confirm it is unchanged.</li>
+    <li><b>Hand you the URL</b> plus a click-through checklist for the ten views, eight templates and seven
+    automations the API cannot create.</li>
+  </ol>
+  <div class="note good"><b>Estimated time:</b> about 15 minutes of tool calls for steps 1–6, then roughly 45
+  minutes of clicking for the views and templates — which you can do, or leave until you have used the board
+  for a week and know which views you actually want.</div>
+</section>
+
+<footer>
+  <p><b>2026 Ecommerce Roadmap · Notion build spec</b> · prepared for Rose Molina · 4 August 2026 ·
+  nothing has been created or modified in Notion.</p>
+</footer>
+</div></body></html>
