@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2026 Ecommerce Roadmap · Notion build record</title>
+<style>
+:root{color-scheme:light;--bg:#f9f9f7;--surf:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--mut:#898781;
+--grid:#e1e0d9;--base:#c3c2b7;--brd:rgba(11,11,11,.10);
+--c1:#2a78d6;--c2:#eb6834;--c3:#1baf7a;--c4:#eda100;--c5:#7a5cd6;--crit:#d03b3b;--warn:#c98500;--good:#0ca30c}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#0d0d0d;--surf:#1a1a19;--ink:#fff;--ink2:#c3c2b7;
+--mut:#898781;--grid:#2c2c2a;--base:#383835;--brd:rgba(255,255,255,.10);
+--c1:#3987e5;--c2:#d95926;--c3:#199e70;--c4:#c98500;--c5:#8a6ee0;--crit:#e05555;--warn:#e0a020;--good:#22b822}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+h1,h2,h3,h4{margin:0;line-height:1.25;letter-spacing:-.015em}
+h1{font-size:30px;font-weight:640}h2{font-size:21px;font-weight:620}h3{font-size:16px;font-weight:620}h4{font-size:14px;font-weight:640}
+p{margin:0 0 10px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+a{color:var(--c1)}
+header{background:var(--surf);border-bottom:1px solid var(--brd);padding:38px 0 28px}
+.kick{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:640;margin-bottom:11px}
+.sub{font-size:16px;color:var(--ink2);max-width:76ch;margin-top:13px}.sub b{color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px;margin-top:26px}
+.st{background:var(--bg);border:1px solid var(--brd);border-radius:10px;padding:16px}
+.st-v{font-size:27px;font-weight:660;letter-spacing:-.03em;line-height:1}
+.st-l{font-size:12.5px;color:var(--ink2);margin-top:7px;font-weight:540}
+.st-w{font-size:12px;color:var(--mut);margin-top:7px;line-height:1.5}
+section{padding:44px 0 6px}
+.lbl{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:640;margin-bottom:8px}
+.lede{font-size:15px;color:var(--ink2);max-width:82ch;margin:11px 0 20px}.lede b{color:var(--ink)}
+.card{background:var(--surf);border:1px solid var(--brd);border-radius:11px;padding:20px 22px;margin-bottom:15px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:13px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+.tbl th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);font-weight:640;padding:8px 9px;border-bottom:1px solid var(--base)}
+.tbl th.num{text-align:right}.tbl th.ctr{text-align:center}
+.tbl td{padding:9px;border-bottom:1px solid var(--grid);vertical-align:top}
+.tbl td.num{text-align:right;font-variant-numeric:tabular-nums}.tbl td.ctr{text-align:center}
+.tbl tbody tr:hover{background:var(--bg)}
+.why{color:var(--mut);font-size:12px;line-height:1.5}
+.tn{font-weight:560;display:block}.was{display:block;font-size:11.5px;color:var(--mut);margin-top:3px}
+.tag{display:inline-block;font-size:10.5px;font-weight:640;padding:2px 7px;border-radius:4px;white-space:nowrap}
+.p0{background:var(--crit);color:#fff}.p1{background:var(--c2);color:#fff}.p2{background:var(--c1);color:#fff}
+.p3{background:var(--c3);color:#fff}.pk{background:var(--crit);color:#fff}
+.pkd{border:1px solid var(--base);color:var(--mut)}.hold{background:var(--warn);color:#0b0b0b}
+.ok{background:var(--good);color:#fff}.new{border:1px solid var(--good);color:var(--good)}
+.note{background:var(--surf);border:1px solid var(--brd);border-left:3px solid var(--warn);border-radius:0 10px 10px 0;padding:15px 18px;font-size:13.5px;color:var(--ink2);margin:16px 0}
+.note b{color:var(--ink)}.note.bad{border-left-color:var(--crit)}.note.good{border-left-color:var(--good)}
+.sub-l{margin:6px 0 0 0;padding-left:16px;font-size:12.5px;color:var(--ink2)}
+.sub-l li{margin-bottom:3px}
+.chk{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--grid);align-items:flex-start}
+.chk:last-child{border-bottom:none}
+.chk-i{flex:none;font-size:14px;line-height:1.4}
+.chk-b{flex:1}.chk-b b{font-size:13.5px}
+.chk-b p{font-size:12.5px;color:var(--ink2);margin:2px 0 0}
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--grid);font-size:12.5px;color:var(--mut)}
+@media(max-width:720px){.tbl{font-size:12px}.why{display:none}}
+</style></head><body>
+<header><div class="wrap">
+  <div class="kick">Build record · completed 5 August 2026</div>
+  <h1>2026 Ecommerce Roadmap — Notion board</h1>
+  <p class="sub">What was built, what it contains, and the evidence that the live board was not touched.
+  This replaces the build spec issued before the work started — <b>everything below has actually
+  happened</b>, and the two places where the spec turned out to be wrong are marked.</p>
+  <div class="stats">
+    <div class="st"><div class="st-v" style="color:var(--good)">246 → 246</div>
+      <div class="st-l">source board rows, before and after</div>
+      <div class="st-w">Website Build Tasks read only. Nothing edited, moved, re-parented or re-statused.</div></div>
+    <div class="st"><div class="st-v">31</div><div class="st-l">rows created</div>
+      <div class="st-w">11 parents and 20 sub-items, all fully scored.</div></div>
+    <div class="st"><div class="st-v">27</div><div class="st-l">properties</div>
+      <div class="st-w">Not sixteen — the spec undercounted. Includes the self-relation pair.</div></div>
+    <div class="st"><div class="st-v">9</div><div class="st-l">views</div>
+      <div class="st-w">Eight built through the API plus the default. The spec said this was impossible.</div></div>
+  </div>
+</div></header>
+<div class="wrap">
+
+<section><div class="lbl">01 · Where it lives</div>
+  <h2>Inside Website Roadmap and Planning Board</h2>
+  <div class="card">
+    <p class="mono" style="line-height:2;color:var(--ink2);margin:0">
+    Design &amp; Web<br>
+    └─ Website Roadmap and Planning Board <span style="color:var(--mut)">← existing, untouched</span><br>
+    &nbsp;&nbsp;&nbsp;├─ Website Roadmap <span style="color:var(--mut)">← existing, untouched</span><br>
+    &nbsp;&nbsp;&nbsp;├─ Website Build Tasks <span style="color:var(--mut)">← existing, read only, 246 rows</span><br>
+    &nbsp;&nbsp;&nbsp;└─ <b style="color:var(--c1)">2026 Ecommerce Roadmap</b> <span style="color:var(--good)">← created</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ <b style="color:var(--c1)">Ecommerce 2026 Roadmap Board Tasks</b> <span style="color:var(--good)">← created, 31 rows, 9 views</span></p>
+    <p style="font-size:13px;color:var(--ink2);margin:16px 0 0">
+    <b>Page:</b> <a href="https://app.notion.com/p/3b361234186581bcbe32e78f8133cfb9">2026 Ecommerce Roadmap</a><br>
+    <b>Database:</b> <a href="https://app.notion.com/p/19286e6d25214686a2ee0983aaaabb27">Ecommerce 2026 Roadmap Board Tasks</a>
+    <span class="why">— created as "Delivery", renamed by Rose after the build. This record uses the current name.</span></p>
+  </div>
+</section>
+
+<section><div class="lbl">02 · Two corrections to the build spec</div>
+  <h2>Where the plan was wrong</h2>
+  <div class="grid2">
+    <div class="card" style="margin:0;border-left:3px solid var(--good)">
+      <h3 style="margin-bottom:8px">Views <i>can</i> be created through the API</h3>
+      <p style="font-size:13px;color:var(--ink2);margin:0 0 8px">The spec said views, templates and automations
+      would all need clicking, and budgeted 45 minutes for it. <b>The Notion connector has a create-view tool</b>,
+      so all eight views were built programmatically with filters, sorts, grouping and visible-property lists.</p>
+      <p style="font-size:12.5px;color:var(--mut);margin:0">Still manual, because the connector has no tool for
+      them: <b>database templates</b> and <b>Notion automations</b>. Those remain on the list.</p>
+    </div>
+    <div class="card" style="margin:0;border-left:3px solid var(--warn)">
+      <h3 style="margin-bottom:8px">The schema is 27 properties, not 16</h3>
+      <p style="font-size:13px;color:var(--ink2);margin:0 0 8px">The spec's table listed sixteen rows, but several
+      of them bundled multiple properties into one line — Impact / Effort / Confidence as one entry, Success
+      Metric / Baseline / Result as another. Counted individually the database has <b>27</b>.</p>
+      <p style="font-size:12.5px;color:var(--mut);margin:0">The spec also referred to "§05 of the operating-system
+      doc". <b>§ is the section sign — it means Section 05 · Work categorisation</b>, where this schema was
+      designed. That notation has been replaced with plain wording throughout all three documents.</p>
+    </div>
+  </div>
+</section>
+
+<section><div class="lbl">03 · Safety</div>
+  <h2>Evidence the live board was untouched</h2>
+  <div class="card" style="padding:8px 22px">
+    <div class="chk"><div class="chk-i">✅</div><div class="chk-b"><b>Row count unchanged</b>
+      <p>Website Build Tasks counted <b>246 rows before</b> the build and <b>246 rows after</b>. Both counts run
+      against the same data source, in the same session.</p></div></div>
+    <div class="chk"><div class="chk-i">✅</div><div class="chk-b"><b>Rows created, not moved</b>
+      <p>Every row on the new board is a fresh page. No page was re-parented out of the source database, so the
+      originals remain exactly where they were and the old board is a real backup rather than a nominal one.</p></div></div>
+    <div class="chk"><div class="chk-i">✅</div><div class="chk-b"><b>Only read operations against the source</b>
+      <p>Two SQL reads and one metadata fetch. No update, no status change, no property edit, no archive.</p></div></div>
+    <div class="chk"><div class="chk-i">✅</div><div class="chk-b"><b>Back-links preserved both ways</b>
+      <p>Every carried-over row has a <span class="mono">Source Ticket</span> URL pointing at its original. The
+      originals are unaware of the copies, which is the correct direction of coupling for a backup.</p></div></div>
+    <div class="chk"><div class="chk-i">✅</div><div class="chk-b"><b>Fully reversible</b>
+      <p>Everything is inside one page. Deleting <span class="mono">2026 Ecommerce Roadmap</span> removes the
+      entire experiment and changes nothing else in the workspace.</p></div></div>
+  </div>
+</section>
+
+<section><div class="lbl">04 · The eleven parents</div>
+  <h2>As created, with scores</h2>
+  <p class="lede">Score is <span class="mono">Impact × Confidence ÷ Effort</span>, computed by formula in Notion.
+  Higher means more value per hour.</p>
+  <table class="tbl">
+    <thead><tr><th style="width:25%">Task</th><th style="width:74px">Priority</th><th style="width:150px">Status</th>
+    <th class="ctr" style="width:38px">Imp</th><th class="num" style="width:44px">Eff</th><th class="ctr" style="width:42px">Conf</th>
+    <th class="num" style="width:46px">Score</th><th style="width:66px">Sprint</th><th>What changed vs the old board</th></tr></thead><tbody>
+    <tr><td><span class="tn">Summer Sale 2026 Price Block</span></td><td><span class="tag p0">P0</span></td>
+      <td><span class="tag hold">On Hold</span><span class="was">Revisit 1 Sep</span></td>
+      <td class="ctr">5</td><td class="num">6</td><td class="ctr">95%</td><td class="num"><b>79</b></td><td class="why">W0</td>
+      <td class="why">Was "Assigned" as a private reminder. Now <b>Reversible campaign change</b> with a Revisit date, so the price revert surfaces on its own. ⚠️ date is a placeholder.</td></tr>
+    <tr><td><span class="tn">GA4 Setup</span><span class="was">+ 5 sub-tickets</span></td><td><span class="tag p0">P0</span></td>
+      <td>Ready <span class="tag pk">Peak</span></td>
+      <td class="ctr">5</td><td class="num">10</td><td class="ctr">90%</td><td class="num"><b>45</b></td><td class="why">W0</td>
+      <td class="why">Was Backlog Prioritised / Medium. Raised to <b>P0</b> — it blocks ~60h of AOV work.</td></tr>
+    <tr><td><span class="tn">Stord PDP — Gift Message Block</span></td><td><span class="tag p1">P1</span></td>
+      <td>Ready</td><td class="ctr">3</td><td class="num">3</td><td class="ctr">95%</td><td class="num"><b>95</b></td><td class="why">W0</td>
+      <td class="why">Highest score on the board. Overdue since 28 July.</td></tr>
+    <tr><td><span class="tn">GTM Deduplication</span></td><td><span class="tag p1">P1</span></td>
+      <td>In Progress</td><td class="ctr">4</td><td class="num">4</td><td class="ctr">85%</td><td class="num"><b>85</b></td><td class="why">S1</td>
+      <td class="why">Linked to GA4 Setup rather than nested — sequence them together.</td></tr>
+    <tr><td><span class="tn">Shopify Bundles Stress Test</span></td><td><span class="tag p1">P1</span></td>
+      <td>In Review <span class="tag pk">Peak</span></td><td class="ctr">4</td><td class="num">10</td><td class="ctr">85%</td><td class="num"><b>34</b></td><td class="why">S1</td>
+      <td class="why">Moved to In Review: the testing is done, the <b>written conclusion</b> is what is outstanding.</td></tr>
+    <tr><td><span class="tn">Claude Documentation</span></td><td><span class="tag p2">P2</span></td>
+      <td>In Progress</td><td class="ctr">2</td><td class="num">5</td><td class="ctr">90%</td><td class="num"><b>36</b></td><td class="why">S2</td>
+      <td class="why">Retitled "close out" and timeboxed to 5h.</td></tr>
+    <tr><td><span class="tn">Site Speed Optimization Opportunities</span><span class="was">+ 5 sub-items</span></td>
+      <td><span class="tag p2">P2</span></td><td>In Progress <span class="tag pk">Peak</span></td>
+      <td class="ctr">4</td><td class="num">8</td><td class="ctr">72%</td><td class="num"><b>36</b></td><td class="why">S2</td>
+      <td class="why">Marked <b>Ongoing initiative</b> so it stops reading as overdue. Split into S2 triage and S4 top-fixes.</td></tr>
+    <tr><td><span class="tn">PDP — Multibuy Section</span><span class="was">+ 6 sub-items</span></td>
+      <td><span class="tag p2">P2</span></td><td><span class="tag hold">On Hold</span><span class="was">Revisit 22 Sep · Blocked ☑</span></td>
+      <td class="ctr">5</td><td class="num">16</td><td class="ctr">85%</td><td class="num"><b>27</b></td><td class="why">S3</td>
+      <td class="why">Was one card marked "Paused". Now a parent with a US A/B test In Progress and four regional rollouts Ready behind it.</td></tr>
+    <tr><td><span class="tn">AI Search Optimization</span><span class="was">+ 3 sub-items</span></td>
+      <td><span class="tag p2">P2</span></td><td>In Progress</td>
+      <td class="ctr">4</td><td class="num">12</td><td class="ctr">70%</td><td class="num"><b>23</b></td><td class="why">S4</td>
+      <td class="why">Marked <b>Ongoing initiative</b>. Decision Log carries the AU pilot verdict: no measurable signal.</td></tr>
+    <tr><td><span class="tn">Shopify Spring 2026 Agentic Release</span><span class="was">+ 1 sub-item</span></td>
+      <td><span class="tag p2">P2</span></td><td>Ready</td>
+      <td class="ctr">3</td><td class="num">4</td><td class="ctr">50%</td><td class="num"><b>38</b></td><td class="why">S4</td>
+      <td class="why">Scoped to <b>assessment only</b>. The build stays out of H2.</td></tr>
+    <tr><td><span class="tn">Implement Claude–Shopify Integration</span></td><td><span class="tag p3">P3</span></td>
+      <td><span class="tag pkd">Parked</span><span class="was">Revisit 5 Jan</span></td>
+      <td class="ctr">3</td><td class="num">12</td><td class="ctr">60%</td><td class="num"><b>15</b></td><td class="why">Q1 2027</td>
+      <td class="why"><b>Open disagreement, not a silent decision.</b> You asked for it; the H2 plan parks it. Reasoning is in the Decision Log — change the status if you disagree.</td></tr>
+  </tbody></table>
+</section>
+
+<section><div class="lbl">05 · The twenty sub-items</div>
+  <h2>Five created, fifteen carried across</h2>
+  <div class="grid2">
+    <div class="card" style="margin:0;border-left:3px solid var(--crit)">
+      <h4>GA4 Setup — 5 new sub-tickets</h4>
+      <ol class="sub-l">
+        <li>Restore purchase event value, currency, items <span class="tag p0">P0</span> · 4h</li>
+        <li>Data retention → 14 months <span class="tag p1">P1</span> · 0.5h · <b>not retroactive, do it today</b></li>
+        <li>Re-mark key events on CA, EU, US <span class="tag p1">P1</span> · 1h</li>
+        <li>Standardise exploration templates <span class="tag p2">P2</span> · 2h</li>
+        <li>Standardise funnel step definitions <span class="tag p3">P3</span> · 2h</li>
+      </ol>
+    </div>
+    <div class="card" style="margin:0;border-left:3px solid var(--c1)">
+      <h4>PDP Multibuy — 6 sub-items</h4>
+      <ol class="sub-l">
+        <li>[US] Multibuy A/B test · In Progress</li>
+        <li>[UK] rollout · Ready — best-converting store, 4.76% mobile</li>
+        <li>[EU] rollout · Ready — needs translation pass</li>
+        <li>[CA] rollout · Ready — desktop outperforms mobile here</li>
+        <li>[AU] rollout · Ready — inherited accessibility layer, verify</li>
+        <li>Multi Buy Functionality · Closed <span class="tag pkd">carried</span></li>
+      </ol>
+    </div>
+    <div class="card" style="margin:0;border-left:3px solid var(--c5)">
+      <h4>Site Speed — 5 carried from source</h4>
+      <ol class="sub-l">
+        <li>Homepage — Sitespeed Issues · In Progress</li>
+        <li>GeoRedirect (Lighthouse report) · Closed</li>
+        <li>DOM Child Element Bloat · Closed</li>
+        <li>Collection Filter Bug · Closed</li>
+        <li>[US] Video Tutorials Blog Post Bugs · Closed</li>
+      </ol>
+    </div>
+    <div class="card" style="margin:0;border-left:3px solid var(--c3)">
+      <h4>AI Search — 3 carried, plus 1 elsewhere</h4>
+      <ol class="sub-l">
+        <li>SEO Optimisation · Triaged → S5</li>
+        <li>GSC Data Issues After AI Opt. Deployment · In Progress</li>
+        <li>Build LLMS template for US, EU, CA, UK · Closed</li>
+        <li><i>Universal Commerce Protocol</i> · under the Agentic Release parent</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section><div class="lbl">06 · Views</div>
+  <h2>Nine, all built through the API</h2>
+  <table class="tbl">
+    <thead><tr><th style="width:22%">View</th><th style="width:70px">Type</th><th>Configuration</th></tr></thead><tbody>
+    <tr><td><span class="tn">Today</span></td><td class="mono">table</td><td class="why">Status is In Progress, Ready or In Review. Sorted priority then score. <b>The only view open during the day.</b></td></tr>
+    <tr><td><span class="tn">Board · by status</span></td><td class="mono">board</td><td class="why">Grouped by status, sorted by priority. The eleven-column pipeline including On Hold and Parked.</td></tr>
+    <tr><td><span class="tn">Peak Critical</span></td><td class="mono">table</td><td class="why">Peak Critical checked, sorted by target live date. Pin this from September.</td></tr>
+    <tr><td><span class="tn">Coming back to you</span></td><td class="mono">table</td><td class="why">Anything with a Revisit On date, soonest first. Stops a paused ticket becoming a forgotten one.</td></tr>
+    <tr><td><span class="tn">By sprint</span></td><td class="mono">board</td><td class="why">Grouped by sprint. Effort visible so over-commitment shows while you are doing it.</td></tr>
+    <tr><td><span class="tn">By store</span></td><td class="mono">board</td><td class="why">Grouped by store scope. Answers "did this ship to AU?" without reading a spreadsheet.</td></tr>
+    <tr><td><span class="tn">Job spec coverage</span></td><td class="mono">board</td><td class="why">Grouped by job spec pillar. The view to screen-share at the fortnightly.</td></tr>
+    <tr><td><span class="tn">Waiting · blocked</span></td><td class="mono">table</td><td class="why">Blocked checked, with reason. Chase Monday and Thursday.</td></tr>
+    <tr><td><span class="tn">Default view</span></td><td class="mono">table</td><td class="why">Everything, all 27 properties. Created with the database — leave it as the raw view.</td></tr>
+  </tbody></table>
+</section>
+
+<section><div class="lbl">07 · What is still manual</div>
+  <h2>Three things left, none of them urgent</h2>
+  <div class="card" style="padding:8px 22px">
+    <div class="chk"><div class="chk-i">⬜</div><div class="chk-b"><b>Database templates — 8, roughly 40 minutes</b>
+      <p>Bug, Build/Feature, CRO Test, Campaign Build, SEO/Schema, Release, Weekly Report, Post-Incident. Each
+      pre-fills its Definition of Ready checklist. No API tool exists for these. <b>Worth waiting a week</b> —
+      build the templates you find yourself wanting, not the ones a document predicted.</p></div></div>
+    <div class="chk"><div class="chk-i">⬜</div><div class="chk-b"><b>Notion automations — 7, roughly 20 minutes</b>
+      <p>Status → Live stamps a date and sets Monitoring; Status → On Hold requires a Revisit On; Revisit On =
+      today returns the card to Triaged; and so on. Also no API tool.</p></div></div>
+    <div class="chk"><div class="chk-i">⬜</div><div class="chk-b"><b>Confirm the Summer Sale revert date</b>
+      <p>Revisit On is set to <b>1 September as a placeholder</b>. Thirty seconds, and it is the one field on the
+      board that is knowingly wrong.</p></div></div>
+  </div>
+  <div class="note good"><b>Deliberately not built:</b> Inbox, Sprints, Programmes, Releases, Learnings and
+  Metrics. One database that proves itself beats six that do not get used. Add them when this one has survived
+  a fortnight of real work.</div>
+</section>
+
+<footer>
+  <p><b>2026 Ecommerce Roadmap · Notion build record</b> · Rose Molina · completed 5 August 2026.
+  Supersedes the build spec issued 4 August.</p>
+  <p style="margin:0">Source board <span class="mono">Website Build Tasks</span> verified unchanged:
+  246 rows before, 246 rows after.</p>
+</footer>
+</div></body></html>
