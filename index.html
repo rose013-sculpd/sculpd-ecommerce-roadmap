@@ -571,7 +571,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       That pillar is solved and cheap. The real international question is that Sculpd runs <b>five separate
       Shopify stores rather than one store with markets</b> — which is the source of the ×5 multiplier,
       the theme drift, the manual hreflang and the custom geo-redirect script you had to build.
-      <b>That deserves a written evaluation, not a translation workstream.</b> §12 is that evaluation.</p></div>
+      <b>That deserves a written evaluation, not a translation workstream.</b> Section 12 is that evaluation.</p></div>
     <div class="card tight" style="border-left:3px solid var(--warn)">
       <h4 style="color:var(--warn)">Accessibility exists on two stores and nobody has asked about the other three</h4>
       <p style="font-size:13px;color:var(--ink2);margin:8px 0 0">US was implemented by a third-party
@@ -829,7 +829,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       four per-region rollout children, so the parent can sit On Hold while a child is In Progress. Three
       levels is a filing system; four is a maze.</td></tr>
     <tr><td><b>Blocked Reason</b></td><td class="mono">Select</td><td class="why">Waiting on client · design ·
-      third party · data · decision. A reason, not a status — and distinct from On Hold, see §07.</td></tr>
+      third party · data · decision. A reason, not a status — and distinct from On Hold, see Section 07.</td></tr>
     <tr><td><b>Release</b></td><td class="mono">Relation</td><td class="why">Links to the Releases database.
       This is what replaces your release-tracking Google Sheet and ends the double entry.</td></tr>
     <tr><td><b>Decision Log</b></td><td class="mono">Text</td><td class="why">The conclusion, written into the
@@ -908,7 +908,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
     <div class="card tight" style="border-left:3px solid var(--s1)">
       <h4>02 · Delivery <span class="tag new" style="margin-left:6px">half-life: days–weeks</span></h4>
       <p style="font-size:13px;color:var(--ink2);margin:9px 0 8px">The working database. Every property from
-      §05, every status from §07. One row = one shippable thing with a definition of done. If it cannot be
+      Section 05, every status from Section 07. One row = one shippable thing with a definition of done. If it cannot be
       finished inside one sprint, it is not a Delivery item — it is a Programme with children.</p>
       <p style="font-size:12.5px;color:var(--mut);margin:0"><b style="color:var(--ink2)">Expected size:</b>
       40–70 live rows. If it passes 100, the aging rule is not being applied.</p>
@@ -1361,7 +1361,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       deploy, a post-deploy verification and a metric read. <b>Once the shared theme lands this falls to
       about 2h</b> &mdash; three hours a week returned to build, roughly 150 hours a year. That is the
       business case for the theme in one sentence, and the reason automated multi-region deployment
-      (&sect;12) is the right long-term objective.</p></div>
+      (Section 12 · Store architecture) is the right long-term objective.</p></div>
     <div class="vw"><h4>Why commit to 80%, not 89%</h4>
       <p style="margin-top:6px">The current H2 plan runs at 89% utilisation. Above roughly 80%, waiting time
       grows faster than the work does &mdash; one disrupted week does not cost one week, it costs three,
@@ -1871,7 +1871,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       <p>Every quarter the five storefronts drift further apart, the migration path to any consolidated
       architecture gets more expensive, and the automated deployment objective stays blocked. This is not
       urgent in any single week, which is precisely why it has never been evaluated.</p>
-      <div class="rk-m"><b>Mitigate</b> Book the six-hour evaluation into the December freeze window (§12)
+      <div class="rk-m"><b>Mitigate</b> Book the six-hour evaluation into the December freeze window (Section 12 · Store architecture)
       and set the decision gate at Q2 2027. Meanwhile, make <b>shared-theme-first</b> the default build rule
       from this week, so that new work stops adding to the divergence even while the old divergence
       remains.</div></div>
@@ -2172,7 +2172,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
   to replace them with real data by the end of Sprint 3. Re-forecast then.</p>
 </footer>
 <script>
-/* ============ MASTER RESPONSIBILITY LIST — drives §02, §03 and §12 ============ */
+/* ============ MASTER RESPONSIBILITY LIST — drives Section 02, Section 03 and Section 12 ============ */
 var R=[
 {n:"Theme development &amp; maintenance",m:"Operate",c:"Ops &amp; Maintenance",p:"Website Operations",cad:"Continuous",lev:"Shared-theme first",home:"Programmes · Shared Theme",cov:"Standing",covd:"Shared-theme programme",cls:["critical","sink"],how:"Every change is currently made five times. Build shared-first from Week 0; migrate existing templates in Q1. This is the work that changes the denominator."},
 {n:"Feature development",m:"Build",c:"Build",p:"Roadmap Ownership",cad:"Per sprint",lev:"Self + Claude",home:"Delivery · This Sprint",cov:"H2",covd:"S1–S5 · the core roadmap",cls:["critical","high"],how:"The 16h/week of planned build. Protected by WIP limits and by the reactive lane absorbing everything else."},
@@ -2205,7 +2205,7 @@ var R=[
 {n:"Campaign &amp; promotion builds",m:"Operate",c:"Trading",p:"Campaign Support",cad:"Per campaign",lev:"Reusable sections",home:"Delivery · Trading",cov:"H2",covd:"N7 + the Q4 campaign calendar",cls:["critical","sink"],how:"Reusable campaign sections in the shared theme turn roughly 24h per campaign into 8h. Five campaigns in Q4 makes this the largest saving available."},
 {n:"Product launch support",m:"Operate",c:"Trading",p:"Campaign Support",cad:"Per launch",lev:"Checklist template",home:"Delivery · Trading",cov:"H2",covd:"Campaign Build template",cls:["high","recur","batch"],how:"One launch checklist that ships the same page to each relevant storefront from one source. Currently rebuilt per launch."},
 {n:"Shopify app stack management",m:"Operate",c:"Ops &amp; Maintenance",p:"Website Operations",cad:"Monthly",lev:"Self",home:"Delivery + monthly block",cov:"H2",covd:"N8 · Sprint 6 · audit before peak",cls:["high","recur"],how:"Every app removed is speed recovered, monthly cost saved and one fewer thing that can break on Black Friday. Do it before peak, not after."},
-{n:"International localisation &amp; translation",m:"Operate",c:"Trading",p:"International Sites",cad:"Per release",lev:"Translation app",home:"Delivery · DoD step",cov:"Standing",covd:"~30 min per release · CA and EU only",cls:["recur","automate","batch"],how:"Already solved and cheaper than it looks. The translation app handles CA and EU in roughly half an hour; no other region is localised. Make it a Definition-of-Done step on any content release rather than a workstream. The real international question is architecture, not translation — see §12."},
+{n:"International localisation &amp; translation",m:"Operate",c:"Trading",p:"International Sites",cad:"Per release",lev:"Translation app",home:"Delivery · DoD step",cov:"Standing",covd:"~30 min per release · CA and EU only",cls:["recur","automate","batch"],how:"Already solved and cheaper than it looks. The translation app handles CA and EU in roughly half an hour; no other region is localised. Make it a Definition-of-Done step on any content release rather than a workstream. The real international question is architecture, not translation — see Section 12."},
 {n:"Automated multi-region deployment",m:"Build",c:"Ops &amp; Maintenance",p:"Website Operations",cad:"Future strategic",lev:"Blocked on standardisation",home:"Programmes · strategic",cov:"Deferred",covd:"Not started · prerequisite chain unmet",cls:["high","quarterly","automate"],how:"The right long-term objective and correctly not started. It is blocked on structural differences between the five storefronts, so the sequence is: document the deliberate differences → standardise structure → shared master theme → automated deploy. Each step pays for itself, and the same work is the prerequisite for a Markets migration if that is ever chosen."},
 {n:"Roadmap ownership &amp; prioritisation",m:"Steer",c:"Programme",p:"Roadmap Ownership",cad:"Fortnightly",lev:"Notion roll-up",home:"Programmes · roll-up",cov:"Standing",covd:"Sprint planning + quarterly review",cls:["critical","recur"],how:"Cheap in hours, catastrophic when skipped. The roll-up view means you never hand-build a roadmap slide again."},
 {n:"Reporting pack",m:"Steer",c:"Analytics",p:"Reporting",cad:"Weekly + monthly",lev:"Automate",home:"Metrics DB + template",cov:"H2",covd:"N2 · Sprint 2",cls:["critical","automate","recur"],how:"A named deliverable in the spec across ten surfaces. Built once as a template with an automated pull it is 90 minutes; assembled by hand it is half a day."},
@@ -2219,17 +2219,17 @@ sink:["Time sink","var(--s2)"],batch:["Batch","var(--s3)"],recur:["Recurring","v
 quarterly:["Quarterly","var(--s6)"],delegate:["Delegate","var(--s5)"],automate:["Automate","var(--good)"]};
 
 function esc(s){return s}
-/* §02 remit table */
+/* Section 02 remit table */
 function drawRemit(f){var b=document.querySelector("#remit-t tbody");b.innerHTML=R.filter(function(r){
  return f==="all"||r.m===f}).map(function(r){return "<tr><td><span class='tn'>"+r.n+"</span></td>"+
  "<td><span class='chip' style='--c:"+MC[r.m]+"'>"+r.m+"</span></td>"+
  "<td class='why'>"+r.p+"</td><td class='why'>"+r.cad+"</td><td class='why'>"+r.lev+"</td></tr>"}).join("")}
-/* §03 classification table */
+/* Section 03 classification table */
 function drawCls(f){var b=document.querySelector("#cls-t tbody");b.innerHTML=R.filter(function(r){
  return f==="all"||r.cls.indexOf(f)>-1}).map(function(r){return "<tr><td><span class='tn'>"+r.n+"</span>"+
  "<span class='was'>"+r.c+"</span></td><td>"+r.cls.map(function(k){return "<span class='chip' style='--c:"+
  CLSL[k][1]+";margin:0 4px 4px 0'>"+CLSL[k][0]+"</span>"}).join("")+"</td><td class='why'>"+r.how+"</td></tr>"}).join("")}
-/* §12 coverage table */
+/* Section 12 coverage table */
 var COVT={H2:["Covered in H2","var(--good)"],Standing:["Standing function","var(--warn)"],Deferred:["Deferred · flagged","var(--crit)"]};
 function drawCov(f){var b=document.querySelector("#cov-t tbody");b.innerHTML=R.filter(function(r){
  return f==="all"||r.cov===f}).map(function(r){return "<tr><td><span class='tn'>"+r.n+"</span></td>"+
@@ -2356,12 +2356,12 @@ var RM=[
 {d:"27–30 Nov",t:"Black Friday → Cyber Monday",c:"var(--crit)",f:1,k:["peak","risk"],x:"The single highest-risk window of the year. Everything new — bundles, multibuy, upsells, gifting — is trading at volume for the first time. Monitoring is automated; you are watching, not building."},
 {d:"1–24 Dec",t:"Christmas peak &amp; shipping cut-offs",c:"var(--crit)",f:1,k:["peak","risk"],x:"<b>The actual apex.</b> Search Console shows December running at 3.3× a normal trading month across CA, UK and US, against November at 1.3×. Per-store, per-region last-order dates and shipping cut-offs, all scheduled in advance. The gifting hub and Christmas collections outrank the Black Friday landing page for organic traffic — weight the October build accordingly."},
 {d:"26 Dec–4 Jan",t:"Boxing Day &amp; New Year",c:"var(--s2)",k:["peak"],x:"Campaign go-lives continue under controlled release. Take the first week of December as leave — book it now, while it is still easy to book."},
-{d:"Dec · in the freeze",t:"Documentation window &amp; architecture evaluation",c:"var(--s6)",k:[],x:"Eight hours a week with nothing to build and every decision still fresh. Three outputs: the year&rsquo;s learnings and runbooks written down, the deliberate regional differences between the five storefronts documented (the blocker on automated deployment), and the six-hour store architecture evaluation from §12 — five stores versus Shopify Markets — ready to put in front of the client in January."},
+{d:"Dec · in the freeze",t:"Documentation window &amp; architecture evaluation",c:"var(--s6)",k:[],x:"Eight hours a week with nothing to build and every decision still fresh. Three outputs: the year&rsquo;s learnings and runbooks written down, the deliberate regional differences between the five storefronts documented (the blocker on automated deployment), and the six-hour store architecture evaluation from Section 12 — five stores versus Shopify Markets — ready to put in front of the client in January."},
 {d:"1–2 Jan",t:"Thaw",c:"var(--s3)",k:[],x:"Freeze lifts. First deploy of the year is deliberately small and deliberately boring, to prove the pipeline still works before anything important rides on it."},
 {d:"5–16 Jan",t:"Recovery &amp; debt sprint",c:"var(--s3)",b:1,k:[],x:"The most valuable two weeks of the year and the ones most often given away. Shared theme migration scoped and started, drift cleaned, automations reviewed, deferred backlog re-scored. The architecture evaluation goes to the client. Six sprints of velocity and reactive-hours data turned into the 2027 resourcing conversation."},
 {d:"19 Jan–Feb",t:"Valentine&rsquo;s + Q1 builds",c:"var(--s1)",k:[],x:"Valentine&rsquo;s campaign — the first real test of reusable sections outside peak pressure. Then the deferred backlog: checkout, collections, navigation, mobile audit, and the subscriptions and personalisation business cases."},
 {d:"Q1–Q2 2027",t:"Storefront standardisation → shared theme → automated deployment",c:"var(--s6)",k:[],x:"The prerequisite chain for your long-term deployment objective, in the only order that works. Standardise what can be standardised, keep and document what genuinely must differ (US and AU accessibility navigation, UK/EU/AU spelling), complete the shared master theme, then automate the rollout on top of it. Each step returns time on the current architecture, and the whole chain is also the prerequisite for a Markets migration if that is ever chosen."},
-{d:"Q2 2027",t:"Architecture decision gate",c:"var(--crit)",b:1,k:[],x:"Five stores or Shopify Markets, decided against the criteria agreed in §12 rather than re-argued from scratch. If the answer is &lsquo;maybe&rsquo;, the next step is a CA-into-US two-market pilot, not a full migration. If the answer is &lsquo;stay&rsquo;, that is a good outcome too — it is now a deliberate choice with reasoning behind it rather than an inherited default."}];
+{d:"Q2 2027",t:"Architecture decision gate",c:"var(--crit)",b:1,k:[],x:"Five stores or Shopify Markets, decided against the criteria agreed in Section 12 rather than re-argued from scratch. If the answer is &lsquo;maybe&rsquo;, the next step is a CA-into-US two-market pilot, not a full migration. If the answer is &lsquo;stay&rsquo;, that is a good outcome too — it is now a deliberate choice with reasoning behind it rather than an inherited default."}];
 function drawRm(f){document.getElementById("rm-tl").innerHTML=RM.filter(function(r){
  return f==="all"||(r.k||[]).indexOf(f)>-1}).map(function(r){
  var cl="tl-r"+(r.f?" freeze":"")+(r.b?" buffer":"");
@@ -2415,7 +2415,7 @@ p4:{t:"Day 91+ · The December window, and the conversation",h:"13 November – 
  g:"The part of the year most people waste. Trading runs itself if the previous ninety days were done properly, which leaves the two most valuable things you can do with a quarter&rsquo;s worth of evidence: write it down, and use it.",
  a:[["Monitor, support go-lives, ship nothing new","—","The freeze holds. Ten hours a week of monitoring, ten of campaign support, six of P0 capacity, and six deliberately unallocated."],
     ["Write the year down while it is fresh","8h/wk","Learnings, decisions and runbooks completed, building on the feature documentation that already exists. December is the only month where the pressure to build is off and the memory is still accurate."],
-    ["Write the store architecture evaluation","6h","Five stores versus Shopify Markets (§12), with the hard constraints checked first, the app stack cost from the Sprint 6 audit, and four months of measured release overhead from the Releases database. Recommendation and decision gate, not an open question."],
+    ["Write the store architecture evaluation","6h","Five stores versus Shopify Markets (Section 12 · Store architecture), with the hard constraints checked first, the app stack cost from the Sprint 6 audit, and four months of measured release overhead from the Releases database. Recommendation and decision gate, not an open question."],
     ["Document the deliberate regional differences","4h","US and AU accessibility navigation, UK/EU/AU spelling, structural variations. This is the specific blocker on automated multi-region deployment, and it is documentation rather than development — which makes December exactly the right time for it."],
     ["Take the first week of December off","—","Book it now, while it is easy. After peak, before the debt sprint. This is a mitigation, not a perk."],
     ["Run the January debt sprint","2 wks","Shared theme migration scoped and started, drift cleaned, automations reviewed. The only two weeks in the calendar where debt work will not be outranked."],
