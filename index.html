@@ -1174,11 +1174,18 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       that has failed to close. It is an <b>ongoing initiative</b> that will keep producing work as new
       opportunities appear — and the board should say so rather than making it look overdue. That is what
       the <b>Work Type</b> property is for.</p>
-      <p style="font-size:13px;color:var(--ink2);margin:0">Structurally: it becomes a <b>Programme</b> row
+      <p style="font-size:13px;color:var(--ink2);margin:0 0 8px">Structurally: it becomes a <b>Programme</b> row
       with a rolling quarterly goal, and each wave of work becomes a closable child ticket underneath it —
       <span class="mono">AI Search — AU pilot</span>, <span class="mono">AI Search — US rollout</span>,
       <span class="mono">AI Search — schema v2</span>. The programme never closes; the children always do.
       <b>That combination is what lets a long-running initiative stay honest.</b></p>
+      <p style="font-size:13px;color:var(--ink2);margin:0"><b>And it changes what Effort means on the card.</b>
+      On a One-off, Effort is hours-to-finish. On an Ongoing initiative it is <b>hours timeboxed to this
+      sprint</b> — the remainder carries into the next timebox rather than disappearing. That single
+      distinction is what makes an ongoing initiative schedulable: it can flex to absorb urgent work without
+      anything being cut, because there was never a completion date to miss. <b>The trap</b> is timeboxing a
+      <i>peak-critical</i> initiative before its ranked fix list exists — then you cannot tell whether the
+      hours bought the valuable fixes or the cheap ones. Rank first, then timebox.</p>
     </div>
     <div class="card tight" style="border-left:3px solid var(--s1)">
       <h4>Parent and sub-items — two levels, no more</h4>
@@ -2461,8 +2468,8 @@ drawCap("normal");
 /* ============ ROADMAP ============ */
 var RM=[
 {d:"4–7 Aug",t:"Week 0 · Stabilise",c:"var(--crit)",k:[],x:"Fix what is bleeding and rebuild the board. Summer Sale price block live and price-checked in every store, the overdue Stord gift message block closed, GSC reporting restored, and the board rebuilt with priorities, effort and success metrics. 20h."},
-{d:"10–21 Aug",t:"Sprint 1 · Foundations",c:"var(--s1)",k:["peak"],x:"The two most important non-features of the half: the analytics baseline signed off per store, and the Q4 freeze policy written down and circulated. Also: the drift checker and triage assistant get built here, while there is still room. 26h."},
-{d:"24 Aug–4 Sep",t:"Sprint 2 · Measure &amp; accelerate",c:"var(--s1)",k:["peak"],x:"Homepage site speed fixed before Q4 merchandising weight lands on the page. The reporting pack built once so it costs 90 minutes a week thereafter. Speed programme converted from an open container into a ranked, estimated fix list. <b>Plus the organic-decline diagnosis (6h)</b> — 20% of clicks have gone from the two biggest markets and the cause has not been named. Claude documentation timeboxed and closed. 32h."},
+{d:"10–21 Aug",t:"Sprint 1 · Foundations",c:"var(--s1)",k:["peak"],x:"The two most important non-features of the half: the analytics baseline signed off per store, and the Q4 freeze policy written down and circulated. Also: the drift checker and triage assistant get built here, while there is still room — plus the urgent Bundles componentisation research pulled forward from S3 at the client's request. 31h."},
+{d:"24 Aug–4 Sep",t:"Sprint 2 · Measure &amp; accelerate",c:"var(--s1)",k:["peak"],x:"Homepage site speed fixed before Q4 merchandising weight lands on the page. The reporting pack built once so it costs 90 minutes a week thereafter. Speed programme converted from an open container into a ranked, estimated fix list. <b>Plus the organic-decline diagnosis (6h)</b> — 20% of clicks have gone from the two biggest markets and the cause has not been named. Claude documentation timeboxed and closed. 30h."},
 {d:"7–18 Sep",t:"Sprint 3 · AOV mechanics",c:"var(--s3)",k:["peak"],x:"Multibuy live on PDP and measured against the baseline. The CRO engine stood up — tool, template, QA process, learnings log — so every later test costs hours. First re-forecast against actual velocity happens at the end of this sprint. 28h."},
 {d:"21 Sep–2 Oct",t:"Sprint 4 · Compounding + automation",c:"var(--s3)",k:["peak","risk"],x:"<b>The Bundles decision gate closes on 30 September.</b> Native Shopify Bundles either meets the requirements the stress test surfaced — component discounts rolling up, Buy X Get Y without a manual add — or it does not. Yes means Path A, implementation before the freeze. No means Path B, a costed scope in Q4 and the build in Q1 2027, because a custom bundling engine across five stores cannot be hardened before 13 November. Both branches already exist on the board, On Hold, so the gate is a selection and not a planning exercise. Cart and post-purchase upsells live. AI search phase 1 shipped with a defined output — but decided on cost and strategy, not on the AU pilot, which produced no measurable signal at 745 clicks in 106 days. Top speed fixes worked from the ranked list. The automated QA regression sweep built — the last sensible moment to build tooling. 32h."},
 {d:"5–16 Oct",t:"Sprint 5 · Gifting &amp; SEO",c:"var(--s2)",k:["peak","risk"],x:"The highest-risk sprint in the plan. Gift builder (20h, the largest single build in H2) plus on-page SEO and structured data. If anything upstream has slipped, this is the designated scope-cut: ship gift message, gift wrap and a curated gifting collection, and move the full builder to January. 32h."},
