@@ -312,17 +312,28 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       scheduled hours cannot be proven until it is fixed. Diagnosis is about 30 minutes.</td>
       <td><span class="tag pk">Blocks the plan</span></td></tr>
     <tr><td class="mono" style="color:var(--crit);font-weight:700">4</td>
-      <td><span class="tn">Peak is unplanned</span><span class="was">No freeze date, no rollback, no QA pass</span></td>
-      <td class="why">BFCM and Christmas are the majority of the year's revenue for a gifting brand.
-      The current board has no peak readiness card, no code freeze calendar, no load test and no rollback
-      plan for any feature shipped since May.</td>
+      <td><span class="tn">Peak has a policy but not a safety net</span><span class="was">Freeze rules exist · rollback and load test do not</span></td>
+      <td class="why">The freeze <b>is</b> planned, and the rules are already clear: <b>no non-campaign,
+      non-critical deploys from mid-November to the end of the month; P1 bugs and campaign fixes only;
+      all P2/P3 and feature requests held to December unless there is genuinely time; campaigns are not
+      frozen and go live through pre-tested, pre-approved controlled releases.</b> That is a real policy
+      and it corrects an earlier assumption in this document. What is missing is narrower and still
+      serious: the policy is <b>not written down anywhere a late-October scope request can be pointed
+      at</b>, and behind it there is <b>no rehearsed rollback path per store and no load test at peak
+      multiples</b> for anything shipped since May. During a freeze the only deploys that go out are the
+      urgent ones — which is exactly when a rollback path matters most.</td>
       <td><span class="tag pk">Revenue</span></td></tr>
     <tr><td class="mono" style="color:var(--warn);font-weight:700">5</td>
-      <td><span class="tn">Reactive work is invisible</span><span class="was">Not on the board, so not in the plan</span></td>
-      <td class="why">Urgent bugs and ad-hoc site requests can consume a full day. None of that appears
-      anywhere in the system, so every plan is built on 40 hours you do not have, and every miss looks like
-      a personal failure rather than a capacity fact.</td>
-      <td><span class="tag warn">Chronic</span></td></tr>
+      <td><span class="tn">Reactive work is visible but not countable</span><span class="was">Every request is a ticket · none of them add up</span></td>
+      <td class="why">Correcting an earlier assumption: reactive work is <b>not</b> invisible. Every ad hoc
+      request already becomes a Notion ticket, and recurring site optimisation — SEO, AI Search, homepage,
+      site speed — is <b>planned, ongoing maintenance</b> with a standing place in the plan, not an
+      interruption. The real gap is arithmetic. Ad hoc tickets sit as loose rows with no shared parent, so
+      there is no way to answer <i>how many hours went to unplanned work this sprint</i>; and maintenance
+      initiatives filed as one-off projects imply a finish date they will never have. Both are fixed by
+      structure, not by discipline: an <b>Ad Hoc Requests hub</b> that sub-items roll up into, and a
+      <i>Recurring</i> / <i>Ongoing initiative</i> work type on the maintenance tickets.</td>
+      <td><span class="tag warn">Structural</span></td></tr>
     <tr><td class="mono" style="color:var(--warn);font-weight:700">6</td>
       <td><span class="tn">Strategic work has no home</span><span class="was">CRO programme · reporting · localisation</span></td>
       <td class="why">The job spec asks for an <i>ongoing</i> A/B programme, <i>regular</i> reporting and
@@ -355,8 +366,8 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
   <div class="note hard"><b>Why the existing process will not scale.</b> A to-do list scales linearly with
   attention: it works right up until the list is longer than what you can hold in your head, and then it
   fails silently. The failure mode is not that work gets slow — it is that <b>important work becomes
-  invisible</b>, which is precisely what has happened to peak readiness, the analytics baseline, gifting
-  and localisation. Adding more categories to the same board makes this worse, not better, because
+  invisible</b>, which is precisely what has happened to the analytics baseline, the peak rollback and
+  load-test work, gifting and localisation. Adding more categories to the same board makes this worse, not better, because
   classification was never the problem. The board is missing an intake, a capacity model and a priority
   signal, and no amount of tidying will supply those.</div>
 
@@ -391,10 +402,11 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       four automations worth ~12h/week. Build them in the calm weeks, not in October.</td>
       <td class="num">30h</td><td><span class="chip">S1–S4</span></td></tr>
     <tr><td class="mono" style="font-weight:700;color:var(--s1)">6</td>
-      <td><span class="tn">Publish the freeze calendar in August</span></td>
-      <td class="why">A freeze announced in November is a negotiation. A freeze published in August is a
-      decision everyone already agreed to. This one document does more to protect Q4 than any code you
-      will write.</td>
+      <td><span class="tn">Write the freeze policy down in August</span></td>
+      <td class="why">The rules already exist and are already how peak is run. They are not yet written
+      anywhere a requester can be pointed at. A freeze <i>announced</i> in November is a negotiation; a
+      freeze <i>document circulated</i> in August is a decision everyone already agreed to. This one page
+      does more to protect Q4 than any code you will write.</td>
       <td class="num">4h</td><td><span class="chip">Sprint 1</span></td></tr>
   </tbody></table>
 </section>
@@ -1185,6 +1197,47 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
     </div>
   </div>
 
+  <h3 style="margin:34px 0 4px">The Ad Hoc Requests hub — one parent, a sub-item per request</h3>
+  <p class="lede" style="margin:8px 0 18px">Ad hoc work was never invisible: every Slack request already
+  became a ticket, and that discipline is the hard part of intake. The gap was <b>arithmetic</b>. Loose rows
+  with no shared parent mean there is no way to answer <i>how many hours went to unplanned work this
+  sprint</i> — and without that number, capacity stays an impression, and an impression never changes a
+  resourcing decision. The hub is now on the board, permanently open, with a template sub-item ready to
+  duplicate.</p>
+  <div class="grid2">
+    <div class="card tight" style="border-left:3px solid var(--s2)">
+      <h4>The intake protocol</h4>
+      <p style="font-size:12.5px;color:var(--ink2);margin:9px 0 0">
+      <b>1 ·</b> Create a sub-item under the hub, same working day.
+      <span class="mono">Ad Hoc · YYYY-MM-DD · [Store] Short description</span><br>
+      <b>2 ·</b> Set <b>Source</b> — Slack, Meeting, Support, Client, Self. This single field is the whole
+      point; after a quarter it tells you where your unplanned work actually comes from.<br>
+      <b>3 ·</b> Paste the request in the requester's own words. Paraphrase loses the thing they cared
+      about.<br>
+      <b>4 ·</b> <b>You</b> set the priority. The requester supplies impact and deadline. That distinction
+      is the difference between a plan and a queue.<br>
+      <b>5 ·</b> Estimate effort before starting, even roughly. An unestimated ticket cannot be traded
+      against anything.<br>
+      <b>6 ·</b> On completion, record the result — and if it was done same-day, <b>name what slipped</b>.
+      A P0 that appeared to cost nothing did not cost nothing.</p>
+    </div>
+    <div class="card tight" style="border-left:3px solid var(--s4)">
+      <h4>The reserve, and what it is for</h4>
+      <p style="font-size:13px;color:var(--ink2);margin:9px 0 8px">Ad hoc is budgeted at roughly <b>one hour
+      per working day — 5h/week</b>. That reserve is already deducted from the 16h of planned build, so it
+      is not free time and treating it as slack is how sprints quietly fail.</p>
+      <p style="font-size:13px;color:var(--ink2);margin:0 0 8px">When a sprint's sub-items exceed the
+      reserve, the sub-item list <i>is</i> the evidence. <b>Two consecutive sprints over reserve is not a
+      bad fortnight, it is a resourcing conversation</b> — and it is one you can now have with a number
+      instead of a feeling.</p>
+      <p style="font-size:12.5px;color:var(--mut);margin:0"><b style="color:var(--ink2)">What does not
+      belong here:</b> recurring site optimisation — SEO, AI Search, homepage, site speed. That is planned,
+      ongoing maintenance carrying <span class="mono">Work Type = Ongoing initiative</span>, not
+      interruption. Filing it as ad hoc would inflate the unplanned-work number and undermine the exact
+      argument the hub exists to support.</p>
+    </div>
+  </div>
+
   <div class="note"><b>Why the Monitoring stage earns its place.</b> Look at your release log: the DOM bloat
   fix improved LCP on some stores and coincided with a regression on others; the gift note was removed
   eleven days after release because orders were not printing. Both were discovered by accident. A
@@ -1415,7 +1468,8 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       <div class="card tight" style="margin-bottom:14px">
         <h3 style="margin-bottom:10px">The three retro questions</h3>
         <p style="font-size:13.5px;color:var(--ink2);margin:0 0 8px"><b>1. What ate time that was not on the
-        board?</b> This is how hidden work becomes visible. After three sprints the pattern is unmistakable.</p>
+        board as planned work?</b> Not because it was hidden — it was ticketed — but because it was never
+        counted against the sprint. After three sprints the pattern is unmistakable.</p>
         <p style="font-size:13.5px;color:var(--ink2);margin:0 0 8px"><b>2. What did I context-switch on most?</b>
         Context switching is the largest invisible tax on a solo operator, and it is nearly always caused by one
         specific recurring thing.</p>
@@ -1516,6 +1570,63 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
 
   <div class="card" style="padding:14px 24px"><div class="tl" id="rm-tl"></div></div>
 
+  <h3 style="margin:36px 0 4px">The peak code freeze policy</h3>
+  <p class="lede">These rules are <b>already how peak is run</b>. An earlier draft of this document said the
+  freeze was unplanned; that was wrong, and it is corrected here. What is still missing is not the policy
+  but the <i>artefact</i> — a dated one-pager a late-October scope request can be pointed at. That is a
+  two-hour job in August and it is on the board.</p>
+  <table class="tbl">
+    <thead><tr><th style="width:24%">Rule</th><th>What it means in practice</th></tr></thead><tbody>
+    <tr><td><span class="tn">Freeze window</span><span class="was">Mid to end November</span></td>
+      <td class="why">From <b>13 November</b> to the end of the month, <b>no non-campaign and non-critical
+      deploys go to any site</b>. Five stores, no exceptions by store.</td></tr>
+    <tr><td><span class="tn">What ships</span><span class="was">Two categories only</span></td>
+      <td class="why"><b>P1 bugs</b> — defects with real customer or revenue impact — and
+      <b>campaign-related fixes</b>. Nothing else.</td></tr>
+    <tr><td><span class="tn">What holds</span><span class="was">Everything else, until December</span></td>
+      <td class="why">All <b>P2 and P3 work and every feature request</b> holds until December, unless there
+      is demonstrably enough time to do it properly — built, tested and rollback-ready without displacing
+      anything in the two categories above. In late November that is rare, and treating it as rare is the
+      point. Held items carry <span class="mono">Sprint = Dec 2026 · freeze window</span> so the December
+      queue builds itself rather than being reconstructed from memory in January.</td></tr>
+    <tr><td><span class="tn">Campaigns are not frozen</span><span class="was">The part most policies get wrong</span></td>
+      <td class="why">Trading does not stop because engineering slows down. Campaigns continue to go live
+      through <b>pre-tested, pre-approved controlled releases</b>: built and QA'd before the window,
+      approved before scheduling, released on a known date rather than pushed reactively. The freeze
+      constrains <i>unplanned</i> change, not <i>planned</i> trading.</td></tr>
+  </tbody></table>
+
+  <div class="note hard"><b>What the freeze policy does not cover.</b> Two genuine gaps sit alongside it and
+  should not be obscured by the fact that the freeze itself is planned: there is <b>no rehearsed rollback
+  path per store</b>, and <b>no load test at peak multiples</b> for anything shipped since May. During a
+  freeze the only deploys that go out are the urgent ones — which is precisely when a rollback path earns
+  its keep. Sprint 7 exists to close both.</div>
+
+  <h3 style="margin:36px 0 4px">The Bundles decision gate — 30 September</h3>
+  <p class="lede">Bundles has been in stress testing long enough. It gets a date, and on that date it
+  resolves one of two ways. Both branches already exist on the board as On Hold sub-tickets with a Revisit
+  On of 30 September, so the gate is a <b>selection</b>, not a planning exercise.</p>
+  <div class="grid2">
+    <div class="vw"><div class="vw-c">PATH A · IF NATIVE MEETS THE REQUIREMENTS</div>
+      <h4>Implement native Shopify Bundles</h4>
+      <p>Promotes to P1, ~24h, UK first then US, EU, CA, AU with a per-store smoke test. Live and load-tested
+      <b>before 13 November</b> or it holds to December — bundles are neither a P1 bug nor a campaign fix, so
+      the freeze policy applies to them like anything else. Depends on the GA4 revenue fault being fixed
+      first, or the result cannot be measured.</p></div>
+    <div class="vw"><div class="vw-c">PATH B · IF IT DOES NOT</div>
+      <h4>Scope a custom solution — build in Q1 2027</h4>
+      <p>Deliberately a <b>scoping</b> exercise, not a build. A custom bundling engine touching pricing and
+      inventory across five storefronts cannot be built and hardened by one person between October and the
+      freeze; attempting it means shipping pricing logic into peak on thin test coverage. So: ~16h of Shopify
+      Functions and API evaluation in Q4, costed, with the build landing Q1 2027. Sculpd trades a quarter of
+      AOV upside for not risking peak revenue — the right trade, made explicitly rather than discovered in
+      November.</p></div>
+  </div>
+  <div class="note"><b>The requirements the gate is judged against</b> come from the stress test, not from a
+  fresh evaluation: component discounts must <b>roll up correctly</b> to the bundle price, and Buy X Get Y
+  must not need a <b>manual add</b>. Those two findings currently live in a comment thread. They belong in
+  the Decision Log on the card, which is where they now are.</div>
+
   <h3 style="margin:36px 0 4px">Quick wins — under four hours each, do them in the gaps</h3>
   <table class="tbl">
     <thead><tr><th style="width:34%">Quick win</th><th class="num" style="width:70px">Effort</th>
@@ -1528,7 +1639,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       Throughput goes up immediately.</td></tr>
     <tr><td><span class="tn">The "Today" view</span></td><td class="num">20 min</td>
       <td class="why">The board stops being something you browse and becomes something you work.</td></tr>
-    <tr><td><span class="tn">Publish the freeze calendar</span></td><td class="num">2h</td>
+    <tr><td><span class="tn">Publish the freeze policy</span></td><td class="num">2h</td>
       <td class="why">Turns every late-October scope request from a negotiation into a reference to an agreed
       document.</td></tr>
     <tr><td><span class="tn">Releases database replaces the sheet</span></td><td class="num">3h</td>
@@ -1882,20 +1993,25 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
       revenue event.</p>
       <div class="rk-m"><b>Mitigate</b> Sprint 7 exists entirely for this: peak QA pass, load test, rollback plan
       per feature, freeze comms and hotfix runbook. Plus the automated QA regression sweep built in Sprint 4, so
-      the peak pass is a script and not a weekend. <b>Nothing new ships after 13 November.</b></div></div>
+      the peak pass is a script and not a weekend. <b>From 13 November, only P1 bugs and campaign-related fixes
+      ship</b> — campaigns themselves continue, through pre-tested, pre-approved controlled releases.</div></div>
 
-    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>7 · Hidden work</h4></div>
-      <p>Reactive fixes, five-store release overhead, Slack triage, context switching, and re-reading comment
-      threads to recover decisions. None of it appears on the board, so every plan is built on hours that do not
-      exist and every miss looks like under-delivery.</p>
-      <div class="rk-m"><b>Mitigate</b> The Source property, the reactive lane, and the Sprint database's
-      reactive-hours field. After six sprints you will have a real number instead of an impression — and a real
-      number is the only thing that changes a resourcing decision.</div></div>
+    <div class="rk"><div class="rk-h"><span class="tag warn">Medium</span><h4>7 · Uncounted work</h4></div>
+      <p>Not <i>hidden</i> work — that framing was wrong. Every ad hoc request already becomes a ticket, and
+      recurring site optimisation is planned maintenance rather than interruption. What is uncounted is the
+      total: ad hoc tickets sit as loose rows with no shared parent, and five-store release overhead, Slack
+      triage and context switching are absorbed rather than recorded. So the plan is still built on hours that
+      do not exist, but for an arithmetic reason rather than a discipline one.</p>
+      <div class="rk-m"><b>Mitigate</b> The <b>Ad Hoc Requests hub</b> now on the board, with every request
+      filed as a sub-item carrying its own Source and Effort, plus the Sprint database's reactive-hours field.
+      Ad hoc is budgeted at ~5h/week against the 16h planned-build figure. After six sprints you will have a
+      real number instead of an impression — and a real number is the only thing that changes a resourcing
+      decision. Two consecutive sprints over reserve is not a bad fortnight, it is a resourcing conversation.</div></div>
 
-    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>8 · Four requesters, two timezones, no front door</h4></div>
+    <div class="rk"><div class="rk-h"><span class="tag warn">High</span><h4>8 · Four requesters, two timezones, no shared view of the queue</h4></div>
       <p>Giles sends requirements via Slack. Matt asks for copy changes. Guy asks for section behaviour. Alix owns
-      a CRO card. Each of them reasonably believes they have asked; none of them can see the queue they have
-      joined.</p>
+      a CRO card. Every one of those requests gets ticketed — the front door works. What none of them can see is
+      the queue they have joined, or what their request is sitting behind.</p>
       <div class="rk-m"><b>Mitigate</b> One intake, the Slack reply template, and read-only views so they can see
       their own request's position without asking. <b>Visibility removes most chasing</b> — people chase because
       they cannot see, not because they are impatient.</div></div>
@@ -2178,7 +2294,7 @@ var R=[
 {n:"Feature development",m:"Build",c:"Build",p:"Roadmap Ownership",cad:"Per sprint",lev:"Self + Claude",home:"Delivery · This Sprint",cov:"H2",covd:"S1–S5 · the core roadmap",cls:["critical","high"],how:"The 16h/week of planned build. Protected by WIP limits and by the reactive lane absorbing everything else."},
 {n:"Multi-buy offers",m:"Build",c:"Build",p:"Roadmap Ownership",cad:"Sprint 3",lev:"Self + design",home:"Delivery",cov:"H2",covd:"E8 · live 18 Sep",cls:["critical","high"],how:"Named in the spec and the most direct AOV lever available. Must be live and measured before peak, not during it."},
 {n:"Gift builder &amp; gifting journey",m:"Build",c:"Build",p:"Roadmap Ownership",cad:"Sprint 5",lev:"Self + design",home:"Delivery",cov:"H2",covd:"N5 · live 16 Oct",cls:["high","sink"],how:"Largest single build in H2 at 20h, and Sculpd&rsquo;s biggest Q4 use case. Designated scope-cut card: ship gift message + wrap + curated collection if Sprint 4 slips."},
-{n:"Bundle improvements",m:"Build",c:"Build",p:"Roadmap Ownership",cad:"Sprint 1",lev:"Self",home:"Delivery",cov:"H2",covd:"E4 · decision 21 Aug",cls:["critical","high"],how:"The stress test has already answered the question. Write the go/no-go into the Decision Log and stop testing."},
+{n:"Bundle improvements",m:"Build",c:"Build",p:"Roadmap Ownership",cad:"Gate 30 Sep",lev:"Self",home:"Delivery",cov:"H2",covd:"S4 · decision gate 30 Sep",cls:["critical","high"],how:"Stop testing and decide. On 30 September the gate resolves one of two ways: native Shopify Bundles meets the requirements (Path A, implement before the freeze) or it does not (Path B, scope a custom Functions/API solution in Q4, build Q1 2027). Both branches sit On Hold on the board with the gate date on them."},
 {n:"Upsells &amp; cross-sells",m:"Build",c:"Build",p:"Website Optimisation",cad:"Sprint 4",lev:"Self",home:"Delivery",cov:"H2",covd:"N4 · live 2 Oct",cls:["high"],how:"Cheapest remaining AOV point per hour, and it compounds through every peak order. Was missing from the board entirely."},
 {n:"Checkout improvements",m:"Build",c:"Build",p:"Roadmap Ownership",cad:"Deferred",lev:"—",home:"Programmes · parked",cov:"Deferred",covd:"Q1 2027 · never before peak",cls:["high","quarterly"],how:"Highest-risk surface on the site. Deferring this is a risk decision, not a capacity one — it would be wrong to do it in Q4 even with spare time."},
 {n:"Product page enhancements",m:"Build",c:"Build",p:"Website Optimisation",cad:"Per sprint",lev:"Self + design",home:"Delivery",cov:"H2",covd:"Folded into multibuy &amp; upsell releases",cls:["high","batch"],how:"Batch PDP changes into one release rather than five small ones. QA cost is per release, not per change — that is a 4:1 saving."},
@@ -2315,11 +2431,11 @@ peak:{t:"Campaign week &middot; October to early November",d:"Trading takes over
     ["Planned roadmap build",4,"var(--s1)","Down from 16h to 4h. This is the number to show anyone who asks why a feature request cannot land in October."],
     ["Steering",3,"var(--s6)","Compressed but not removed. The daily handover matters more in October, not less."],
     ["Contingency",1,"cont","One hour. The genuine weak point of the plan, and the reason the earlier sprints must not slip."]]},
-freeze:{t:"Freeze &amp; peak trading &middot; 13 November to 31 December",d:"The job changes shape entirely. Nothing new ships; the work is watching, supporting pre-approved campaign go-lives, and writing down everything the year taught you while it is still fresh.",
+freeze:{t:"Freeze &amp; peak trading &middot; 13 November to 31 December",d:"The job changes shape entirely. Only P1 bugs and campaign-related fixes ship; every P2, P3 and feature request holds until December. Campaigns themselves are not frozen — they go live on pre-tested, pre-approved controlled releases. The work is watching, supporting those go-lives, and writing down everything the year taught you while it is still fresh.",
  i:[["Monitoring &amp; incident standby",10,"var(--s3)","Daily checks on CVR, error rates, speed and order flow across five stores. Largely automated by then, but someone still has to look."],
     ["Campaign go-live support",10,"var(--s5)","BFCM, Christmas cut-offs, Boxing Day. Pre-tested, pre-approved, scheduled releases only."],
     ["Documentation, learnings &amp; Q1 planning",8,"var(--s6)","The best eight hours of the year for this. Decisions are fresh, the pressure to build is off, and January arrives with a plan already written."],
-    ["Buffer hour \u2014 P0 only",5,"var(--s4)","The ladder collapses to two states deliberately. P0 and pre-approved campaign fixes; everything else is logged and held until January."],
+    ["Buffer hour \u2014 P1 and campaign only",5,"var(--s4)","The ladder collapses to two states deliberately. P1 bugs and campaign-related fixes; everything else is logged and held until December."],
     ["Reserved contingency",5,"cont","Deliberately unallocated and larger than usual. During peak, spare capacity is the product."],
     ["Steering",2,"var(--s2)","Handover continues daily. Planning drops to almost nothing because there is nothing to re-plan."]]},
 recover:{t:"Recovery &amp; debt &middot; January",d:"The window that makes next year cheaper. Post-Christmas, pre-Valentine&rsquo;s, with the freeze still on for new features \u2014 the only time in the calendar where debt work will not be outranked by something with a date on it.",
@@ -2345,14 +2461,14 @@ drawCap("normal");
 /* ============ ROADMAP ============ */
 var RM=[
 {d:"4–7 Aug",t:"Week 0 · Stabilise",c:"var(--crit)",k:[],x:"Fix what is bleeding and rebuild the board. Summer Sale price block live and price-checked in every store, the overdue Stord gift message block closed, GSC reporting restored, and the board rebuilt with priorities, effort and success metrics. 20h."},
-{d:"10–21 Aug",t:"Sprint 1 · Foundations",c:"var(--s1)",k:["peak"],x:"The two most important non-features of the half: the analytics baseline signed off per store, and the Q4 freeze calendar published. Plus the bundles go/no-go written down and closed. Also: the drift checker and triage assistant get built here, while there is still room. 26h."},
+{d:"10–21 Aug",t:"Sprint 1 · Foundations",c:"var(--s1)",k:["peak"],x:"The two most important non-features of the half: the analytics baseline signed off per store, and the Q4 freeze policy written down and circulated. Also: the drift checker and triage assistant get built here, while there is still room. 26h."},
 {d:"24 Aug–4 Sep",t:"Sprint 2 · Measure &amp; accelerate",c:"var(--s1)",k:["peak"],x:"Homepage site speed fixed before Q4 merchandising weight lands on the page. The reporting pack built once so it costs 90 minutes a week thereafter. Speed programme converted from an open container into a ranked, estimated fix list. <b>Plus the organic-decline diagnosis (6h)</b> — 20% of clicks have gone from the two biggest markets and the cause has not been named. Claude documentation timeboxed and closed. 32h."},
 {d:"7–18 Sep",t:"Sprint 3 · AOV mechanics",c:"var(--s3)",k:["peak"],x:"Multibuy live on PDP and measured against the baseline. The CRO engine stood up — tool, template, QA process, learnings log — so every later test costs hours. First re-forecast against actual velocity happens at the end of this sprint. 28h."},
-{d:"21 Sep–2 Oct",t:"Sprint 4 · Compounding + automation",c:"var(--s3)",k:["peak"],x:"Cart and post-purchase upsells live. AI search phase 1 shipped with a defined output — but decided on cost and strategy, not on the AU pilot, which produced no measurable signal at 745 clicks in 106 days. Top speed fixes worked from the ranked list. The automated QA regression sweep built — the last sensible moment to build tooling. 32h."},
+{d:"21 Sep–2 Oct",t:"Sprint 4 · Compounding + automation",c:"var(--s3)",k:["peak","risk"],x:"<b>The Bundles decision gate closes on 30 September.</b> Native Shopify Bundles either meets the requirements the stress test surfaced — component discounts rolling up, Buy X Get Y without a manual add — or it does not. Yes means Path A, implementation before the freeze. No means Path B, a costed scope in Q4 and the build in Q1 2027, because a custom bundling engine across five stores cannot be hardened before 13 November. Both branches already exist on the board, On Hold, so the gate is a selection and not a planning exercise. Cart and post-purchase upsells live. AI search phase 1 shipped with a defined output — but decided on cost and strategy, not on the AU pilot, which produced no measurable signal at 745 clicks in 106 days. Top speed fixes worked from the ranked list. The automated QA regression sweep built — the last sensible moment to build tooling. 32h."},
 {d:"5–16 Oct",t:"Sprint 5 · Gifting &amp; SEO",c:"var(--s2)",k:["peak","risk"],x:"The highest-risk sprint in the plan. Gift builder (20h, the largest single build in H2) plus on-page SEO and structured data. If anything upstream has slipped, this is the designated scope-cut: ship gift message, gift wrap and a curated gifting collection, and move the full builder to January. 32h."},
 {d:"19–30 Oct",t:"Sprint 6 · Peak merchandising",c:"var(--s2)",k:["peak","risk"],x:"BFCM and Christmas built, staged and scheduled — not built live in November. Landing pages, gifting hub, collections, navigation, banners, countdowns, promo scheduling. App stack audit strips speed drag and failure modes at the same time. Anomaly monitoring goes live. 30h."},
 {d:"2–13 Nov",t:"Sprint 7 · Hardening",c:"var(--crit)",k:["peak","risk"],x:"No new features. Full peak QA pass across every store, device and payment method. Load and stress test at three times projected peak. A written rollback plan for every feature shipped since August. Freeze comms, alerting and the P1 hotfix path agreed before it is needed. 22h."},
-{d:"13 Nov",t:"HARD FREEZE",c:"var(--crit)",f:1,k:["peak","risk"],x:"No non-campaign deploys to any store. Only P0 fixes and pre-tested, pre-approved campaign releases. Published in August so that this date is a decision everyone already agreed to rather than a negotiation in the last week of October."},
+{d:"13 Nov",t:"CODE FREEZE · mid–end Nov",c:"var(--crit)",f:1,k:["peak","risk"],x:"No non-campaign, non-critical deploys to any site. <b>Only P1 bugs and campaign-related fixes ship.</b> All P2/P3 and feature requests hold until December unless there is genuinely enough time to do them properly. <b>Campaigns are not frozen</b> — they go live through pre-tested, pre-approved controlled releases. The rules already operate; writing them down in August is what makes this date a decision everyone agreed to rather than a negotiation in the last week of October."},
 {d:"27–30 Nov",t:"Black Friday → Cyber Monday",c:"var(--crit)",f:1,k:["peak","risk"],x:"The single highest-risk window of the year. Everything new — bundles, multibuy, upsells, gifting — is trading at volume for the first time. Monitoring is automated; you are watching, not building."},
 {d:"1–24 Dec",t:"Christmas peak &amp; shipping cut-offs",c:"var(--crit)",f:1,k:["peak","risk"],x:"<b>The actual apex.</b> Search Console shows December running at 3.3× a normal trading month across CA, UK and US, against November at 1.3×. Per-store, per-region last-order dates and shipping cut-offs, all scheduled in advance. The gifting hub and Christmas collections outrank the Black Friday landing page for organic traffic — weight the October build accordingly."},
 {d:"26 Dec–4 Jan",t:"Boxing Day &amp; New Year",c:"var(--s2)",k:["peak"],x:"Campaign go-lives continue under controlled release. Take the first week of December as leave — book it now, while it is still easy to book."},
@@ -2383,11 +2499,11 @@ p1:{t:"Days 1–30 · Stop the bleeding and instrument",h:"4 August – 2 Septem
     ["Publish the priority ladder and SLAs","3h","Put it in the Notion header and the Slack channel topic. The rule that matters: requesters supply impact and deadline, you assign priority."],
     ["Fix GSC reporting","6h","You are currently flying blind on organic search going into Q4. This is a P0 risk item that was sitting at Medium."],
     ["Analytics baseline &amp; measurement QA","8h","The highest-leverage item in the plan. CVR, AOV and RPV signed off per store, dated before the work starts. It gets harder to justify every week and impossible once the building begins."],
-    ["Publish the Q4 freeze calendar","4h","In August, not November. This document does more to protect Q4 than any code you will write."],
+    ["Publish the Q4 freeze policy","4h","The rules exist already; the document does not. In August, not November — this page does more to protect Q4 than any code you will write."],
     ["Start the 14:00 triage block and daily handover","0h","Recovers the morning. Ten minutes a day, and it lands in London inboxes at 07:00 — before they have read anything else."],
     ["Build the drift checker and triage assistant","10h","The two cheapest automations with the fastest payback. Built now, they compound across every remaining sprint."],
     ["Move to the 06:00–14:30 shape with a ring-fenced buffer hour","0h","A decision, not a task. The 6.5-hour morning block only exists if the buffer hour actually absorbs the ad hoc work and the day genuinely ends at 14:30."]],
- s:"Every piece of work is on the board with a priority, an owner and a date. A signed-off baseline exists for all five stores. WIP is 2. On Hold items carry a Revisit On date. The freeze calendar has been circulated and nobody has objected."},
+ s:"Every piece of work is on the board with a priority, an owner and a date. A signed-off baseline exists for all five stores. WIP is 2. On Hold items carry a Revisit On date. The freeze policy has been circulated and nobody has objected."},
 p2:{t:"Days 31–60 · Build the structure and the leverage",h:"3 September – 2 October",
  g:"With the bleeding stopped, this month builds the parts of the system that pay back over years rather than weeks: the databases that hold knowledge, the sprint rhythm that improves itself, and the automations that buy back a working day.",
  a:[["Stand up Programmes and Learnings databases","4h","Fixes the container-card problem permanently. Also retrospectively extract the conclusions from the three heaviest comment threads — you will use the bundles findings three more times this year."],
@@ -2442,7 +2558,7 @@ var REC=[
 ["Definition of Ready and Definition of Done gates",4,2,"Week 0","Two gates. If only these hold, the board keeps telling the truth even when everything else slips."],
 ["Track reactive hours and set the escalation trigger",4,1,"Week 0","Three consecutive weeks above 8h goes to Guy as data. Pre-agreeing the trigger makes raising it a process step, not a complaint."],
 ["Sprint cadence with one process change per retro",4,3,"Week 0","The compounding mechanism. Six retros produce six improvements and a dataset about where your time actually goes."],
-["Publish the Q4 freeze calendar",5,4,"Sprint 1","Turns every late-October scope request from a negotiation into a reference to an agreed document."],
+["Publish the Q4 freeze policy",5,4,"Sprint 1","The rules are already in force; writing them down turns every late-October scope request from a negotiation into a reference to an agreed document."],
 ["Analytics baseline and measurement QA",5,8,"Sprint 1","Nothing you ship this half is provable without it, and the entire job spec is written in metrics."],
 ["Cross-store drift checker",4,6,"Sprint 1","The closest thing to a shared theme until the shared theme exists. Directly attacks the five-times multiplier."],
 ["Releases database replaces the Google Sheet",3,3,"Sprint 1","Ends the double entry and makes cross-store rollout gaps visible in one view instead of five spreadsheet tabs."],
