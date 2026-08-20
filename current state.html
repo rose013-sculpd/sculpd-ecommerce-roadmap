@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sculpd · Current State</title>
+<style>
+:root{color-scheme:light;--bg:#f9f9f7;--surf:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--mut:#898781;
+--grid:#e1e0d9;--base:#c3c2b7;--brd:rgba(11,11,11,.10);
+--c1:#2a78d6;--c2:#eb6834;--c3:#1baf7a;--c4:#eda100;--c5:#7a5cd6;--crit:#d03b3b;--warn:#c98500;--good:#0ca30c}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#0d0d0d;--surf:#1a1a19;--ink:#fff;--ink2:#c3c2b7;
+--mut:#898781;--grid:#2c2c2a;--base:#383835;--brd:rgba(255,255,255,.10);
+--c1:#3987e5;--c2:#d95926;--c3:#199e70;--c4:#c98500;--c5:#8a6ee0;--crit:#e05555;--warn:#e0a020;--good:#22b822}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+h1,h2,h3,h4{margin:0;line-height:1.25;letter-spacing:-.015em}
+h1{font-size:30px;font-weight:640}h2{font-size:21px;font-weight:620}h3{font-size:16px;font-weight:620}h4{font-size:14px;font-weight:640}
+p{margin:0 0 10px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+a{color:var(--c1)}
+header{background:var(--surf);border-bottom:1px solid var(--brd);padding:38px 0 28px}
+.kick{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:640;margin-bottom:11px}
+.sub{font-size:16px;color:var(--ink2);max-width:76ch;margin-top:13px}.sub b{color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px;margin-top:26px}
+.st{background:var(--bg);border:1px solid var(--brd);border-radius:10px;padding:16px}
+.st-v{font-size:27px;font-weight:660;letter-spacing:-.03em;line-height:1}
+.st-l{font-size:12.5px;color:var(--ink2);margin-top:7px;font-weight:540}
+.st-w{font-size:12px;color:var(--mut);margin-top:7px;line-height:1.5}
+section{padding:44px 0 6px}
+.lbl{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:640;margin-bottom:8px}
+.lede{font-size:15px;color:var(--ink2);max-width:82ch;margin:11px 0 20px}.lede b{color:var(--ink)}
+.card{background:var(--surf);border:1px solid var(--brd);border-radius:11px;padding:20px 22px;margin-bottom:15px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:13px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+.tbl th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);font-weight:640;padding:8px 9px;border-bottom:1px solid var(--base)}
+.tbl th.num{text-align:right}.tbl th.ctr{text-align:center}
+.tbl td{padding:9px;border-bottom:1px solid var(--grid);vertical-align:top}
+.tbl td.num{text-align:right;font-variant-numeric:tabular-nums}.tbl td.ctr{text-align:center}
+.tbl tbody tr:hover{background:var(--bg)}
+.why{color:var(--mut);font-size:12px;line-height:1.5}
+.tn{font-weight:560;display:block}.was{display:block;font-size:11.5px;color:var(--mut);margin-top:3px}
+.tag{display:inline-block;font-size:10.5px;font-weight:640;padding:2px 7px;border-radius:4px;white-space:nowrap}
+.p0{background:var(--crit);color:#fff}.p1{background:var(--c2);color:#fff}.p2{background:var(--c1);color:#fff}
+.p3{background:var(--c3);color:#fff}.pk{background:var(--crit);color:#fff}
+.pkd{border:1px solid var(--base);color:var(--mut)}.hold{background:var(--warn);color:#0b0b0b}
+.ok{background:var(--good);color:#fff}.new{border:1px solid var(--good);color:var(--good)}
+.note{background:var(--surf);border:1px solid var(--brd);border-left:3px solid var(--warn);border-radius:0 10px 10px 0;padding:15px 18px;font-size:13.5px;color:var(--ink2);margin:16px 0}
+.note b{color:var(--ink)}.note.bad{border-left-color:var(--crit)}.note.good{border-left-color:var(--good)}
+.sub-l{margin:6px 0 0 0;padding-left:16px;font-size:12.5px;color:var(--ink2)}
+.sub-l li{margin-bottom:3px}
+.chk{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--grid);align-items:flex-start}
+.chk:last-child{border-bottom:none}
+.chk-i{flex:none;font-size:14px;line-height:1.4}
+.chk-b{flex:1}.chk-b b{font-size:13.5px}
+.chk-b p{font-size:12.5px;color:var(--ink2);margin:2px 0 0}
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--grid);font-size:12.5px;color:var(--mut)}
+@media(max-width:720px){.tbl{font-size:12px}.why{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="kick">Snapshot &middot; regenerate every second Friday</div>
+<h1>Current State</h1>
+<div class="sub">Board counts, the open sprint, what is blocked and what is overdue &mdash; counts re-read from the live board on <b>12 August 2026</b>; sprint and velocity sections still carry the 6 August reading. <b>This is the only document in this folder allowed to go stale, and it already has. If it disagrees with the board, the board wins.</b></div>
+</div></header>
+<div class="wrap">
+<section>
+<div class="lbl">How to use this file</div>
+<h2>This is the only document allowed to go stale</h2>
+<p class="lede">Everything else in this folder is a <b>rule</b> &mdash; it is true until someone decides otherwise. This file is a <b>reading</b> &mdash; it was true at the timestamp in the header and is probably already wrong.</p>
+<div class="note"><b>Regenerate it at the Friday close-out, every fortnight.</b> Query the board, replace every number below, stamp the date. It should take ten minutes. <b>If a figure here contradicts the live board, the board wins &mdash; always.</b> Nothing in this file should ever be quoted without the date attached.</div>
+<div class="note good"><b>What belongs here, and nowhere else:</b> row counts · status and WIP counts · which sprint is open · what is blocked and for how long · which cards are overdue · velocity to date · the current placeholder and open-question list. <b>What does not belong here:</b> any rule, definition, formula or policy. Those live in the six instruction documents and do not move. Limits are quoted below <i>only as the yardstick a reading is measured against</i> &mdash; the rule that sets them lives in <b>Board Rules</b>, and if the two ever differ, Board Rules is right.</div>
+</section>
+
+<section>
+<div class="lbl">01 · Board</div>
+<h2>Counts, read 12 August 2026</h2>
+<div class="stats">
+<div class="st"><div class="st-v">63</div><div class="st-l">rows</div><div class="st-w">47 at build on 5 Aug, 50 on 6 Aug, 54 on 11 Aug, 56 on 12 Aug. Healthy range 40&ndash;70 &mdash; still inside it, at the top end.</div></div>
+<div class="st"><div class="st-v" style="color:var(--crit)">8</div><div class="st-l">In Progress <span class="why">limit 2</span></div><div class="st-w">Ten earlier on 12 Aug, now eight. First real drain since the board was built &mdash; but still four times the limit.</div></div>
+<div class="st"><div class="st-v" style="color:var(--warn)">7</div><div class="st-l">Ready <span class="why">limit 5</span></div><div class="st-w">Down from ten as three multibuy rollouts shipped. AU is the one still Ready, S1, 21 Aug target.</div></div>
+<div class="st"><div class="st-v">2</div><div class="st-l">In Review <span class="why">limit 3</span></div><div class="st-w">The Bundles componentisation question and the US Candle listicle rebuild. Within limit.</div></div>
+<div class="st"><div class="st-v" style="color:var(--crit)">11</div><div class="st-l">Blocked</div><div class="st-w">Down from 14 on 12 Aug &mdash; three cleared, one of them on 20 Aug because the flag did not survive inspection. Still nearly four times the 6 Aug figure of 3.</div></div>
+<div class="st"><div class="st-v">15</div><div class="st-l">Closed</div><div class="st-w">Six carried across from the old board. Two more closed since 12 Aug, including the two GA4 standardisation tickets.</div></div>
+</div>
+<p class="why" style="margin-top:12px">Remainder: 17 Triaged · 7 Monitoring · 4 On Hold · 2 Inbox (one is the <i>Ad Hoc · TEMPLATE</i> row) · 1 Parked · 0 Live. Statuses total 63. Triaged is where the growth is &mdash; 15 to 17 &mdash; which is intake working rather than a backlog problem, provided the Monday Triaged&rarr;Ready gate keeps holding.</p>
+<div class="note bad"><b>In Progress is at eight against a limit of two.</b> One (the Ad Hoc hub) is exempt, so the real figure is <b>seven against two</b>. This is the first genuine drain since the board was built &mdash; it had held at nine or ten through 11&ndash;12 Aug &mdash; but seven is still three and a half times the limit. The limit is the decision you keep making, not a number the tool applies.</div>
+<div class="note bad"><b>Partial refresh, 20 August 2026 (fifth pass).</b> Section 01 counts re-read from the live board after the 20 Aug sprint re-plan. <b>Sections 02, 03, 04 and 06 are eight to fourteen days stale, and section 02 in particular now describes a sprint with one working day left</b> &mdash; the full regeneration is due at the Friday 21 Aug close-out and should not be skipped again. What moved on 20 Aug: <b>three cards re-sprinted S1 &rarr; S2</b> (GA4 Setup 10h P0, GA4 purchase event 7h P0, GTM Deduplication 4h P1) after thirteen days blocked on a Shopify <i>Customer events</i> permission, under the five-day rule in Board Rules &sect;04; <b>one Blocked flag cleared</b> on [CA/EU/US] GA4 &mdash; Re-mark key events (1h), which stays in S1; <b>E7 Claude Documentation displaced S2 &rarr; S3</b>; and <b>E13's Sprint field reconciled S1 &rarr; S2</b>, closing a board-versus-Roadmap conflict open since 19 Aug. Unfinished S1 work fell from 78.5h to <b>41h</b> against one remaining working day; S2 rose to <b>62.5h of in-sprint work against 32h of capacity</b>. <b>The displacement is partly named and still 33.5h short.</b></div>
+<div class="note bad"><b>Superseded &mdash; partial refresh, 12 August 2026 (third pass).</b> Section 01 counts re-read from the live board after <i>BUG [All] PDP &mdash; Multibuy tiers render broken on iOS Safari and Chrome iOS</i> was raised, fixed and closed the same day. <b>Sections 02 and 06 still carry the 6 August reading and are six days stale</b> &mdash; the full regeneration is still due at the fortnightly close-out. Three movements are worth a look on their own: <b>Blocked is holding at 14</b> and has not moved in the twice-weekly sweep, <b>In Progress finally fell below nine</b>, and <b>a WebKit-only rendering defect reached four live storefronts</b> because the build QA was run in Chrome device-mode, which runs Blink and cannot reproduce it. That last one is a QA-surface finding, not a one-off bug. Its card is fixed and deployed but <b>held in Monitoring, not Closed</b> — the release is not yet logged with a post-deploy LCP and INP read, and the AU rollout still needs a real-device pass.</div>
+</section>
+
+<section>
+<div class="lbl">02 · Sprint</div>
+<h2>Where the plan actually is</h2>
+<div class="note bad"><b>Week 0 runs 4&ndash;7 August and has one working day left.</b> Four cards still carry the W0 sprint tag and none are closed. Two of them take <b>ninety minutes between them at 95&ndash;100% confidence.</b><br><br><b>Sprint 1 opens Monday 10 August.</b> Anything still open on Friday evening becomes Sprint 1 debt in its first hour &mdash; which is how a plan ends up a sprint behind in its second week.</div>
+<table class="tbl">
+<thead><tr><th>Carrying the W0 sprint tag, still open</th><th>Pri</th><th class="num">Eff</th><th>Why it matters that this is still open</th></tr></thead>
+<tbody>
+<tr><td><b>[All] GA4 — Data retention to 14 months</b></td><td><span class="tag p1">P1</span></td><td class="num">0.5h</td><td>Confidence 100%. Sixty seconds of clicking, five properties. <b>It is not retroactive</b> &mdash; every day it waits is a day of event-level history permanently lost. This is the most time-sensitive item in the entire plan.</td></tr>
+<tr><td><b>[CA/EU/US] GA4 — Re-mark key events to purchase only</b></td><td><span class="tag p1">P1</span></td><td class="num">1h</td><td>Until it lands, every conversion metric GA4 shows on three of five stores is meaningless.</td></tr>
+<tr><td><b>GSC Data Issues After AI Opt. Deployment</b></td><td><span class="tag p1">P1</span></td><td class="num">6h</td><td>The baselines found the daily GSC series continuous in all five properties &mdash; the fault is not visible in the data. No reproducible symptom has been recorded. Also scored P0 in the delivery plan and P1 on the board.</td></tr>
+<tr><td><b>M1 · [Shared] Adopt the shared-first build rule</b></td><td><span class="tag p3">P3</span></td><td class="num">1h</td><td>First milestone of the Shared Master Theme programme. 1h, confidence 100%, still Ready.</td></tr>
+</tbody></table>
+
+<h3 style="margin-top:24px">Sprint 1 &middot; 10&ndash;21 Aug &middot; over-committed</h3>
+<p class="why">Seven rows now carry S1: Analytics Baseline (8h) · Q4 Peak Readiness (6h) · Peak Code Freeze Policy (4h) · Bundles componentisation question (4h, pulled forward from S3 at the client's request) · GTM Deduplication (4h) · the GA4 Setup parent (10h) and its P0 child (4h). <b>That is already past 32h of capacity, before the two planned automation builds</b> (drift checker 6h, triage assistant 4h) which need 10h against 8h of contingency. <span class="why">The Bundles Stress Test was re-sprinted to S4 when the 30 September gate was added.</span></p>
+<div class="note"><b>Recommended trade:</b> build the <b>cross-store drift checker</b> and defer the triage assistant to S2. The drift checker is the only item in the plan that reduces the ~150h/year the five-store architecture costs in release overhead, and it pays back in two weeks. Push the Bundles componentisation question back to S2 unless the client needs the answer sooner than the 30 September gate requires.</div>
+</section>
+
+<section>
+<div class="lbl">03 · In Progress</div>
+<h2>Nine rows in the column, eight of them counting</h2>
+<table class="tbl">
+<thead><tr><th>Card</th><th>Pri</th><th>Sprint</th><th class="num">Eff</th><th>Recommendation</th></tr></thead>
+<tbody>
+<tr><td><b>[All] GTM Deduplication</b> <span class="tag pk">Peak</span></td><td><span class="tag p1">P1</span></td><td>S1</td><td class="num">4h</td><td style="color:var(--good);font-weight:600">Keep &mdash; the pick-up-able one</td></tr>
+<tr><td><b>[All] Shopify Bundles Stress Test</b> <span class="tag pk">Peak</span> <b>Blocked</b></td><td><span class="tag p1">P1</span></td><td>S4</td><td class="num">10h</td><td><b>Move to In Review.</b> Testing is done; what is outstanding is the written conclusion and the branch decision. Sprint is S4.</td></tr>
+<tr><td><b>GSC Data Issues After AI Opt. Deployment</b></td><td><span class="tag p1">P1</span></td><td>W0</td><td class="num">6h</td><td>Resolve or close &mdash; see above.</td></tr>
+<tr><td><b>Homepage — Sitespeed Issues</b> <span class="tag pk">Peak</span></td><td><span class="tag p2">P2</span></td><td>S2</td><td class="num">6h</td><td>Back to Ready. Re-estimated down from 10h.</td></tr>
+<tr><td><b>[All] Site Speed Optimization Opportunities</b> <span class="tag pk">Peak</span></td><td><span class="tag p2">P2</span></td><td>S2</td><td class="num">5h</td><td>Back to Ready.</td></tr>
+<tr><td><b>[AU→All] AI Search Optimization</b></td><td><span class="tag p2">P2</span></td><td>S4</td><td class="num">12h</td><td>Back to Ready. Ongoing initiative &mdash; it is not supposed to look active every day.</td></tr>
+<tr><td><b>[All] Claude Documentation — recurring</b></td><td><span class="tag p2">P2</span></td><td>S2</td><td class="num">5h</td><td><span class="tag p0">DRIFT</span> Retitled from <i>close out &mdash; timeboxed</i> to <i>recurring</i>. The plan says timebox to 5h, ship what exists and <b>close it</b>. Recurring makes the lowest-impact card on the board permanent. Revert the title.</td></tr>
+<tr><td><b>[All] Ad Hoc Requests · intake hub</b></td><td><span class="tag" style="border:1px solid var(--base);color:var(--mut)">P4</span></td><td>Ongoing</td><td class="num">&mdash;</td><td>Correct as-is &mdash; a permanent parent with no effort of its own, and not counted against WIP.</td></tr>
+<tr><td><b>Ad Hoc · 2026-08-06 · [UK] Unused app: Schema Plus for SEO</b></td><td><span class="tag" style="border:1px solid var(--base);color:var(--mut)">P4</span></td><td>S1</td><td class="num">3h</td><td>Real work, counted correctly. The intake hub working as designed &mdash; first ad hoc sub-item, captured same day.</td></tr>
+</tbody></table>
+</section>
+
+<section>
+<div class="lbl">04 · Blocked and paused</div>
+<h2>What is waiting, and on whom</h2>
+<table class="tbl">
+<thead><tr><th>Card</th><th>State</th><th>Waiting on</th></tr></thead>
+<tbody>
+<tr><td><b>[All] GA4 Setup</b> and <b>[All] GA4 — Restore purchase event</b></td><td>Ready, <b>Blocked</b>, both P0</td><td><span class="tag p0">ESCALATE</span> <b>Both P0 cards are flagged Blocked, with no blocker named.</b> Diagnosis is estimated at ~30 minutes and the likely cause &mdash; a Shopify Customer Events pixel or a GTM tag mapping &mdash; is within Rose's own control, so the flag looks wrong. Name the blocker, or clear it. <b>20 Aug update &mdash; half of this resolved the right way.</b> The purchase-event card was <b>diagnosed on 13 Aug with no new permission at all</b>, which confirms the reading above; its remaining blocker is now a single item, Shopify <i>Customer events</i> access, and the GTM debug permission was dropped because there is no GTM container. Both cards were <b>re-sprinted S1 &rarr; S2 on 20 Aug</b> after thirteen days blocked, under the five-day rule. <b>The escalation to Giles is still outstanding</b> &mdash; only the re-plan half of Board Rules &sect;04 has been done. <b>GA4 Setup's flag is the one still unexamined</b> &mdash; re-test it at Monday planning and clear it if the work is reachable without Giles, as the purchase-event card's was.</td></tr>
+<tr><td><b>[All] Shopify Bundles Stress Test</b></td><td>In Progress, <b>Blocked</b></td><td>US test fulfilment location. Gate closes 30 September.</td></tr>
+<tr><td><b>[US] PDP — Multibuy Section</b></td><td><span class="tag" style="background:var(--good);color:#fff">CLOSED 12 AUG</span></td><td>Re-scoped from five markets to US and closed on the deployment, rather than closing a five-market card with four markets unbuilt. The four regional rollouts stand alone in S1, target 21 Aug; the outstanding clay bag work moved to its own 1.5h card so it did not close with the parent.</td></tr>
+<tr><td><b>Summer Sale 2026 Price Block</b></td><td>On Hold, Revisit <b>1 Sep</b></td><td><span class="tag hold">PLACEHOLDER</span> <b>The Revisit date is knowingly wrong.</b> Thirty seconds to confirm the real campaign end date. It is the one field on the board that is deliberately incorrect.</td></tr>
+<tr><td><b>Bundles Path A</b> / <b>Path B</b></td><td>On Hold, Revisit 30 Sep</td><td>The gate. Sprint and Target Live Date deliberately empty so an unresolved branch does not consume sprint capacity. Correct as-is.</td></tr>
+<tr><td><b>Claude&ndash;Shopify Integration &amp; Workflows</b></td><td>Parked, Revisit 5 Jan</td><td>Nothing &mdash; this is the recorded open disagreement, and it is behaving correctly.</td></tr>
+</tbody></table>
+<p class="why" style="margin-top:10px">Ages above are as at the reading date. The sweep cadence and the five-day escalation threshold are in <b>Board Rules</b>.</p>
+</section>
+
+<section>
+<div class="lbl">05 · Open questions</div>
+<h2>Decisions with a date on them, and gaps with no owner</h2>
+<table class="tbl">
+<thead><tr><th>Item</th><th>Due</th><th>What is needed</th></tr></thead>
+<tbody>
+<tr><td><b>S1 displacement &mdash; unnamed</b> <span class="why">now the S2 displacement, 20 Aug</span></td><td><b>Now</b></td><td><b>20 AUG:</b> S1 ends tomorrow, so this item no longer has anywhere to go &mdash; it has become the <b>S2</b> displacement instead. 21h of permission-blocked GA4/GTM work was re-planned into S2 on 20 Aug and E13's 16.5h was reconciled into it, against one 5h cut (E7 Claude Documentation to S3). <b>S2 now carries 62.5h of in-sprint work against 32h of capacity, and 33.5h of displacement is still unnamed.</b> The original entry stands below, because the pattern is the point: this is the third sprint running in which hours were added and nothing was named as leaving. <b>Original, 11 Aug:</b> Ten hours of multibuy regional rollouts were pulled into S1 on 11 Aug. S1 was already at 24h in three cards plus two planned automation builds against 32h capacity, with both GA4 P0s still open and nine working days left. Adding 10h without naming what comes out is how a sprint becomes debt in its second week. <b>Name the displacement or move a rollout to S2.</b></td></tr>
+<tr><td><b>Multibuy rounding rule</b></td><td><b>Before the regional builds</b></td><td>Guy said round up. The live US store rounds both ways &mdash; candle 2-kit went up to $119, candle 3-kit and both PBN tiers went down &mdash; giving an effective rate of <b>12.5&ndash;13.4% against a stated 13%</b>. Four markets in four currencies are about to be built from a rule nobody has written down. Minutes to decide; expensive to unpick across five stores.</td></tr>
+<tr><td><b>Summer Sale end date &mdash; now has money on it</b></td><td><b>Now</b></td><td><span class="tag hold">ESCALATE</span> The multibuy ladder is anchored on <b>Summer Sale prices</b>, not regular prices &mdash; candle 1-kit is $68 from $90. If the tier prices are stored as fixed amounts rather than computed off the live price, <b>every multibuy price on every PDP in five markets goes wrong the day the sale ends.</b> The revert date is still the 1 September placeholder this page has flagged as knowingly wrong since 6 Aug, and 1 Sep falls three days before the E13 redesign test goes live. It stopped being a thirty-second tidy-up and became a pricing incident waiting for a date.</td></tr>
+<tr><td><b>Clay bag multibuy badge</b></td><td>Before the regional builds</td><td>The extra clay bag's 2-unit tier displays &ldquo;Save 11%&rdquo; where every other PDP displays &ldquo;Save 13%&rdquo;. The price is defensible; the badge is not consistent. Accept and document, or reprice $32 &rarr; $31.</td></tr>
+<tr><td><b>Multibuy Success Metric wording</b></td><td>Before S3</td><td>The parent and four regional cards read <i>AOV and units per order</i>. AOV was flat in the US test; the decision was taken on <b>revenue per session</b>. Five fields need a deliberate correction &mdash; recorded, not silently rewritten.</td></tr>
+<tr><td><b>Summer Sale revert date</b></td><td>Now</td><td>Thirty seconds. Replace the 1 September placeholder.</td></tr>
+<tr><td><b>GA4 purchase event</b></td><td>Now</td><td>~30 min diagnosis. Blocks ~60h of AOV work and the Bundles gate. <b>No longer blocks multibuy</b> &mdash; that test was read from Shopify&rsquo;s A/B tool, not GA4.</td></tr>
+<tr><td><b>GA4 data retention</b></td><td><b>Now</b></td><td>Sixty seconds, five properties, not retroactive. Still open with one day of W0 left.</td></tr>
+<tr><td><b>Bundles gate</b></td><td>30 Sep</td><td>Native or custom &mdash; criteria in <b>Roadmap</b>, section 05.</td></tr>
+<tr><td><b>Named freeze approver</b></td><td>Before 13 Nov</td><td><b>Not yet named.</b> An approval path with no name in it is not a path.</td></tr>
+<tr><td><b>External Shopify developer</b></td><td>Before 1 Nov</td><td>Name, rate and terms on file, even if never called.</td></tr>
+<tr><td><b>Sprint 3 re-forecast</b></td><td>18 Sep</td><td><b>No property exists for estimated-vs-actual hours.</b> Add one now, or the checkpoint has no input.</td></tr>
+<tr><td><b>Requester property</b></td><td>Now</td><td>The intake protocol assumes it exists. It does not.</td></tr>
+<tr><td><b>Database templates and automations</b></td><td>Not urgent</td><td>8 templates (~40 min) and 7&ndash;9 automations (~20 min). Worth waiting a week &mdash; build the ones you find yourself wanting.</td></tr>
+<tr><td><b>Five stores or one</b></td><td>Dec evaluation, Q2 2027 gate</td><td>Start with the five-minute question: are there separate legal entities or bank accounts per region?</td></tr>
+</tbody></table>
+</section>
+
+<section>
+<div class="lbl">06 · Velocity</div>
+<h2>No data yet, and that is the point</h2>
+<div class="note"><b>Estimated-versus-actual hours: zero cards recorded.</b> No sprint has closed, so there is no velocity reading yet and the 16h/week figure remains an assumption rather than a measurement.<br><br><b>Recording it needs a board property that does not exist.</b> The re-forecast rule and its 18 September checkpoint are in the <b>Estimation Guide</b>; this page will hold the resulting correction factor once there is one. <b>Add the property before Sprint 1 closes, or the checkpoint has no input.</b></div>
+</section>
+
+<footer>Sculpd &middot; Ecommerce Project Manager &middot; operating documentation for Rose Molina &middot; v1.7, 20 August 2026 (partial &mdash; section 01 counts, plus sections 04 and 05 where the 20 Aug re-plan touched them; fifth pass). Built from the H2 2026 delivery plan, the ecommerce operating system (rev 2), the measurement and organic search baselines, the job spec and the Notion board build record. <b>Standing rule: when the board changes, this document changes in the same session.</b></footer>
+</div>
+</body>
+</html>
