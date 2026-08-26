@@ -28,6 +28,11 @@ b{font-weight:620}
 header{background:var(--surf);border-bottom:1px solid var(--brd);padding:44px 0 32px}
 .kick{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);
 font-weight:640;margin-bottom:12px}
+.snap{background:var(--warn);color:#231a00;font-size:13.5px}
+.snap .wrap{padding-top:11px;padding-bottom:11px;line-height:1.55}
+.snap b{font-weight:700}
+.snap a{color:#231a00;text-decoration:underline;text-decoration-color:rgba(35,26,0,.45)}
+.snap a:hover{text-decoration-color:#231a00}
 .sub{font-size:17px;color:var(--ink2);max-width:76ch;margin-top:14px}
 .sub b{color:var(--ink);font-weight:620}
 
@@ -188,8 +193,15 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--grid);font-si
 </style></head><body>
 <div id="tip"></div>
 
+<div class="snap"><div class="wrap">
+  📌 <b>Snapshot, not live.</b> This document reflects the board as of <b>5 August 2026</b>. Notion is the
+  source of truth for current status, sprint contents and priority — see the
+  <a href="https://app.notion.com/p/3b361234186581bcbe32e78f8133cfb9" target="_blank" rel="noopener">2026 Ecommerce Roadmap board</a>.
+  This document is refreshed at sprint boundaries or when the underlying roadmap logic changes (a new policy,
+  a schema change, a decision gate resolving) — not for routine ticket movement.
+</div></div>
 <header><div class="wrap">
-  <div class="kick">Sculpd · Ecommerce Manager · Rose Molina · 4 August 2026 · revision 2</div>
+  <div class="kick">Sculpd · Ecommerce Manager · Rose Molina · 4 August 2026 · revision 2 · last synced to Notion 5 August 2026</div>
   <h1>The Ecommerce Operating System</h1>
   <p class="sub">The job spec describes <b>a department</b>. You are one person, in Manila, supporting
   five storefronts for stakeholders in London and Los Angeles, with <b>101 days until code freeze</b>.
