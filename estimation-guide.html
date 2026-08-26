@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sculpd · Estimation Guide</title>
+<style>
+:root{color-scheme:light;--bg:#f9f9f7;--surf:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--mut:#898781;
+--grid:#e1e0d9;--base:#c3c2b7;--brd:rgba(11,11,11,.10);
+--c1:#2a78d6;--c2:#eb6834;--c3:#1baf7a;--c4:#eda100;--c5:#7a5cd6;--crit:#d03b3b;--warn:#c98500;--good:#0ca30c}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#0d0d0d;--surf:#1a1a19;--ink:#fff;--ink2:#c3c2b7;
+--mut:#898781;--grid:#2c2c2a;--base:#383835;--brd:rgba(255,255,255,.10);
+--c1:#3987e5;--c2:#d95926;--c3:#199e70;--c4:#c98500;--c5:#8a6ee0;--crit:#e05555;--warn:#e0a020;--good:#22b822}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
+h1,h2,h3,h4{margin:0;line-height:1.25;letter-spacing:-.015em}
+h1{font-size:30px;font-weight:640}h2{font-size:21px;font-weight:620}h3{font-size:16px;font-weight:620}h4{font-size:14px;font-weight:640}
+p{margin:0 0 10px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+a{color:var(--c1)}
+header{background:var(--surf);border-bottom:1px solid var(--brd);padding:38px 0 28px}
+.kick{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:640;margin-bottom:11px}
+.sub{font-size:16px;color:var(--ink2);max-width:76ch;margin-top:13px}.sub b{color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px;margin-top:26px}
+.st{background:var(--bg);border:1px solid var(--brd);border-radius:10px;padding:16px}
+.st-v{font-size:27px;font-weight:660;letter-spacing:-.03em;line-height:1}
+.st-l{font-size:12.5px;color:var(--ink2);margin-top:7px;font-weight:540}
+.st-w{font-size:12px;color:var(--mut);margin-top:7px;line-height:1.5}
+section{padding:44px 0 6px}
+.lbl{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:640;margin-bottom:8px}
+.lede{font-size:15px;color:var(--ink2);max-width:82ch;margin:11px 0 20px}.lede b{color:var(--ink)}
+.card{background:var(--surf);border:1px solid var(--brd);border-radius:11px;padding:20px 22px;margin-bottom:15px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:13px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+.tbl th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);font-weight:640;padding:8px 9px;border-bottom:1px solid var(--base)}
+.tbl th.num{text-align:right}.tbl th.ctr{text-align:center}
+.tbl td{padding:9px;border-bottom:1px solid var(--grid);vertical-align:top}
+.tbl td.num{text-align:right;font-variant-numeric:tabular-nums}.tbl td.ctr{text-align:center}
+.tbl tbody tr:hover{background:var(--bg)}
+.why{color:var(--mut);font-size:12px;line-height:1.5}
+.tn{font-weight:560;display:block}.was{display:block;font-size:11.5px;color:var(--mut);margin-top:3px}
+.tag{display:inline-block;font-size:10.5px;font-weight:640;padding:2px 7px;border-radius:4px;white-space:nowrap}
+.p0{background:var(--crit);color:#fff}.p1{background:var(--c2);color:#fff}.p2{background:var(--c1);color:#fff}
+.p3{background:var(--c3);color:#fff}.pk{background:var(--crit);color:#fff}
+.pkd{border:1px solid var(--base);color:var(--mut)}.hold{background:var(--warn);color:#0b0b0b}
+.ok{background:var(--good);color:#fff}.new{border:1px solid var(--good);color:var(--good)}
+.note{background:var(--surf);border:1px solid var(--brd);border-left:3px solid var(--warn);border-radius:0 10px 10px 0;padding:15px 18px;font-size:13.5px;color:var(--ink2);margin:16px 0}
+.note b{color:var(--ink)}.note.bad{border-left-color:var(--crit)}.note.good{border-left-color:var(--good)}
+.sub-l{margin:6px 0 0 0;padding-left:16px;font-size:12.5px;color:var(--ink2)}
+.sub-l li{margin-bottom:3px}
+.chk{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--grid);align-items:flex-start}
+.chk:last-child{border-bottom:none}
+.chk-i{flex:none;font-size:14px;line-height:1.4}
+.chk-b{flex:1}.chk-b b{font-size:13.5px}
+.chk-b p{font-size:12.5px;color:var(--ink2);margin:2px 0 0}
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--grid);font-size:12.5px;color:var(--mut)}
+@media(max-width:720px){.tbl{font-size:12px}.why{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="kick">Instruction document &middot; 03 of 06</div>
+<h1>Estimation Guide</h1>
+<div class="sub">Impact, Effort and Confidence; the Score formula; what a sprint can actually hold; and the re&#8209;forecast that replaces every assumption on this page with a measurement at the end of Sprint&nbsp;3.</div>
+</div></header>
+<div class="wrap">
+<section>
+<div class="lbl">01 · The three numbers</div>
+<h2>Impact, Effort, Confidence</h2>
+<p class="lede">Every scored card carries three numbers and one formula. <b>No t-shirt sizes anywhere</b> &mdash; estimates are in hours, because hours are the only unit that can be checked against a calendar.</p>
+
+<h3 style="margin-top:16px">Impact &mdash; 1 to 5</h3>
+<table class="tbl">
+<thead><tr><th class="ctr">Score</th><th>Meaning</th><th>Examples on the current board</th></tr></thead>
+<tbody>
+<tr><td class="ctr"><b>5</b></td><td>Directly moves CVR, AOV or RPV across the estate, or prevents losing the peak</td><td>PDP Multibuy · Gift Builder · Cart &amp; post-purchase upsells · BFCM merchandising build · Analytics Baseline · Peak QA Pass · CRO programme</td></tr>
+<tr><td class="ctr"><b>4</b></td><td>Moves a commercial metric on one store, or protects a measurable one</td><td>Homepage sitespeed · Site speed programme · GTM dedup · Load &amp; stress test · SEO on-page · AI search</td></tr>
+<tr><td class="ctr"><b>3</b></td><td>Real value, indirect or single-surface</td><td>Stord gift message block · App stack audit · Agentic release assessment</td></tr>
+<tr><td class="ctr"><b>2</b></td><td>Useful; nobody would notice for a quarter if it slipped</td><td>Claude documentation close-out</td></tr>
+<tr><td class="ctr"><b>1</b></td><td>Housekeeping. Should probably be a recurring block, not a card</td><td>&mdash;</td></tr>
+</tbody></table>
+
+<h3 style="margin-top:24px">Effort &mdash; hours, and what counts</h3>
+<div class="card">
+<p><b>Hours of focused project time: briefing, build or supervision, QA, launch, write-up.</b> Not elapsed days. Not somebody else's estimate &mdash; yours.</p>
+<p class="why"><b>Over 16 hours means break it up.</b> A 20-hour card is not an estimate, it is a container. <b>Two cards currently break this rule</b> &mdash; the 20h Gift Builder in S5 and the 24h BFCM merchandising build in S6. Both should be split into sub-items before their sprint opens; the Gift Builder is the single largest risk in the plan for exactly this reason.</p>
+<p class="why" style="margin-top:8px"><b>Effort means different things by Work Type.</b> On a One-off it is hours to finish. On an <b>Ongoing initiative it is hours timeboxed to this sprint</b> &mdash; the remainder carries into the next timebox rather than disappearing. On a Reversible campaign change it includes the hours to revert.</p>
+</div>
+
+<h3 style="margin-top:24px">Confidence &mdash; percent</h3>
+<div class="card">
+<p>How sure you are of the <i>effort</i>, not of the outcome. It is judgement, not measurement, and it is allowed to be wrong &mdash; that is what the re-forecast is for.</p>
+<table class="tbl" style="margin-top:10px">
+<tbody>
+<tr><td class="ctr" style="width:80px"><b>90&ndash;100%</b></td><td>Done this exact thing before, on this theme. Board examples: board rebuild 100%, freeze comms 95%, Stord gift message 95%.</td></tr>
+<tr><td class="ctr"><b>75&ndash;89%</b></td><td>Known pattern, unknown surface. Multibuy 85%, Bundles stress test 85%, SEO on-page 80%.</td></tr>
+<tr><td class="ctr"><b>60&ndash;74%</b></td><td>Genuine unknowns, or a third party in the path. AI Search 70%, Gift Builder 70%, Site Speed triage 70&ndash;72%.</td></tr>
+<tr><td class="ctr"><b>&lt; 60%</b></td><td>You are estimating a research task. <b>Timebox it and produce a written output instead of a build.</b> The Agentic Release assessment sits at 50% and is scoped to 4h and a go/no-go.</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<section>
+<div class="lbl">02 · The formula</div>
+<h2>Score = value per hour</h2>
+<div class="card" style="text-align:center;padding:30px">
+<div class="mono" style="font-size:17px">round( Impact &times; Confidence &divide; Effort )</div>
+<p class="why" style="margin-top:10px;font-size:12px"><b>Confidence is entered as 0&ndash;100, not as a decimal.</b> Entering 0.85 instead of 85 silently produces a Score of 0. The build spec writes this formula with a &times;100 on the end, which is correct only if Confidence is stored as a decimal &mdash; on the live board it is not.</p>
+<p class="why" style="margin-top:14px;max-width:60ch;margin-left:auto;margin-right:auto"><b>Sort by it when you genuinely cannot choose. Ignore it when a date or a dependency decides for you.</b></p>
+</div>
+<div class="note"><b>The formula rewards small and certain, and it should.</b> Excluding the board rebuild itself (100), the top scores are the Stord gift message block and the freeze runbook, both at <b>95</b> &mdash; the Stord card is three hours, 95% confident, a gifting feature switched off going into a gifting quarter. The lowest is the Gift Builder at <b>18</b>, which is nonetheless the most commercially important build in H2. <b>Score is a tie-breaker, not a plan.</b> The peak critical path outranks it; a fixed external date outranks it; a dependency outranks it.</div>
+
+<h3 style="margin-top:24px">Worked example</h3>
+<div class="card">
+<p class="mono" style="font-size:13px">Cart &amp; Post-Purchase Upsell / Cross-Sell<br>Impact 5 &nbsp;·&nbsp; Effort 12h &nbsp;·&nbsp; Confidence 75<br>5 × 75 ÷ 12 = <b>31</b></p>
+<p class="why" style="margin-top:10px">Scores below Site Speed top-fixes (75) and the App Stack Audit (42) &mdash; both of which are cheaper per hour. It is still scheduled first, because it is on the peak critical path with a 2 October live date and the two cheaper cards are not. <b>That is the formula being ignored correctly.</b></p>
+</div>
+</section>
+
+<section>
+<div class="lbl">03 · Capacity</div>
+<h2>What actually exists to spend</h2>
+<div class="stats">
+<div class="st"><div class="st-v">40h</div><div class="st-l">Working week</div><div class="st-w">06:00&ndash;14:30 Manila, 8h/day. Monday runs to 17:00 for the London hour and starts at 07:00 to compensate.</div></div>
+<div class="st"><div class="st-v">23h</div><div class="st-l">Non-negotiable BAU</div><div class="st-w">Committed before any roadmap work exists.</div></div>
+<div class="st"><div class="st-v">16h</div><div class="st-l">Planned roadmap build</div><div class="st-w">The real number. Publish it. Every scope conversation starts here.</div></div>
+<div class="st"><div class="st-v">32h</div><div class="st-l">Sprint capacity</div><div class="st-w">2 &times; 16h over the fortnight.</div></div>
+<div class="st"><div class="st-v">26h</div><div class="st-l">Sprint <b>commitment</b></div><div class="st-w">The remaining 6h is not spare &mdash; it is what lets the sprint survive a bad Tuesday.</div></div>
+</div>
+
+<h3 style="margin-top:26px">The 23 hours that are gone before you start</h3>
+<table class="tbl">
+<thead><tr><th>Block</th><th class="num">Hours/week</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td>BAU merchandising &amp; site management</td><td class="num">6</td><td>Across five storefronts</td></tr>
+<tr><td>Comms, meetings, client &amp; stakeholder admin</td><td class="num">5</td><td>London and Los Angeles</td></tr>
+<tr><td>Reactive buffer (unplanned urgent)</td><td class="num">4</td><td>The delivery plan&rsquo;s figure. The capacity model in section 06 uses <b>8h</b> &mdash; 5h of ring-fenced buffer hour plus 3h/week of honest bleed into the morning. <b>Plan on 8; report against 4 and the escalation trigger fires constantly.</b></td></tr>
+<tr><td>Bug triage &amp; routine QA</td><td class="num">3</td><td></td></tr>
+<tr><td>CRO programme run-rate</td><td class="num">3</td><td>Live from Sprint 3</td></tr>
+<tr><td>Trading &amp; performance reporting</td><td class="num">2</td><td>Live from Sprint 2; drops to ~1h once the reporting pack is built</td></tr>
+<tr><td><b>Total BAU</b></td><td class="num"><b>23</b></td><td>Leaves 17h; <b>planned at 16h</b> to keep a margin</td></tr>
+</tbody></table>
+
+<div class="note bad"><b>Plan at 80%, not 96%.</b> H2 as scoped is <b>239.5 hours against 244 hours of capacity &mdash; 98% utilisation, with 4.5 hours of contingency across the entire run</b> (was 217h / 89% / 27h until the 16.5h PDP redesign A/B test was added on 11 August, then 233.5h / 96% / 10.5h until the 6h Okendo review consolidation was added on 19 August). <b>Stamped 20 Aug, and the reason matters:</b> this page read 233.5h while the Roadmap read 239.5h for eight days, because the documentation round-trip rule in Board Rules &sect;10 did not close when E14 was added. The arithmetic was never in dispute &mdash; the stamp was missing. Above roughly 80% utilisation, waiting time grows non-linearly: one week of illness or one real emergency eats most of Sprint 1's reserve. At 96% there is very little left to eat. <b>Week 0, Sprint 4 and Sprint 5 carry no contingency at all, and Sprint 2 is now 36.5h over.</b> <b style="color:#b00">22 Aug: two hours of run contingency is not contingency.</b> It is a rounding error against a 244h run, and it means the next unplanned hour comes out of committed work by definition rather than by decision. Nothing further should enter H2 without something leaving it. <b>20 Aug:</b> the displacement was partly named for the first time &mdash; E7 Claude Documentation (5h) moved S2 &rarr; S3 &mdash; but 21h of permission-blocked GA4/GTM work was re-planned into S2 from S1 in the same session under Board Rules &sect;04, and E13&rsquo;s Sprint field was reconciled S1 &rarr; S2. Nothing entered or left H2, so the totals above hold; what changed is which sprint carries the load. <b>33.5h of S2 displacement is still open and belongs at Monday 24 Aug planning.</b> <b>22 Aug:</b> +1.5h for the multibuy one-month re-read, then &minus;2.5h when E13 was re-scoped from an A/B test to a straight ship &mdash; net 240.5h &rarr; 239.5h, contingency 3.5h &rarr; 4.5h. <b>That is the first time hours have left this plan rather than entered it since the board was built</b>, and it happened by cancelling a test rather than by cutting scope. Separately, and more seriously for this page &mdash; <b>27h of listicle landing-page cards sat on the board from 13&ndash;14 August and never reached this document or the Roadmap.</b> They are not added to the figure above because the work is now delivered and in Monitoring, so it is not forward commitment. What it cost is recorded instead: <b>17.83h, almost all inside Sprint 1</b>, in a sprint already at 32h of cards against 32h of capacity. A utilisation figure that omits a live workstream for nine days is not a capacity plan, it is a wish. <b>The lesson for this page is not arithmetic &mdash; it is that the round-trip rule failing silently is what makes the 80% target unenforceable.</b></div>
+</section>
+
+<section>
+<div class="lbl">04 · Rules</div>
+<h2>Eight estimation rules</h2>
+<div class="card">
+<div class="chk"><div class="chk-i"><b>1</b></div><div class="chk-b"><b>Estimate before starting, always, even roughly.</b><p>An unestimated ticket cannot be traded against anything &mdash; which means it wins every argument by default.</p></div></div>
+<div class="chk"><div class="chk-i"><b>2</b></div><div class="chk-b"><b>Over 16 hours means break it up.</b><p>Into a parent plus sub-items, two levels deep, each with its own effort and its own success metric.</p></div></div>
+<div class="chk"><div class="chk-i"><b>3</b></div><div class="chk-b"><b>Commit 26 of 32 hours.</b><p>The 6h gap is structural, not slack to be filled at planning.</p></div></div>
+<div class="chk"><div class="chk-i"><b>4</b></div><div class="chk-b"><b>Honour the quotas: 20% P3, 10% P5.</b><p>They do not get traded away for a P2. That is the entire point of a quota.</p></div></div>
+<div class="chk"><div class="chk-i"><b>5</b></div><div class="chk-b"><b>Record estimated versus actual hours on every closed card.</b><p>No exceptions, including on cards that came in early.</p></div></div>
+<div class="chk"><div class="chk-i"><b>6</b></div><div class="chk-b"><b>Re-forecast once, at the end of Sprint 3 &mdash; 18 September.</b><p>Three sprints of estimate-versus-actual gives a correction factor. Apply it to the whole remaining plan in one pass. <b>The scoped figure &mdash; 239.5h as at 22 Aug &mdash; could be 30% out in either direction until then.</b> If you are more than one sprint behind at that checkpoint, the Gift Builder does not make the peak window &mdash; and that is a decision to take in September, not to discover in October.</p></div></div>
+<div class="chk"><div class="chk-i"><b>7</b></div><div class="chk-b"><b>Budget 10% of any time an automation saves back into maintaining it.</b><p>The twelve ranked automations return roughly 11h/week by Q1 2027; plan on 10.</p></div></div>
+<div class="chk"><div class="chk-i"><b>8</b></div><div class="chk-b"><b>No holiday is modelled.</b><p>A week off is 16 build hours out of the plan and something has to move &mdash; most cheaply from Tier 4 compounding growth, never from Tier 1 or Tier 3.</p></div></div>
+</div>
+</section>
+
+<section>
+<div class="lbl">05 · WIP</div>
+<h2>Limits, because capacity is not the only constraint</h2>
+<div class="grid2">
+<div class="card"><div class="st-v">2</div><div class="st-l">In Progress</div><p class="st-w"><b>One deep, one pick-up-able.</b> Down from six. This single change is worth more than any estimation refinement on this page.</p></div>
+<div class="card"><div class="st-v">3</div><div class="st-l">In Review</div><p class="st-w">More than three waiting means <b>chase, do not start</b>.</p></div>
+<div class="card"><div class="st-v">5</div><div class="st-l">Ready</div><p class="st-w">More than five Ready cards means the Definition of Ready is being applied to work you have no intention of starting.</p></div>
+<div class="card"><div class="st-v">1</div><div class="st-l">Programme in build</div><p class="st-w">One multi-sprint initiative actively consuming hours at a time.</p></div>
+</div>
+<p class="why" style="margin-top:12px">Notion cannot block a third In Progress card. Put a rollup count on the Sprint page with a formula that turns red above 2, and treat red as a stop signal rather than a decoration.</p>
+</section>
+
+<section>
+<div class="lbl">06 · Capacity modes</div>
+<h2>The 40 hours are allocated differently four times a year</h2>
+<table class="tbl">
+<thead><tr><th>Block</th><th class="num">Normal<br>Aug&ndash;Sep</th><th class="num">Campaign<br>Oct&ndash;early Nov</th><th class="num">Freeze &amp; peak<br>13 Nov&ndash;31 Dec</th><th class="num">Recovery<br>January</th></tr></thead>
+<tbody>
+<tr><td><b>Planned roadmap build</b></td><td class="num"><b>16</b></td><td class="num"><b>4</b></td><td class="num">0</td><td class="num">10</td></tr>
+<tr><td>Trading, campaign &amp; merchandising</td><td class="num">4</td><td class="num">16</td><td class="num">10</td><td class="num">4</td></tr>
+<tr><td>Release, QA &amp; cross-store deploy</td><td class="num">5</td><td class="num">8</td><td class="num">&mdash;</td><td class="num">&mdash;</td></tr>
+<tr><td>Monitoring &amp; incident standby</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">10</td><td class="num">&mdash;</td></tr>
+<tr><td>Technical debt &amp; theme consolidation</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">12</td></tr>
+<tr><td>Documentation, learnings, planning</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">8</td><td class="num">8</td></tr>
+<tr><td>Buffer</td><td class="num">5</td><td class="num">5</td><td class="num">5</td><td class="num">5</td></tr>
+<tr><td>Reactive bleed</td><td class="num">3</td><td class="num">3</td><td class="num">&mdash;</td><td class="num">&mdash;</td></tr>
+<tr><td>Steering</td><td class="num">5</td><td class="num">3</td><td class="num">2</td><td class="num">&mdash;</td></tr>
+<tr><td>Contingency / reserved</td><td class="num">2</td><td class="num">1</td><td class="num">5</td><td class="num">1</td></tr>
+<tr><td><b>Total</b></td><td class="num"><b>40</b></td><td class="num"><b>40</b></td><td class="num"><b>40</b></td><td class="num"><b>40</b></td></tr>
+</tbody></table>
+<div class="note"><b>The planned build number is the one that moves.</b> 16 hours a week in August becomes 4 in October and 0 through the freeze. A roadmap request made in October is not competing with other roadmap work &mdash; it is competing with peak. Saying so with this table on screen is a shorter conversation than saying it with a calendar.</div>
+</section>
+
+<section>
+<div class="lbl">07 · Automation payback</div>
+<h2>Estimating what to build for yourself</h2>
+<p class="lede">Twelve automations, ranked by payback. <b>Do not build automation during Sprints 5 to 7</b> &mdash; the last sensible moment to build tooling is Sprint 4.</p><div class="note"><b>One row breaks that rule and the source is inconsistent about it.</b> Anomaly monitoring is scheduled for S6 and also listed as an S6 deliverable in the sprint plan, while the same document says not to build automation after S4. <b>Treat S4 as the deadline and pull anomaly monitoring forward</b>, or accept it as a deliberate exception and say so &mdash; but do not leave it as an unnoticed contradiction going into peak.</div>
+<table class="tbl">
+<thead><tr><th>#</th><th>Automation</th><th class="num">Saves/wk</th><th class="num">Build</th><th class="num">Payback</th><th>When</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Cross-store drift checker</td><td class="num">3h</td><td class="num">6h</td><td class="num">2 wks</td><td>S1</td></tr>
+<tr><td>2</td><td>Automated QA regression sweep</td><td class="num">4h<span class="why"> per release cycle</span></td><td class="num">12h</td><td class="num">3 wks</td><td>S3&ndash;4 <span class="why">must exist before S7</span></td></tr>
+<tr><td>3</td><td>Weekly reporting pack</td><td class="num">3h</td><td class="num">8h</td><td class="num">3 wks</td><td>S2</td></tr>
+<tr><td>4</td><td>Ticket triage assistant</td><td class="num">1.5h</td><td class="num">4h</td><td class="num">3 wks</td><td>S1</td></tr>
+<tr><td>5</td><td>Alt-text and metafield sync</td><td class="num">1.5h</td><td class="num">3h</td><td class="num">2 wks</td><td>S2</td></tr>
+<tr><td>6</td><td>Schema generator and validator</td><td class="num">1h</td><td class="num">5h</td><td class="num">5 wks</td><td>S4</td></tr>
+<tr><td>7</td><td>Release notes &amp; documentation drafting</td><td class="num">1h</td><td class="num">3h</td><td class="num">3 wks</td><td>S3</td></tr>
+<tr><td>8</td><td>Site audit &mdash; finish validating</td><td class="num">2h</td><td class="num">6h</td><td class="num">3 wks</td><td>S2</td></tr>
+<tr><td>9</td><td>Anomaly monitoring &amp; alerting</td><td class="num">1h</td><td class="num">6h</td><td class="num">6 wks</td><td>S6</td></tr>
+<tr><td>10</td><td>Code review on theme diffs</td><td class="num">1h</td><td class="num">4h</td><td class="num">4 wks</td><td>Q1 2027</td></tr>
+<tr><td>11</td><td>CRO hypothesis generation</td><td class="num">1h</td><td class="num">5h</td><td class="num">5 wks</td><td>Q1 2027</td></tr>
+<tr><td>12</td><td>AI-search visibility monitor</td><td class="num">0.5h</td><td class="num">4h</td><td class="num">8 wks</td><td>Q1 2027</td></tr>
+</tbody></table>
+<p class="why" style="margin-top:10px">The source plan states <b>6.5h/week from the first four</b> and <b>~11h/week</b> for the full set, less 10% reinvested in upkeep. The per-row figures above sum higher (11.5h and 20.5h) because several overlap and one is per release cycle rather than per week. <b>Plan on the stated 6.5h and 11h</b>; treat the row figures as the case for building each one, not as an addable total.</p>
+</section>
+
+<footer>Sculpd &middot; Ecommerce Project Manager &middot; operating documentation for Rose Molina &middot; v1.8, 26 August 2026. Built from the H2 2026 delivery plan, the ecommerce operating system (rev 2), the measurement and organic search baselines, the job spec and the Notion board build record. <b>Standing rule: when the board changes, this document changes in the same session.</b><br>v1.2 &mdash; 11 Aug 2026: scoped hours 217h &rarr; 233.5h and utilisation 89% &rarr; 96% after the 16.5h PDP redesign A/B test was added to the board. Contingency across the run 27h &rarr; 10.5h. No rule, formula or quota on this page changed &mdash; but note the redesign card is a recorded, deliberate exception to &ldquo;over 16h means break it up&rdquo;: it sits at 16.5h as a single card with its stages as a checklist, at Rose's instruction, with the reasoning in its Decision Log. Revisit the split if the build passes ~20h.<br><br>v1.3 &mdash; 20 Aug 2026: <b>stamp closed, and Sprint 2 re-read.</b> Scoped H2 hours 233.5h &rarr; <b>239.5h</b>, utilisation 96% &rarr; <b>98%</b>, run contingency 10.5h &rarr; <b>4.5h</b>. <b>This is not new work</b> &mdash; it is the 6h Okendo review consolidation added to the board on 19 Aug and reflected in Roadmap v1.6 the same day, while this page went unstamped for eight days. The disagreement the E13a card recorded on 20 Aug is therefore closed by stamping, not by choosing a number, exactly as that card said it should be. Sprint 2 restated 13.5h over &rarr; <b>35.5h over</b> following the 20 Aug re-plan: E7 Claude Documentation (5h) out to S3, 21h of permission-blocked GA4/GTM work in from S1, and E13&rsquo;s 16.5h reconciled into S2. <b>No rule, formula, quota, WIP limit or capacity mode on this page changed.</b> The 26-of-32 commitment rule is what the 35.5h is measured against, and it is being broken by a wide margin &mdash; the trade is still owed.<br><br>v1.4 &mdash; 20 Aug 2026: <b>the first measurement on this page.</b> Five cards have closed with actual hours recorded: the iOS multibuy render defect at <b>3h against a 3h estimate</b>, and the four regional multibuy rollouts at <b>6.5h against a 10h estimate</b>. Thirteen hours estimated, <b>9.5h actual &mdash; 27% under</b>. <b>The rollout under-run has a specific cause, not general optimism.</b> Four near-identical regional builds were priced at 2.5h each because one region costs 2.5h. Run as a batch they cost 1.5h of deployment per region plus 0.5h for all four reports. Regions two to four are mostly repetition and the estimate did not model it. <b>Consequence for the 18 September re-forecast, stated now so it is not mis-applied later:</b> this is a <i>batching</i> correction for replicated multi-store work. It applies to rollouts &mdash; regional builds, the M-series shared-theme milestones. It does NOT apply to the 20h Gift Builder or the 24h BFCM build, which are single-surface builds with no repetition to recover. One global factor derived partly from these four cards would understate both. <b>Scoped hours 239.5h &rarr; 240.5h, utilisation 98% &rarr; 99%, run contingency 4.5h &rarr; 3.5h</b>, after the 1h EU/CA translation app pass was added as the successor row to the four closed rollouts. That breaks the rule at the foot of &sect;03 &mdash; nothing enters H2 without something leaving it &mdash; deliberately and in the open: the alternative was closing two cards on a live customer-facing gap with no row to carry it. <b>No rule, formula, quota, WIP limit or capacity mode changed.</b> Rule 5 now has somewhere to write to, and rule 6 has its first data against a target of three sprints.<br><br>v1.5 &mdash; 22 Aug 2026: <b>two new correction factors, one data point that must be excluded, and two faults found in the actuals column itself.</b><br><br><b>Scoped hours 240.5h &rarr; 242h, utilisation 99%, run contingency 3.5h &rarr; 2h</b>, after the 1.5h multibuy one-month re-read was added to the board (Roadmap v1.9 had recorded that re-read as deliberately <i>not</i> opened as a row; it has since been opened, and the board wins). <b>No rule, formula, quota, WIP limit or capacity mode on this page changed.</b><br><br><b>The listicle landing-page workstream is deliberately not in the 242h.</b> Three rebuilds &mdash; Candle Making Kit, Paint by Numbers and Pottery Kit &mdash; shipped to all five storefronts on 21&ndash;22 Aug and are in Monitoring, so they are delivered rather than forward work. But the Candle (16h) and PBN (5.5h) cards were created on 13 August and the A/B test card on 14 August, and <b>none of the three ever reached this page or the Roadmap &mdash; nine days against a same-session rule.</b> Measured cost <b>17.83h, almost entirely inside Sprint 1</b>, which this page already scoped at 32h of cards against 32h of capacity. Nothing was named as leaving. Fourth consecutive sprint.<br><br><b>TWO NEW BATCHING RATES, for rule 6 at the 18 September checkpoint.</b> Deployment of a finished shared-theme template to an additional storefront: <b>0.67h per template per region</b> &mdash; measured as 2h per region covering all three listicle templates across UK, EU, CA and AU, image alt text included. QA of a shipped template: <b>0.17h per template per site</b> &mdash; measured as 0.5h per site, desktop and mobile, covering all three pages. <b>Same family as the v1.4 multibuy correction and subject to the same warning:</b> these are batching factors for replicated multi-store work &mdash; regional rollouts and the M-series shared-theme milestones. They do NOT apply to the 20h Gift Builder or the 24h BFCM build. Applying one global factor derived partly from these cards would understate both.<br><br><b>ONE DATA POINT THAT MUST BE EXCLUDED FROM ANY AVERAGE.</b> <i>ABTEST [US] Listicle LP &mdash; Candle Making Kit</i> closed at <b>0.5h against a 5.5h estimate &mdash; 91% under</b>. That is not an estimating error. The 5.5h priced a test that was designed, gated and then <b>cancelled before it was built</b>; the 0.5h is a Shopify traffic export and the write-up. Classify it <i>cancelled-before-build</i>. Fed in raw it would drag the correction factor toward optimism on the strength of work that never happened. <b>The honest closed dataset therefore stays at five cards &mdash; 13h estimated, 9.5h actual, 27% under &mdash; unchanged from v1.4.</b><br><br><b>THE MOST INSTRUCTIVE CARD ON THE BOARD, and a warning about how rule 6 is applied.</b> Paint by Numbers came in at <b>4.5h against 5.5h &mdash; 18% under</b>, which reads as a good estimate. It was two bad ones that cancelled. Adaptation was over-estimated <b>3h &rarr; 1h</b>, because reusing finished shared-theme sections is far cheaper than the brief assumed. Rollout was under-estimated <b>1h &rarr; 2.67h</b>, because a five-store rollout was priced as a single activity rather than four regional deployments. <b>A re-forecast that compares card totals will not see this.</b> Rule 6 should be applied to line items where they exist, not only to card-level variance.<br><br><b>TWO FAULTS IN THE ACTUALS COLUMN, found 22 Aug and both corrected on the card.</b> (1) The Candle card&rsquo;s 13 Aug entry recorded &ldquo;6.5h actual&rdquo; as 5h 20m of build <b>plus 1h 10m of QA explicitly marked <i>outstanding</i></b> &mdash; an unspent estimate sitting in the actuals. (2) That card&rsquo;s <i>actual</i> had been written into the <span class="mono">Effort (h)</span> <i>estimate</i> field, because <span class="mono">Actual (h)</span> did not exist before 20 August. <b>Any card touched before 20 August may carry either fault, and rule 5 reads both columns as though they were clean.</b> That sweep now sits alongside the fifteen-card back-fill as a precondition for trusting the 18 September re-forecast &mdash; and the back-fill is the larger job of the two.<br><br><b>Not yet counted:</b> the three listicle cards are in Monitoring and do not enter the velocity dataset until they close, earliest Friday 4 September. Their combined reading when they do &mdash; excluding Pottery&rsquo;s retrospective estimate, which measures nothing &mdash; is <b>21.5h estimated against 13.33h actual, 38% under</b>.<br><br>v1.6 &mdash; 22 Aug 2026, same session: <b>hours leave the plan for the first time.</b> E13 was re-scoped from <i>[US] PDP CRO Components &mdash; Full redesign vs multibuy control</i> to <i>&mdash; Full redesign</i>: the A/B test is cancelled and the build ships to 100% instead. <b>Effort 16.5h &rarr; 14h</b>, removing 0.5h of test setup and 2h of read-and-write-up; build-and-QA unchanged at 14h. <b>Scoped hours 242h &rarr; 239.5h, utilisation 99% &rarr; 98%, run contingency 2h &rarr; 4.5h, S2 down 2.5h</b> from 36.5h over. <b>No rule, formula, quota, WIP limit or capacity mode changed.</b> E13a&rsquo;s 2h remains nested inside E13&rsquo;s figure per the 20 Aug decision, so the S2 effort column still must not be summed.<br><br><b>Worth naming for what it is:</b> every capacity movement recorded on this page since 11 August has been in one direction, and the standing rule at the foot of &sect;03 &mdash; nothing enters H2 without something leaving it &mdash; has been broken repeatedly and in the open. This is the first reversal, and it did not come from cutting scope. <b>It came from cancelling a measurement.</b> The 2.5h returned is the cost of finding out whether the redesign works, and it is worth being honest that the contingency improvement and the loss of the read are the same transaction.<br><br><b>One estimate is now knowingly wrong and is deliberately not being corrected here.</b> <i>[All] Analytics &mdash; Multibuy one-month re-read</i> carries 1.5h and 90% confidence. The 22 Aug decision to read all six live multibuy templates rather than the three the 11 August approval named makes re-running the 5&ndash;11 Aug pre-window on the wider filter, in all five markets, mandatory &mdash; work the 1.5h never covered. Rule 5 and the estimate-must-be-yours rule in &sect;02 both point the same way: <b>re-estimate at S4 planning, and bring confidence down with it.</b> Flagged rather than overwritten.<br><br><b>v1.7 &mdash; 25 Aug 2026: stamp closed for E15.</b> Roadmap v2.1 added <i>[US] PDP &mdash; Gallery: variant-matched images, arrow colour &amp; thumbnail restyle</i> (8h, P2, Impact 4, Confidence 65%, S4) the same session. <b>Scoped hours 239.5h &rarr; 247.5h, utilisation 98% &rarr; 101%, run contingency 4.5h &rarr; &minus;3.5h.</b> This is the first time run contingency has gone negative &mdash; H2 committed hours now exceed the 244h total run capacity. No rule, formula, quota, WIP limit or capacity mode on this page changed. <b>The rule at the foot of &sect;03 &mdash; nothing enters H2 without something leaving it &mdash; is broken again, in the open, and no displacement is named.</b> Confidence 65% follows the same band as the Okendo card (E14): a dependency outside Rose&rsquo;s confirmed control &mdash; here, whether the product/variant data model supports more than one tagged image per variant at all &mdash; rather than a third party, but the same 60&ndash;74% &ldquo;genuine unknowns&rdquo; band applies. S4 moves from 32h/32h/no-contingency to <b>40h scoped, 8h over</b>. The trade this creates is Rose&rsquo;s to name at planning, per Ticket Intake SOP &sect;07 &mdash; not decided in this stamp.<br><br><b>v1.8 — 26 Aug 2026: E13 effort restored, capacity re-opens.</b> [US] PDP CRO Components — Full redesign. The 22 Aug cut is reversed for a different reason than it was made: a new, distinct A/B test is now planned for the fuller redesign (the newly-built blocks and sections) against today’s live PDP — not a reversal of the 22 Aug decision to ship the buy box to 100% without a test, which stands unchanged for that component. <b>Effort 14h → 16.5h</b>, restoring the 0.5h test setup and 2h read-and-write-up cut on 22 Aug. E13a’s 2h remains nested inside E13’s figure per the 20 Aug decision, so the S2 effort column still must not be summed. <b>Scoped hours 247.5h → 250h, utilisation 101% → 102%, run contingency −3.5h → −6h.</b> No rule, formula, quota, WIP limit or capacity mode on this page changed. <b>The rule at the foot of §03 — nothing enters H2 without something leaving it — is broken further, in the open, and no displacement is named</b>; the trade is Rose’s to name at planning, per Ticket Intake SOP §07. Actual (h) also logged on the card at 16.5, against build-and-QA alone — an itemised breakdown puts actual build+QA at 16–17h against the 14h budgeted for that sub-portion, 2–3h over before test setup or read-and-write-up are spent. Recorded as one more input to the 18 Sep re-forecast, not corrected for now, per rule 5 and the once-per-quarter re-forecast cadence in §02.</footer>
+</div>
+</body>
+</html>
